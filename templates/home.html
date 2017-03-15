@@ -1,0 +1,267 @@
+{% extends "layout.html" %}
+{% load static from staticfiles %}
+
+{% block title %} Lagopoly | Crowdfunding Property Investments {% endblock %}
+
+{% block content %}
+
+<!-- Home background image
+================================================== -->
+
+<div class="parallax" data-background="{% static 'images/home-sliding.jpg' %}" data-color="#36383e" data-color-opacity="0.5" data-img-width="2500" data-img-height="1600">
+	<div class="parallax-content">
+		<div class="container">
+			<div class="col-md-12  margin-top-130 padding-top-130">
+
+				<!-- Home Background Text -->
+				<div class="home-parallax">
+					<h1><strong>&nbsp;&nbsp;Property investment made simple</strong></h1>
+					<h4>Invest at your natural pace. Own shares in multiple properties. Earn rent.</h4>
+					<a class="button" href="submit-property.html">View Properties</a>
+				</div>
+				<!-- Home Background Text / End -->
+
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!-- Content
+================================================== -->
+
+<div class="container margin-top-60 padding-bottom-60"> 
+	<div class="col-md-8">
+		<h2>Join the revolution, and start earning.</h2>
+
+		<li>The Nigeria property market is a $39 billion dollar (N6.4 trillion) sector, growing at 10% a year</li>
+		<li>Be a co-landlord alongside other lagopolists and become a player in Africa's largest market</li>
+		<li>Earn rent monthly without the heavy lifting</li>
+	</div>	
+	<div class="col-md-4">
+		<div class="col-md-3 col-sm-6">
+			<!-- Icon Box -->
+			<div class="icon-box-1">
+
+				<div class="icon-container">
+					<i class="im im-icon-Office"></i>
+					<div class="icon-links">
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="col-md-3 col-sm-6 right-side">
+				<!-- Icon Box -->
+				<div class="icon-box-1">
+
+					<div class="icon-container">
+						<i class="im im-icon-Home-2"></i>
+						<div class="icon-links">							
+						</div>
+					</div>
+			</div>
+		</div>
+
+		<div class="col-md-3 col-sm-6 right-side">
+			<!-- Icon Box -->
+			<div class="icon-box-1">
+
+				<div class="icon-container">
+					<i class="im im-icon-Building"></i>
+					<div class="icon-links">
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!-- How It Works -->
+<section class="fullwidth padding-top-0 margin-bottom-0 padding-bottom-0" data-background-color="#000">
+	<div class="parallax margin-top-0"
+		data-background="{% static 'images/listings-parallax.jpg' %}"
+		data-color="#252529"
+		data-color-opacity="0.90"
+		data-img-width="2500"
+		data-img-height="700">
+
+		<!-- Counters -->
+		<div id="counters" class="padding-top-10 padding-bottom-20" >
+			<div class="counter-box padding-bottom-20"><p>HOW IT WORKS</p></div>
+			<div class="container">
+
+				<div class="row">
+
+					<div class="counter-boxes-inside-parallax">
+
+						<div class="col-md-3 col-sm-6">
+							<div class="counter-box">
+								<div class="counter-box-icon">
+									<i class="im im-icon-Home-2"></i>
+									<span class="counter">Review Properties</span>
+									<p>Browse our list of properties to see photos, facilities, third-party reports and financial data.</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-3 col-sm-6">
+							<div class="counter-box">
+								<div class="counter-box-icon">
+									<i class="im im-icon-Add"></i>
+									<span class="counter">Invest</span>
+									<p>Invest in a property with as much or as little as you like. When the funding closes, you become a joint owner of the property with other investors.</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-3 col-sm-6">
+							<div class="counter-box">
+								<div class="counter-box-icon">
+									<i class="im im-icon-Money-2"></i>
+									<span class="counter">Make Rental Income</span>
+									<p>Earn net rental income every month commensurate with your shares. Lagopoly advertises, lets and manages your property so you don't have to.</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-3 col-sm-6">
+							<div class="counter-box last">
+								<div class="counter-box-icon">
+									<i class="im im-icon-Statistic"></i>
+									<span class="counter">Trade Your Investment</span>
+									<p>Exit your investment and realise capital gains by offering your investments for sale at any time. You can also exit at market value after five years.</p>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- How It Works  / End -->
+
+<!-- Container -->
+<section class="fullwidth padding-top-100" data-background-color="#fff">
+	<div class="container">
+		<div class="row">
+			<div class="layout-switcher hidden"><a href="#" class="list"><i class="fa fa-th-list"></i></a></div>
+				<div class="listings-container list-layout">
+
+					<!-- Listing Item -->
+					<div class="listing-item padding-top-0 padding-bottom-0 padding-left-0 padding-right-0">
+
+						<a href="#" class="listing-img-container">
+
+							<div class="listing-badges">
+								<span class="featured">FUNDING</span>
+							</div>
+
+							<div class="listing-img-content">
+								<span class="listing-price"><i class="im im-icon-Coins"> FINANCED</i></span>
+							</div>
+
+							<img src="{% static 'images/listing-03.jpg' %}" alt="">
+
+						</a>
+						<div class="listing-content">
+
+							<div class="listing-title">
+								<h4><a href="#"><i class="fa fa-map-marker"></i> Ocean Parade Towers, Banana Island, Lagos</a></h4>
+								<a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom" class="listing-address popup-gmaps">
+									12 Unit Block Apartments
+								</a>
+							</div>
+
+							<ul class="listing-details-2 padding-left-0">
+								<li><center>₦185,000,000</center>
+								<center><font size="1px"><strong>Note:</strong> This investment opportunity closes once the funding target is reached</font></center></li>
+							</ul>
+
+							<div class="listing-footer">
+								<div class="col-sm-12 padding-top-20 padding-left-5 padding-right-5 padding-bottom-10">
+									<ul class="padding-top-5 padding-right-0 padding-left-0 padding-bottom-10">
+										<div class="w3-progress-container w3-tiny w3-round-xlarge" style="height:7px">
+		  									<div class="w3-progressbar w3-round-xlarge w3-orange" style="width:75%;"></div>
+		  									<div class="padding-top-10 left-side"><small>75% Funded</small></div>
+		  									<div class="right-side padding-top-10"><i class="fa fa-calendar-o"></i> <small>Closes in 14 days</small></div>
+										</div>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Listing Item / End -->
+				</div>
+			</div>
+		</div>
+	</div>		
+</section>
+<!-- Container / End -->
+
+<section class="fullwidth border-top margin-top-55 margin-bottom-0 padding-top-60 padding-bottom-65" data-background-color="#ffffff">
+	<!-- Logo Carousel -->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<!-- Icon Box -->
+				<div>
+					<div class="counter-box-icon no-bg">
+						<i class="im im-icon-Security-Block"></i>
+					</div>
+					<center><h3>Secure</h3>
+					<p>Your investments are protected and separated from the assets and liabilities of Lagopoly.</p>
+					</center>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<!-- Icon Box -->
+				<div>
+					<div class="counter-box-icon no-bg">
+						<i class="im im-icon-Running"></i>
+					</div>
+					<center>
+						<h3>Get Ahead</h3>
+						<p>Get ahead of the barriers to real estate entry in Nigeria. We eliminate the age-old problems of; cumbersome administrative processes, local land grabbers, letting, and management.</p>
+					</center>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<!-- Icon Box -->
+				<div>
+					<div class="counter-box-icon no-bg">
+						<i class="im im-icon-Idea"></i>
+					</div>
+					<center>
+						<h3>Expertise</h3>
+						<p>Our properties are hand picked by seasoned property experts. When selecting property, we seek out growth opportunities. We look for a good balance between monthly rental income, and the potential for returns from changes in the market.</p>
+					</center>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Logo Carousel / End -->
+</section>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/589b15da1919dc09f9e542ac/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+
+
+{% endblock %}

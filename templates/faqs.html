@@ -1,0 +1,175 @@
+{% extends "layout.html" %}
+{% load static from staticfiles %}
+
+{% block title %} Lagopoly | Frequently Asked Questions {% endblock %}
+
+{% block content %}
+
+<!-- Titlebar
+================================================== -->
+<div id class="parallax" style="background-position: 0% 60%;" data-background="{% static 'images/family-house.jpg' %}" data-color="#fa5b0f"
+		data-color-opacity="0.35" data-img-width="700" data-img-height="600">
+	<div class="parallax-content">
+		<div class="container">
+			<div class="faq-parallax">
+				<h1>FAQs</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container margin-top-30 padding-bottom-60">
+<!-- Widget -->
+<div class="col-md-4">
+	<div class="sidebar left">
+		
+		<div class="my-account-nav-container">
+			
+			<div class="row">
+				<div class="col-md-11 my-profile margin-left-20">
+					<h4>Do you have a different question?</h4>
+
+					<h5>Ask us and expect a reply shortly!</h5>
+
+					<label>Your Name</label>
+					<input value="" type="text">
+
+					<label>Email</label>
+					<input value="" type="email">
+
+					<label>Question</label>
+					<textarea name="question" id="about" cols="30" rows="5"></textarea>
+
+					<button class="button margin-top-20 margin-bottom-20"><i class="fa fa-send"></i> Send</button>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<div class="col-md-8">
+	<h4 class="headline margin-top-0 margin-bottom-20">Questions you have asked us</h4>
+
+	<!-- Toggles Container -->
+	<div class="style-2">
+
+		<!-- Toggle 1 -->
+		<div class="toggle-wrap">
+			<span class="trigger "><a href="#"><i class="sl sl-icon-pin"></i> What does Lagopoly do?<i class="sl sl-icon-plus"></i></a></span>
+			<div class="toggle-container">
+				<p class="faq-fonts">Lagopoly is a stock exchange tailored to the property market, allowing investors to explore expertly selected property assets, diversify their portfolio, and manage their market activity at the click of a button.
+
+				Property investment is a popular choice with a proven track record of generating considerable ROI over time, however it has been plagued with several barriers to its entry and sustainability. Our aim is to bring accessibility, simplicity and security to this market.
+
+				Lagopoly allows you to invest in properties, earn monthly income from rent and sell your investment on the Lagopoly marketplace at a price and time of your choosing</p>
+			</div>
+		</div>
+
+		<!-- Toggle 2 -->
+		<div class="toggle-wrap">
+			<span class="trigger"><a href="#"><i class="sl sl-icon-pin"></i> What types of investment opportunities are available to me? <i class="sl sl-icon-plus"></i></a></span>
+			<div class="toggle-container">
+				<p>
+				On Lagopoly you can choose between the 'New Entry' and 'LagoMarket' investment opportunities. New Entry refers to properties opened to funding, investors can buy shares in New Entry properties. LagoMarket is the marketplace where investors can resell shares originally bought from a New Entry, to other investors. This creates a secondary market allowing investors to reshuffle their portfolio whilst profiting off capital gains.
+				</p>
+			</div>
+		</div>
+
+		<!-- Toggle 3 -->
+		<div class="toggle-wrap">
+			<span class="trigger"><a href="#"><i class="sl sl-icon-pin"></i>Can I know more about the New Entry opportunity?<i class="sl sl-icon-plus"></i> </a></span>
+			<div class="toggle-container">
+				<p>New Entry opportunities are properties on our service that have been secured for co-purchase at a unit price. We strive to always acquire these properties from the source at a discounted price, ensuring you get the best deal possible. 
+
+				Once the property is secured for funding, we make it available to investors and it is funded in real time by everyone. Alongside the property details, we provide you with all the data you need to make sound investment decisions. These include; rental income estimations, targeted capital yield, geographical market trends, third-party valuation by an accredited surveyor, and third-party conveyancing reports by a leading solicitor.
+
+				On committing funds to a New Entry, your Lagopoly account balance will be debited but no real money will leave your account until the funding target is achieved. In the unlikelyhood that a New Entry does not achieve its funding target, Lagopoly will raise the remaining funds required to purchase the property - if it is a small amount. 
+
+				Should the amount required be considerable, then the funding process will be called off and the property will not be purchased. All committed funds will be restored to your Lagopoly account and no money will leave your actual account. Lagopoly will solely bare the costs incurred during the acquisition phase i.e. surveyor fees, solicitor fees, administration etc. You will not be required to cover any of these.
+
+				</p>
+			</div>
+		</div>
+
+		<!-- Toggle 4 -->
+		<div class="toggle-wrap">
+			<span class="trigger"><a href="#"><i class="sl sl-icon-pin"></i>Can I know more about the LagoMarket opportunity?<i class="sl sl-icon-plus"></i> </a></span>
+			<div class="toggle-container">
+				<p>
+					LagoMarket opportunities arise as a result of investors choosing to resell all or a part of their shares in a property. The selling investor ultimately decides the selling price of their shares. Nonetheless, Lagopoly will provide relevant data to help inform both selling and buying investors in deciding whether to sell or buy at a given price.
+
+					Moreso, we make available an updated record of the latest valuation of each property, as provided by leading third-party surveyors. These continuous valuations are conducted on a quaterly basis, with the typical time scale being; March, June, September, and December. A full chartered surveyor's onsite assessment and valuation is undertaken every five years in alignment with the five year exit process.
+
+					However, it is solely the responsibility of investors to decide what price they choose to sell or buy at. Valuations and other data provided by lagopoly should not be taken as investment advice.
+				</p>
+			</div>
+		</div>
+
+		<!-- Toggle 5 -->
+		<div class="toggle-wrap">
+			<span class="trigger"><a href="#"><i class="sl sl-icon-pin"></i>Who handles the letting and management?<i class="sl sl-icon-plus"></i> </a></span>
+			<div class="toggle-container">
+				<p>
+					When you purchase shares in a property, you can sit back, relax and be rest assured that Lagopoly is sure to fully handle all of the management and letting on your behalf.
+
+					To make this work as efficiently as possible, we charge a 10 % administrative fee per year of the gross rental income. This includes the costs of managing, letting, and advertising the property. It excludes specific costs such as maintenance and insurance - consistent with the general industry practice.
+
+					It is possible that Lagopoly may charge an amount lower than the stipulated 10 %. This would be in situations where the property is leased for a long period of time under specific agreements. Lagopoly generally uses a local agents to carry out most of the advertising, management, and letting and pays for these third-party costs from the 10 % charge. Therefore, we usually aim to breakeven here and eliminate waste.
+				</p>
+			</div>
+		</div>
+
+		<!-- Toggle 6 -->
+		<div class="toggle-wrap">
+			<span class="trigger"><a href="#"><i class="sl sl-icon-pin"></i>How do I earn an income?<i class="sl sl-icon-plus"></i> </a></span>
+			<div class="toggle-container">
+				<p>
+					By investing in a property, you own a portion of the individual property. You will receive a share of the Dividends from the property on a monthly basis, proportional to the amount of your ownership shares in the property.
+
+					The Dividends accessible to the investors are calculated as the Gross Rent collected from tenants excluding general maintenance costs such as; purchase costs, cosmetic remedial works, furnishings, and annual voids.
+
+					Once you have funded a property, under no circumstance will you be required to invest further capital, e.g. during vacant periods or to cover defaults. 
+
+					A breakdown of our estimates of future Dividends are provided prior to you making an investment. These estimates are based on consultations with third parties, such as local estate agents and surveyors. We then apply estimates for void periods, on-going maintenance, and any other costs we anticipate as per the above. Our estimates are available for review as part of the investment process.
+			</div>
+		</div>
+
+		<!-- Toggle 7 -->
+		<div class="toggle-wrap">
+			<span class="trigger"><a href="#"><i class="sl sl-icon-pin"></i>When and how will Dividends be paid?<i class="sl sl-icon-plus"></i> </a></span>
+			<div class="toggle-container">
+				<p>
+					Your share of Dividends will start accruing from the date the property is purchased, or a later date if specified in the property description. Dividends for any given month will be paid on the 5th of the following month, directly into your Lagopoly account. If the 5th of the month falls on the weekend or a bank holiday, dividends will be paid on the next business day.
+
+					The first payment will typically follow the first full month from purchase - for example, if a property is purchased on 15th December, the first disbursement will be on 5th February for the period 15th December to 31st January.
+
+					In addition, we provide an updated estimate of the valuation of each property each quarter. RICS accredited surveyors carry out revaluations of all our properties on a quarterly basis and we update the valuations on the 5th of January, April, July and October (if this falls on a weekend or bank holiday, then the next business day) so that you can monitor any capital returns. All of this will be presented through your personal dashboard on the platform.
+			</div>
+		</div>
+
+	</div>
+	<!-- Toggles Container / End -->
+</div>
+
+
+</div>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/589b15da1919dc09f9e542ac/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+
+
+{% endblock %}

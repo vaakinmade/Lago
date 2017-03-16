@@ -18,6 +18,11 @@
 #Ignore htmlcov and reports
 htmlcov/
 reports/
+
+#Ignore Image files to increase bandwith
 assets/images
 *.swo
+
+#Ignore virtualenv
+lagoenv/
 

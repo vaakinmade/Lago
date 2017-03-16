@@ -18,6 +18,6 @@
 #Ignore htmlcov and reports
 htmlcov/
 reports/
-*.swp
+assets/images
 *.swo
 

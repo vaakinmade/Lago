@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %} {{ report.title }} {% endblock%}
+
+{% block content %}
+<article>
+	<h1><a href="{% url 'listings:detail' pk=report.listing.pk %}">{{ report.listing.name}}</a></h1>
+	<h2>{{ report.title}}</h2>
+	<h3>{{ report.overview | linebreaks }}</h3>
+</article>
+
+{% endblock %}

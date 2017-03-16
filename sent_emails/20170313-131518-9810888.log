@@ -1,0 +1,25 @@
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: victorakinmade23@gmail.com
+Date: Mon, 13 Mar 2017 13:15:18 -0000
+Message-ID: <20170313131518.8064.35758@UrbanShade>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/accounts/reset/MQ/4kb-00542fd71654e08649e4/
+
+Your username, in case you've forgotten: vaakinmade
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------

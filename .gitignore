@@ -16,6 +16,7 @@
 /tmp
 
 #Ignore htmlcov and reports
-reports/
 htmlcov/
+reports/
+
 

@@ -6,8 +6,8 @@ source LagoApp/bin/activate
 # Install project Python packages
 pip install -r requirements.txt
 # Setup required environment variables
-export DJANGO_SETTINGS_MODULE=config.settings.local
-export DATABASE_URL=postgres://jenkins:jenkins@localhost/jenkins
+# export DJANGO_SETTINGS_MODULE=config.settings.local
+# export DATABASE_URL=postgres://jenkins:jenkins@localhost/jenkins
 # Apply migrations
 ./manage.py migrate
 # Run the django-jenkins management command

@@ -1,8 +1,13 @@
 #!/bin/bash
+PATH=$WORKSPACE/venv/bin:/usr/local/bin:$PATH
+if [ ! -d "venv" ]; then
+        virtualenv venv
+fi
+. venv/bin/activate
 # Create a virtualenv
-virtualenv --python=python3.4 LagoApp
+# virtualenv --python=python3.4 LagoApp
 # Activate the virtualenv
-source LagoApp/bin/activate
+# source LagoApp/bin/activate
 # Install project Python packages
 pip install -r requirements.txt
 # Setup required environment variables
@@ -13,4 +18,4 @@ pip install -r requirements.txt
 # Run the django-jenkins management command
 ./manage.py jenkins --enable-coverage --coverage-html-report=htmlcov --coverage-rcfile .coveragerc --max-complexity 10
 # Delete the virtualenv
-rm -rf LagoApp
+#rm -rf LagoApp

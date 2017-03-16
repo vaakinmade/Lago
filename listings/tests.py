@@ -11,7 +11,7 @@ class ListingModelTests(TestCase):
 		listing = Listing.objects.create(
 			name = "ABC Heights",
 			address = "15, ABC Heights, Bond Street",
-			city = "Ikeja",
+			town = "Ikeja",
 			state = "lagos",
 			fund_status = "pre-fund",
 			current_valuation = "300000000",
@@ -30,7 +30,7 @@ class ReportModelTests(TestCase):
 		self.listing = Listing.objects.create(
 			name = "ABC Heights",
 			address = "15, ABC Heights, Bond Street",
-			city = "Ikeja",
+			town = "Ikeja",
 			state = "lagos",
 			fund_status = "pre-fund",
 			current_valuation = "300000000",
@@ -57,7 +57,7 @@ class ListingViewsTests(TestCase):
 		self.listing = Listing.objects.create(
 			name = "ABC Heights",
 			address = "15, ABC Heights, Bond Street",
-			city = "Ikeja",
+			town = "Ikeja",
 			state = "lagos",
 			fund_status = "pre-fund",
 			current_valuation = "300000000",
@@ -70,7 +70,7 @@ class ListingViewsTests(TestCase):
 		self.listing2 = Listing.objects.create(
 			name = "ABC Heights, AB2 4HE",
 			address = "15, ABC Heights, Bond Street",
-			city = "Ikeja",
+			town = "Ikeja",
 			state = "lagos",
 			fund_status = "pre-fund",
 			current_valuation = "300000000",
@@ -91,7 +91,7 @@ class ListingViewsTests(TestCase):
 		self.assertIn(str(self.listing), str(resp.content))
 		self.assertIn(str(self.listing2), str(resp.content))
 		self.assertTemplateUsed(resp, 'listings/listing_list.html'),
-		self.assertContains(resp, self.listing.address)
+		self.assertContains(resp, self.listing.name)
 
 	def test_listing_detail_view(self):
 		resp = self.client.get(reverse('listings:detail',

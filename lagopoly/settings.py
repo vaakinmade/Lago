@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django_jenkins',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'bootstrap3',
@@ -43,6 +44,17 @@ INSTALLED_APPS = [
     'accounts',
     'listings',
 ]
+
+JENKINS_TASKS = (
+    'django_jenkins.tasks.run_flake8',
+    'django_jenkins.tasks.run_pyflakes',
+)
+
+PROJECT_APPS = (
+    'accounts',
+    'listings',
+)
+
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',

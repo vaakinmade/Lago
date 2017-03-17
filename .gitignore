@@ -23,5 +23,5 @@ assets/images
 *.swo
 
 #Ignore virtualenv
-/lagoenv
+/lagovenv
 

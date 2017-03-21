@@ -21,6 +21,7 @@ htmlcov/
 #Ignore Image files to increase bandwith
 assets/images
 *.swo
+*.pyc
 
 #Ignore virtualenv
 /lagovenv

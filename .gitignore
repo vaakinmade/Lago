@@ -22,6 +22,7 @@ htmlcov/
 assets/images
 *.swo
 *.pyc
+*~
 
 #Ignore virtualenv
 /lagovenv

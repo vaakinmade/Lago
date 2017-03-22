@@ -1,0 +1,1 @@
+web: gunicorn --pythonpath lagoroku lagoroku.wsgi --log-file -

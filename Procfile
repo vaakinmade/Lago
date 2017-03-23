@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath lagoroku lagoroku.wsgi --log-file -
+web: gunicorn --pythonpath lagopoly lagopoly.wsgi --log-file -

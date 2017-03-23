@@ -10495,23 +10495,6 @@ body .counter-boxes-inside-parallax .counter-box-icon i,
 	.purple, .purple-bg { background: #917ae9; }
 	.olive, .olive-bg { background: #b3c211; }
 
-/*	.bg1 { background-image: url("../images/bg/squared_metal.png"); }
-	.bg2 { background-image: url("../images/bg/retina_wood.png"); }
-	.bg3 { background-image: url("../images/bg/brushed_alu.png"); }
-	.bg4 { background-image: url("../images/bg/crisp_paper_ruffles.png"); }
-	.bg5 { background-image: url("../images/bg/navy_blue.png"); }
-	.bg6 { background-image: url("../images/bg/bedge_grunge.png"); }
-	.bg7 { background-image: url("../images/bg/diamond_upholstery.png"); }
-	.bg8 { background-image: url("../images/bg/shattered.png"); }
-	.bg9 { background-image: url("../images/bg/light_toast.png"); }
-	.bg10 { background-image: url("../images/bg/noise_pattern_with_crosslines.png"); }
-	.bg11 { background-image: url("../images/bg/purty_wood.png"); }
-	.bg12 { background-image: url("../images/bg/subtle_stripes.png"); }
-	.bg13 { background-image: url("../images/bg/textured_stripes.png"); }
-	.bg14 { background-image: url("../images/bg/tileable_wood_texture.png"); }
-	.bg15 { background-image: url("../images/bg/stardust.png"); }
-	.bg16 { background-image: url("../images/bg/vichy.png"); }*/
-
 	.colors li a.active { box-shadow: 0 0 0 2px #fff inset }
 	.colors li a { border-radius: 3px; }
 

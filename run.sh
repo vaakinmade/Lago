@@ -6,7 +6,7 @@ fi
 . venv/bin/activate
 
 # Install project Python packages
-pip install -r requirements.txt  --download-cache=/tmp/$JOB_NAME
+pip install -r requirements.txt
 
 # Run the django-jenkins management command
 python manage.py jenkins --enable-coverage

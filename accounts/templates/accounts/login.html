@@ -10,6 +10,11 @@
 	    <form method="POST">
 	        {% csrf_token %}
 	        {% bootstrap_form form %}
+	        <div class="checkboxes padding-bottom-10">
+	        	<input id="check-2" type="checkbox" name="check">
+	        	<label for="check-2">Remember Me</label>
+	        	<a href="{% url 'accounts:passwordrecovery' %}" class="padding-left-70">Forgot Password?</a>
+	        </div>
 	        <input type="submit" value="Login" class="btn btn-default">
 	    </form>
 	</div>

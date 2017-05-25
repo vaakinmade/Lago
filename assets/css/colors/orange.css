@@ -39,8 +39,6 @@ mark.color {
 
 table.manage-table td.action a:hover,
 table.manage-table .title-container .title h4 a:hover,
-.my-account-nav li a.current,
-.my-account-nav li a:hover,
 #footer .social-icons li a:hover i,
 #navigation.style-1 .current,
 #posts-nav li a:hover,
@@ -222,6 +220,14 @@ input[type=submit] {
     background-color: #fa5b0f
 }
 
+a.success-button,
+input[type=button],
+input[type=submit] {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
 .dropzone:hover .dz-message,
 .sort-by .chosen-container-single .chosen-default,
 .sort-by .chosen-container-single .chosen-single div b:after {
@@ -257,7 +263,7 @@ a.button.border {
 
 .style-4 .tabs-nav li.active a,
 .style-5 .tabs-nav li.active a,
-table.basic-table th {
+{
     background-color: #fa5b0f
 }
 

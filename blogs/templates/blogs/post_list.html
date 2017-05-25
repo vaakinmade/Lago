@@ -1,0 +1,137 @@
+{% extends "layout.html" %}
+{% load static from staticfiles %}
+
+{% block title %} Lagopoly | Blog {% endblock%}
+
+{% block content %}
+
+<!-- Content
+================================================== -->
+<div class="container">
+
+	<!-- Blog Posts -->
+	<div class="blog-page margin-top-20">
+	<div class="row">
+		<div class="col-md-8">
+	
+			<!-- Blog Post -->
+			{% for post in posts%}	
+			<div class="blog-post">
+				
+				<!-- Img -->
+				<a href="{% url 'blogs:detail' pk=post.pk %}">
+					<img src="/media/{{post.image}}" alt="">
+				</a>
+			
+			
+				<!-- Content -->
+				<div class="post-content">
+					<h3><a href="{% url 'blogs:detail' pk=post.pk %}">{{ post.title}}</a></h3>
+
+					<ul class="post-meta">
+						<li>{{ post.created_at.date }}</li>
+						<li>{{ user.get_full_name }}</li>
+					</ul>
+
+					<p>{{post.content|linebreaksbr|truncatechars:180}}</p>
+
+					<a href="{% url 'blogs:detail' pk=post.pk %}" class="read-more">Read More <i class="fa fa-angle-right"></i></a>
+				</div>
+			</div>
+			{% endfor %}
+			<!-- Blog Post / End -->
+
+
+			<!-- Pagination -->
+			<div class="clearfix"></div>
+			<div class="pagination-container margin-bottom-150 hidden">
+		
+				<nav class="pagination-next-prev">
+					<ul>
+						<li><a href="#" class="prev"><i class="sl sl-icon-arrow-left-circle"></i> Previous Articles</a></li>
+						<li><a href="#" class="next">Next</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="clearfix"></div>
+
+		</div>
+
+	<!-- Blog Posts / End -->
+
+
+	<!-- Widgets -->
+	<div class="col-md-4">
+		<div class="sidebar right">
+
+
+			<!-- Widget -->
+			<div class="widget">
+
+				<h3>Featured Articles</h3>
+				<ul class="widget-tabs">
+
+					<!-- Post #1 -->
+					{% for post in posts %}
+						{% if post.featured %}
+							<li>
+								<div class="widget-content">
+										<div class="widget-thumb">
+										<a href="{% url 'blogs:detail' pk=post.pk %}"><img src="/media/thumbnails/{{post.image}}" alt=""></a>
+									</div>
+									
+									<div class="widget-text">
+										<h5><a href="{% url 'blogs:detail' pk=post.pk %}">{{post.title}}</a></h5>
+										<span>{{post.created_at}}</span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</li>
+						{% endif %}
+					{% endfor %}
+					
+				</ul>
+
+			</div>
+			<!-- Widget / End-->
+
+
+			<!-- Widget -->
+			<div class="widget">
+				<h3 class="margin-top-0 margin-bottom-25">Social</h3>
+				<ul class="social-icons rounded">
+					<li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+					<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
+					<li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
+					<li><a class="linkedin" href="#"><i class="icon-linkedin"></i></a></li>
+				</ul>
+
+			</div>
+			<!-- Widget / End-->
+
+			<div class="clearfix"></div>
+			<div class="margin-bottom-40"></div>
+		</div>
+	</div>
+	</div>
+	<!-- Sidebar / End -->
+
+
+</div>
+</div>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/589b15da1919dc09f9e542ac/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+
+{% endblock %}

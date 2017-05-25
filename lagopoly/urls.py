@@ -17,17 +17,25 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf import settings
+from django.conf.urls.static import static
 
 from . import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r"^accounts/", include("accounts.urls", namespace="accounts")),
+    url(r"^dashboard/", include("dashboard.urls", namespace="dashboard")),
     url(r"^accounts/", include("django.contrib.auth.urls")),
+    url(r'^blogs/', include("blogs.urls", namespace="blogs")),
     url(r'^listings/', include('listings.urls', namespace='listings')),
-    url(r'^$', views.home, name='home'),
+    url(r'^$', views.HomeView.as_view(), name='home'),
+    url(r'^hello/$', views.HelloWorldView.as_view(), name='hello'),
     url(r'^faqs/', views.faqs, name="faqs"),
     url(r'^privacy/', views.privacy, name="privacy"),
     url(r'^terms/', views.termsofuse, name="terms"),
 ]
 urlpatterns += staticfiles_urlpatterns()
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

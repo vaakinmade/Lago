@@ -9,7 +9,7 @@
 
 <!-- Titlebar
 ================================================== -->
-<div id class="parallax" style="background-position: 0% 60%;" data-background="{% static 'images/family-house.jpg' %}" data-color="#fa5b0f"
+<div id class="parallax" style="background-position: 0% 60%;" data-background="{% static 'images/family-house.jpg' %}" data-color="fa5b0f"
 		data-color-opacity="0.35" data-img-width="700" data-img-height="600">
 	<div class="parallax-content">
 		<div class="container">
@@ -22,7 +22,7 @@
 
 <!-- Property listings
 ================================================== -->
-<section class="fullwidth margin-top-50 padding-top-10 padding-bottom-55" data-background-color="#fff">
+<section class="fullwidth margin-top-50 padding-top-10 padding-bottom-55" data-background-color="ffff">
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
@@ -47,9 +47,9 @@
 							<div class="listing-title padding-left-0 padding-right-0 padding-bottom-0">
 								<div class="col-sm-6">
 									<h4>
-										<a href="single-property-page-1.html">₦{{ listing.current_valuation |mul:listing.shares_available |div:1000000|floatformat:"0"|intcomma }}</a>
+										<a href="single-property-page-1.html">₦{{ listing.shares_available |mul:listing.shares_available |div:1000000|floatformat:"0"|intcomma }}</a>
 									</h4>
-									<div class="listing-address">of ₦{{ listing.current_valuation|intcomma }}</div>
+									<div class="listing-address">of ₦{{ listing.shares_available|intcomma }}</div>
 								</div>
 
 								<div class="col-sm-6" align="right">
@@ -63,10 +63,10 @@
 							</div>
 							
 							<div class="listing-features col-sm-12 padding-top-20 padding-left-5 padding-right-5 padding-bottom-10">
-								<ul class="listing-features padding-top-5 padding-right-0 padding-left-0 padding-bottom-10">
+								<ul class="listing-feature padding-top-5 padding-right-0 padding-left-0 padding-bottom-10">
 									<div class="w3-progress-container w3-tiny w3-round-xlarge" style="height:7px">
-	  									<div class="w3-progressbar w3-round-xlarge w3-orange" style="width:{{ listing.current_valuation |mul:listing.shares_available |div:1000000 |mul:100  |div:listing.current_valuation|floatformat:"0" |add:-100 |abs }}%;"></div>
-	  									<div class="padding-top-10 left-side"><small> {{ listing.current_valuation |mul:listing.shares_available |div:1000000 |mul:100  |div:listing.current_valuation|floatformat:"0" |add:-100 |abs }}% Funded</small>
+	  									<div class="w3-progressbar w3-round-xlarge w3-orange" style="width:{{ listing.shares_available |mul:listing.shares_available |div:1000000 |mul:100  |div:listing.shares_available|floatformat:'0' |add:-100 |abs }}%;"></div>
+	  									<div class="padding-top-10 left-side"><small> {{ listing.shares_available |mul:listing.shares_available |div:1000000 |mul:100  |div:listing.shares_available|floatformat:"0" |add:-100 |abs }}% Funded</small>
 	  									</div>
 	  									<div class="right-side padding-top-10"><i class="fa fa-calendar-o"></i> <small>Closes in 14 days</small>
 	  									</div>
@@ -75,8 +75,8 @@
 							</div>
 
 							<div class="listing-footer col-sm-12 padding-top-10 padding-right-5 padding-left-5">
-								{% with rent_percent=listing.rental_income|mul:100|div:listing.current_valuation %}
-									<small><center>{{ rent_percent|floatformat:"2" }}% Dividend Yield + {{ listing.capital_growth}}% Targeted Capital Growth <br/>= {{ rent_percent|add:listing.capital_growth|floatformat:"2" }}% Combined Yield</center></small>
+								{% with rent_percent=listing.rental_income|mul:100|div:listing.shares_available %}
+									<small><center>{{ rent_percent|floatformat:"2" }}% Dividend Yield + {{ listing.shares_available }}% Targeted Capital Growth <br/>= {{ rent_percent|add:listing.shares_available|floatformat:"2" }}% Combined Yield</center></small>
 								{% endwith %}
 							</div>
 

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Listing, Report
+from .models import Listing, Report, Investment, Valuation, Financial, Wallet
 
 class ReportInline(admin.StackedInline):
 	model = Report
@@ -11,5 +11,7 @@ class ListingAdmin(admin.ModelAdmin):
 
 admin.site.register(Listing, ListingAdmin)
 admin.site.register(Report)
-
-# Register your models here.
+admin.site.register(Investment)
+admin.site.register(Valuation)
+admin.site.register(Financial)
+admin.site.register(Wallet)

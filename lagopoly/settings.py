@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'bootstrap3',
     'mathfilters',
     'accounts',
+    'blogs',
+    'dashboard',
     'listings',
 ]
 
@@ -62,6 +64,7 @@ JENKINS_TASKS = (
 
 PROJECT_APPS = (
     'accounts',
+    'dashboard',
     'listings',
 )
 
@@ -158,3 +161,6 @@ LOGIN_REDIRECT_URL = "listings:list"
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
+#setting media path for imageUpload
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -14,12 +14,10 @@ class ListingModelTests(TestCase):
 			town = "Ikeja",
 			state = "lagos",
 			fund_status = "pre-fund",
-			current_valuation = "300000000",
 			shares_available = "1000000",
-			rental_income = "1200000",
-			capital_growth = "5.7",
 			investment_case = "great buy, go for it!",
-			listing_details = "3 bedroom, furnished, 19 minutes from train station"
+			listing_details = "3 bedroom, furnished, 19 minutes from train station",
+			unit_block = "30 units"
 		)
 		time.sleep(0.1) # delays for 0.1 seconds
 		now = timezone.now()
@@ -33,12 +31,10 @@ class ReportModelTests(TestCase):
 			town = "Ikeja",
 			state = "lagos",
 			fund_status = "pre-fund",
-			current_valuation = "300000000",
 			shares_available = "1000000",
-			rental_income = "1200000",
-			capital_growth = "5.7",
 			investment_case = "great buy, go for it!",
-			listing_details = "3 bedroom, furnished, 19 minutes from train station"
+			listing_details = "3 bedroom, furnished, 19 minutes from train station",
+			unit_block = "30 units"
 		)
 
 
@@ -60,23 +56,21 @@ class ListingViewsTests(TestCase):
 			town = "Ikeja",
 			state = "lagos",
 			fund_status = "pre-fund",
-			current_valuation = "300000000",
 			shares_available = "1000000",
-			rental_income = "1200000",
-			capital_growth = "5.7",
 			investment_case = "great buy, go for it!",
-			listing_details = "3 bedroom, furnished, 19 minutes from train station"
+			listing_details = "3 bedroom, furnished, 19 minutes from train station",
+			unit_block = "30 units"
 		)
 		self.listing2 = Listing.objects.create(
-			name = "ABC Heights, AB2 4HE",
+			name = "ABC Heights",
 			address = "15, ABC Heights, Bond Street",
 			town = "Ikeja",
 			state = "lagos",
 			fund_status = "pre-fund",
-			current_valuation = "300000000",
 			shares_available = "1000000",
-			rental_income = "1200000",
-			capital_growth = "5.7",
+			investment_case = "great buy, go for it!",
+			listing_details = "3 bedroom, furnished, 19 minutes from train station",
+			unit_block = "30 units"
 		)
 		self.report = Report.objects.create(
 			title = "Residential report for Ikeja Property",

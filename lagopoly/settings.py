@@ -52,8 +52,8 @@ INSTALLED_APPS = [
     'bootstrap3',
     'mathfilters',
     'accounts',
+    'investors',
     'blogs',
-    'dashboard',
     'listings',
 ]
 
@@ -156,7 +156,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'assets')]
 
-LOGIN_REDIRECT_URL = "listings:list"
+LOGIN_REDIRECT_URL = "home"
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")

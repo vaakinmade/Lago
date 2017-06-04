@@ -1,0 +1,52 @@
+{% extends "investors/_layout.html" %}
+
+{% block body_content %}
+<div class="col-md-5 col-md-offset-2">
+<h3><center>{{ page_title }}</center></h3>
+<h5><center>Please enter the details of your account where you wish to receive your rental payments.</center></h5>
+
+<form method='POST'>
+	{% csrf_token %}
+	{{ form.non_field_errors }}
+
+	{% for field in form %}
+
+	{% if field.name != 'sort_code' %}
+
+        {% if form.errors %}
+
+            {% for error in field.errors %}
+	            <ul class="error-msg">
+	                <li><strong>{{ error|escape }}</strong></li>
+	            </ul>
+            {% endfor %}
+
+        {% endif %}
+
+        {{ field.label_tag }} 
+
+        {{ field }}
+        
+        {% if field.help_text %}
+        	<p class="help">{{ field.help_text|safe }}</p>
+        {% endif %}
+    {% endif %}
+    {% endfor %}
+
+    {% if form.sort_code.errors %}
+	    <ul class="error-msg">
+	    {% for error in form.sort_code.errors %}
+	        <li><strong>{{ error|escape }}</strong></li>
+	    {% endfor %}
+	    </ul>
+	{% endif %}
+	<label for="{{form.sort_code.id_for_label}}">
+		<h5>Sort Code: <i class="tip" data-tip-content="Enter your sort code if your bank account is based in the UK. <br/>
+		<em>(No dashes please)</em>"></i></h5>
+	 </label>
+	{{form.sort_code}}
+	<input type="submit" class="btn btn-primary" value="Save">
+</form>
+
+</div>
+{% endblock %}

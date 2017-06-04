@@ -79,15 +79,8 @@ class Financial(models.Model):
 	def __str__(self):
 		return self.listing.name + " Financial"
 
-class Wallet(models.Model):
-	created_at = models.DateTimeField(auto_now_add=True)
-	credit = models.DecimalField(max_digits=10, decimal_places=2)
-	debit = models.DecimalField(max_digits=10, decimal_places=2)
-	balance = models.DecimalField(max_digits=10, decimal_places=2)
-	activity = models.TextField()
-	investor = models.ForeignKey(User)
 
-	def __str__(self):
-		return self.investor.username + "'s Wallet"
+
+
 
 

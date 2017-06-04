@@ -4,16 +4,22 @@
 {% block content %}
 <!-- Content
 ================================================== -->
-<div class="container">
+<div class="container" style="min-height: 400px;">
 	<div class="row">
-		<div class="col-md-8 margin-top-20" style="margin-left: 20%; margin-right: 20%;">
-			<h2><center>{{ page_title }}</center></h2>
+		<div class="col-md-8 col-md-offset-2 margin-top-20">
+		{% if perms.blogs %}
+       		<h3><center>{{ page_title }}</center></h3>
 			<form method='POST' enctype="multipart/form-data">
 				{% csrf_token %}
 				{{ form.as_p }}
 				<input type="submit" class="btn btn-primary" value="Save">
 			</form>
 			<form action="/file-upload" class="dropzone" ></form>
+		{% else %}
+			<div class="margin-bottom-150" >
+				<h2><center>Insufficient Permissions</center></h2>
+			</div>
+		{% endif %}
 		</div>
 	</div>
 </div>

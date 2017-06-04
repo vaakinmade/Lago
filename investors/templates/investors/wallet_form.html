@@ -1,0 +1,63 @@
+{% extends "investors/_layout.html" %}
+
+{% block body_content %}
+<h3><center>{{ page_title }}</center></h3>
+<div class="col-md-7 col-md-offset-1">
+
+<form method='POST'>
+	{% csrf_token %}
+	{{ form.non_field_errors }}
+
+	<table>
+		<tr>
+		{% for field in form %}
+			{% if field.name != 'activity' %}
+			<td  class="padding-right-10">	
+		        {% if form.errors %}
+		            {% for error in field.errors %}
+			            <ul class="error-msg">
+			                <li><strong>{{ error|escape }}</strong></li>
+			            </ul>
+		            {% endfor %}
+
+		        {% endif %}
+		        {{ field.label_tag }} 
+		        {{ field }}
+		       
+		        {% if field.help_text %}
+		        	<p class="help">{{ field.help_text|safe }}</p>
+		        {% endif %}
+		    {% endif %}
+		    </td>
+	    {% endfor %}
+
+	    <td rowspan="2" class="padding-right-10"> 
+	    {% if form.activity.errors %}
+		    <ul class="error-msg">
+		    {% for error in form.activity.errors %}
+		        <li><strong>{{ error|escape }}</strong></li>
+		    {% endfor %}
+		    </ul>
+		{% endif %}
+		<label for="{{form.activity.id_for_label}}">
+			<h5>Notes: <i class="tip" data-tip-content="Enter a brief summary for this transaction"></i></h5>
+		 </label>
+		{{form.activity}}
+		</td>
+    </tr>
+
+    <tr>
+    	<td class="padding-right-10">
+    	{% if "Make Withdrawal" not in page_title %}
+    		<input type="submit" class="btn btn-primary" value="ADD FUND">
+    	{% else %}
+    		<input type="submit" class="btn btn-primary" value="WITHDRAW">
+    	{% endif %}
+    	</td>
+    </tr>
+	
+	</table>
+</form>
+
+</div>
+{% endblock %}

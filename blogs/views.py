@@ -3,23 +3,14 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 from . import models
 from .mixins import PageTitleMixin, ImageOperations
-#from .forms import PostForm
 
 
 class PostCreateView(PageTitleMixin, CreateView):
 	fields = ['title', 'content', 'image']
 	model = models.Post
-	#form_class = PostForm
 	page_title = "Add New Blog Post"
 
-	def get_context_data(self):
-		context = super().get_context_data()
-		context['author'] = self.request.user.pk
-		return context
-
 	def form_valid(self, form):
-		# This method is called when valid form data has been POSTed.
-		# It should return an HttpResponse.
 		form.instance.author = self.request.user
 		return super(PostCreateView, self).form_valid(form)
 
@@ -58,6 +49,5 @@ class PostDetailView(PageTitleMixin, DetailView):
 			context['post_prev'] = models.Post.objects.filter(id__lt=self.kwargs['pk']).order_by('-created_at')[0:1].get()
 		except models.Post.DoesNotExist:
 			context['post_prev'] = None
-		
-		#print ("Context", context['post_next'].title)
+
 		return context

@@ -25,9 +25,10 @@ from . import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r"^accounts/", include("accounts.urls", namespace="accounts")),
-    url(r"^dashboard/", include("dashboard.urls", namespace="dashboard")),
     url(r"^accounts/", include("django.contrib.auth.urls")),
+    #url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^blogs/', include("blogs.urls", namespace="blogs")),
+    url(r"^dashboard/", include("investors.urls", namespace="investors")),
     url(r'^listings/', include('listings.urls', namespace='listings')),
     url(r'^$', views.HomeView.as_view(), name='home'),
     url(r'^hello/$', views.HelloWorldView.as_view(), name='hello'),

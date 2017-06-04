@@ -1,70 +1,14 @@
-{% extends "layout.html" %}
-{% load static from staticfiles %}
+{% extends "investors/_layout.html" %}
 
-{% block title %} Lagopoly | {{dashboard.investment}} {% endblock %}
-
-{% block content %}
-
-<!-- Titlebar
-================================================== -->
-<div class="container margin-top-30 padding-bottom-60">
-<!-- Widget -->
-	<div class="col-md-3">
-		<div class="sidebar left">
-			
-			<div class="my-account-nav-container padding-bottom-0">
-				
-				<div>
-					<div class="my-profile">
-						<div align="center" class=" padding-bottom-10">
-							<h2>₦0.00</h2>
-							<div>Available Funds</div>
-							<div><h6>Add Funds | Make Withdrawal</h6></div>
-						</div>
-					</div>
-				</div>
-				<hr/>
-				
-				<div class="padding-top-0">
-					<div class="my-account-nav-container padding-bottom-0">
-						
-						<ul class="my-account-nav padding-bottom-0">
-							<div class="row current margin-bottom-5 padding-left-10" onclick="location.href='#';" style="cursor: pointer;">
-								<li><i class="sl sl-icon-speedometer"></i>&nbsp;&nbsp;Dashboard</li>
-							</div>
-							<div class="row margin-bottom-5 padding-left-10" onclick="location.href='#';" style="cursor: pointer;">
-								<li><i class="fa fa-database"></i>&nbsp;&nbsp;Financial Statement</li>
-							</div>
-							<div class="row margin-bottom-5 padding-left-10" onclick="location.href='#';" style="cursor: pointer;">
-								<li><i class="fa fa-file-word-o"></i>&nbsp;&nbsp;Investment Documents</li>
-							</div>
-							<div class="row margin-bottom-5 padding-left-10" onclick="location.href='#';" style="cursor: pointer;">
-								<li><i class="sl sl-icon-credit-card"></i>&nbsp;&nbsp;Bank Account</li>
-							</div>
-							<div class="row margin-bottom-5 padding-left-10" onclick="location.href='#';" style="cursor: pointer;">
-								<li><i class="sl sl-icon-settings"></i>&nbsp;&nbsp;Settings</li>
-							</div>
-							<div class="row margin-bottom-5 padding-left-10" onclick="location.href='#';" style="cursor: pointer;">
-								<li><i class="sl sl-icon-shield"></i>&nbsp;&nbsp;Security</li>
-							</div>
-						</ul>
-					</div>
-
-				</div>
-
-			</div>
-
-		</div>
-	</div>
-
+{% block body_content %}
 	<div class="col-md-9">
-		<center><h2 class="headline margin-top-0 margin-bottom-10">Your Account</h2></center>
+		<center><h3 class="headline margin-top-0 margin-bottom-10">Your Account</h3></center>
 		<center><h5 class="headline margin-top-0 margin-bottom-20">Stay on top of your properties</h5></center>
 		
 		<div class="style-2">
-			<div class="row">
+			<div class="">
 				<!-- Dash Toggle -->
-				<div class="col-xs-4 padding-left-0 padding-right-5">
+				<div class="col-md-4 padding-left-0 padding-right-5">
 					<div class="toggle-wrap dashbox">
 						
 						<span class="trigger trigger-dashbox">
@@ -89,7 +33,7 @@
 					</div>
 				</div>
 
-				<div class="col-xs-4 padding-left-0 padding-right-5">			
+				<div class="col-md-4 padding-left-0 padding-right-5">			
 					<div class="toggle-wrap dashbox">
 					
 					<span class="trigger trigger-dashbox">
@@ -118,7 +62,7 @@
 					</div>
 				</div>
 
-				<div class="col-xs-4 padding-left-0 padding-right-0">
+				<div class="col-md-4 padding-left-0 padding-right-5">
 					<div class="toggle-wrap dashbox">
 					
 					<span class="trigger trigger-dashbox">
@@ -149,7 +93,7 @@
 			</div>
 			<!-- Tab Start-->
 
-			<div class="row margin-top-50">
+			<div class="margin-top-50">
 				
 				<!-- Tabs Navigation -->
 					<ul class="tabs-nav">
@@ -247,7 +191,9 @@
 						
 						</div>
 
-						<div class="tab-content" id="tab3a">Suspendisse ut laoreet massa. Etiam vel dolor eu quam varius tempor eu eu mi. Duis auctor interdum ligula ut faucibus. Vivamus lorem ipsum dolor sit amet in tincidunt augue. Aenean at ligula justo, sed gravida metus. </div>
+						<div class="tab-content" id="tab3a">
+						You are currently watching no properties.
+						</div>
 					</div>
 			</div>
 
@@ -256,21 +202,5 @@
 
 
 	</div>
-</div>
-
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/589b15da1919dc09f9e542ac/default';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
-
 
 {% endblock %}

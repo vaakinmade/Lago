@@ -10,7 +10,7 @@ class Post(models.Model):
 	content = models.TextField()
 	hits = models.IntegerField(default=0)
 	featured = models.BooleanField(default=False)
-	visibility = models.BooleanField(default=True)
+	visibility = models.BooleanField(default=False)
 	image = models.ImageField(upload_to='images/lagopoly', default='pic_folder/None/no-img.jpg')
 
 	def __str__(self):

@@ -15,15 +15,12 @@ class PageTitleMixin:
 
 
 class InvestmentOperations:
-   
-
     def get_investment(self, investor_pk, listing_pk):
         try:
             investment = Investment.objects.get(investor_id=investor_pk, listing_id=listing_pk, status='active')
             return investment
         except ObjectDoesNotExist:
             return "Investor owns no preexisting investment in property"
-
 
     def archive_update_investment(self, investor_pk, listing_pk):
         investment = self.get_investment(investor_pk, listing_pk)
@@ -34,10 +31,9 @@ class InvestmentOperations:
 
         return investment 
 
-
     def update_listing_shares(self, listing_pk, unit_shares):
         listing = Listing.objects.get(id=listing_pk)
         listing.shares_available -= unit_shares
         return listing
 
-        #investment.unit_shares = 
+    #investment.unit_shares = 

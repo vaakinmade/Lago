@@ -26,7 +26,12 @@
 					<div class="row listing-title padding-top-20 padding-left-0 padding-right-0 padding-bottom-0">
 						<div>
 							<div class="col-xs-6 black-font padding-top-10">Investment Amount</div>
-							<div class="col-xs-6 black-font" align="right"><input id="investment_amount" oninput="calculate_transaction_fees()" style="text-align:right; max-width: 50%;" value="" placeholder="200000" type="text" required>
+							<div class="col-xs-6 black-font select-input disabled-first-option" align="right"><input id="investment_amount" oninput="calculate_transaction_fees()" value="" placeholder="200000" type="text" data-unit="NGN" required>
+							</div>
+
+							<h5>Investment Amount</h5>
+							<div class="select-input disabled-first-option">
+								<input type="text" data-unit="NGN">
 							</div>
 						</div>
 						<div class="fixed-size">

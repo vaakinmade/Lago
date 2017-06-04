@@ -1,19 +1,19 @@
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView, ListView
+from django.views.generic import TemplateView, CreateView, ListView, View
 from .mixins import PageTitleMixin
 from .models import RentAccount, Wallet
 from listings import models
-from investors.forms import FundForm, WithdrawalForm
-from django.contrib.auth.mixins import(
-    LoginRequiredMixin
-)
+from investors.forms import FundForm
+from django.contrib.sessions.backends.db import SessionStore
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class DashboardView(PageTitleMixin, LoginRequiredMixin, TemplateView):
 	template_name = "investors/home.html"
-	page_title = "home"
+	page_title = "investors area"
+	paginate_by = 6
 
 	def get_context_data(self, **kwargs):
 		context = super(DashboardView, self).get_context_data(**kwargs)
@@ -29,7 +29,26 @@ class DashboardView(PageTitleMixin, LoginRequiredMixin, TemplateView):
 						context['funded'] = True
 
 		context['dashboard'] = listing_query
+
+		context['wallet'] = DashboardLayout.get_wallet_balance(self.request.user.id)
 		return context
+
+
+class DashboardLayout():
+	@staticmethod
+	def get_wallet_balance(investor_pk):
+		#sess = SessionStore()
+		try:
+			return Wallet.objects.filter(investor_id=investor_pk).order_by('-created_at')[:1].get()
+		except Wallet.DoesNotExist:
+			obj = Wallet(
+				investor_id=investor_pk,
+				amount=0,
+				balance=0,
+				activity="Fund your wallet and start investing",
+				transaction=Wallet.CREDIT)
+			obj.save()
+			return obj
 
 
 class WalletListView(PageTitleMixin, LoginRequiredMixin, ListView):
@@ -37,6 +56,11 @@ class WalletListView(PageTitleMixin, LoginRequiredMixin, ListView):
 	model = Wallet
 	page_title = "Wallet History"
 	paginate_by = 6
+
+	def get_context_data(self, **kwargs):
+		context = super(WalletListView, self).get_context_data(**kwargs)
+		context['wallet'] = DashboardLayout.get_wallet_balance(self.request.user.id)
+		return context
 
 	def get_queryset(self):
 		return Wallet.objects.filter(investor_id=self.request.user).order_by('-created_at')
@@ -53,9 +77,13 @@ class WalletCreateView(PageTitleMixin, LoginRequiredMixin, CreateView):
 		if self.transaction == "CR":
 			form.instance.investor = self.request.user
 			form.instance.transaction = Wallet.CREDIT
-			wallet = self.get_balance(self.request.user.id)
+
+			obj = DashboardLayout()
+			wallet = obj.get_wallet_balance(self.request.user.id)
 			form.instance.balance =  wallet.balance + form.cleaned_data['amount']
+
 			return super(WalletCreateView, self).form_valid(form)
+
 		elif self.transaction =="DR":
 			form.instance.investor = self.request.user
 			form.instance.transaction = Wallet.DEBIT
@@ -68,33 +96,29 @@ class WalletCreateView(PageTitleMixin, LoginRequiredMixin, CreateView):
 				return HttpResponseRedirect(reverse('investors:withdraw'))
 			return super(WalletCreateView, self).form_valid(form)
 
-	def get_balance(self, investor_pk):
-		try:
-			return Wallet.objects.filter(investor_id=investor_pk).order_by('-created_at')[:1].get()
-		except Wallet.DoesNotExist:
-			obj = Wallet(
-				investor_id=investor_pk,
-				amount=0,
-				balance=0,
-				activity="Fund your wallet and start investing",
-				transaction=Wallet.CREDIT)
-			obj.save()
-			return obj
-
-	def get_transaction_type(self, transaction_type):
+	def set_transaction_type(self, transaction_type):
 		WalletCreateView.transaction = transaction_type
 		return WalletCreateView.transaction
 
+	def get_context_data(self, **kwargs):
+		context = super(WalletCreateView, self).get_context_data(**kwargs)
+		context['wallet'] = DashboardLayout.get_wallet_balance(self.request.user.id)
+		return context
+
 
 class WalletDebitView(WalletCreateView):
-	#form_class = WithdrawalForm
 	success_url = '/dashboard/make-withdrawal'
 	page_title = "Make Withdrawal"
 	
 	def form_valid(self, form):
 		obj = WalletCreateView()
-		obj.get_transaction_type(Wallet.DEBIT)
+		obj.set_transaction_type(Wallet.DEBIT)
 		return super(WalletDebitView, self).form_valid(form)
+
+	def get_context_data(self, **kwargs):
+		context = super(WalletDebitView, self).get_context_data(**kwargs)
+		context['wallet'] = DashboardLayout.get_wallet_balance(self.request.user.id)
+		return context
 
 
 class RentAccountCreateView(PageTitleMixin, LoginRequiredMixin, CreateView):
@@ -105,3 +129,8 @@ class RentAccountCreateView(PageTitleMixin, LoginRequiredMixin, CreateView):
 	def form_valid(self, form):
 		form.instance.investor = self.request.user
 		return super(RentAccountCreateView, self).form_valid(form)
+
+	def get_context_data(self, **kwargs):
+		context = super(RentAccountCreateView, self).get_context_data(**kwargs)
+		context['wallet'] = DashboardLayout.get_wallet_balance(self.request.user.id)
+		return context

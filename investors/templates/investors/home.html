@@ -6,7 +6,7 @@
 		<center><h5 class="headline margin-top-0 margin-bottom-20">Stay on top of your properties</h5></center>
 		
 		<div class="style-2">
-			<div class="">
+			<div class="row margin-left-0 margin-right-0">
 				<!-- Dash Toggle -->
 				<div class="col-md-4 padding-left-0 padding-right-5">
 					<div class="toggle-wrap dashbox">
@@ -93,7 +93,7 @@
 			</div>
 			<!-- Tab Start-->
 
-			<div class="margin-top-50">
+			<div class="margin-top-30">
 				
 				<!-- Tabs Navigation -->
 					<ul class="tabs-nav">
@@ -197,10 +197,32 @@
 					</div>
 			</div>
 
+			<div class="col-md-5 col-md-offset-4">
+				{% if is_paginated %}
+					<ul class="pagination">
+						{% if page_obj.has_previous %}
+							<li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+						{% else %}
+							<li class="disabled"><span>&laquo;</span></li>
+						{% endif %}
+
+						{% for i in paginator.page_range %}
+							{% if page_obj.number == i %}
+								<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+							{% else %}
+								<li><a href="?page={{ i }}">{{ i }}</a></li>
+							{% endif %}
+						{% endfor %}
+
+						{% if page_obj.has_next %}
+							<li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+						{% else %}
+							<li class="disabled"><span>&raquo;</span></li>
+						{% endif %}
+					</ul>
+				{% endif %}
+			</div>
 		</div>
-
-
-
 	</div>
 
 {% endblock %}

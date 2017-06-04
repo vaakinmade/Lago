@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% load static from staticfiles %}
 
-{% block title %} Lagopoly | {{dashboard.investment}} {% endblock %}
+{% block title %} Lagopoly | {{page_title}} {% endblock %}
 
 {% block content %}
 
@@ -18,7 +18,7 @@
 				<div>
 					<div class="my-profile">
 						<div align="center" class=" padding-bottom-10">
-							<h2>₦0.00</h2>
+							<h2>₦{{wallet.balance}}</h2>
 							<div>Available Funds</div>
 							<div><h6><a href="{% url 'investors:fund' %}">Add Funds</a> | 
 									<a href="{% url 'investors:withdraw' %}">Make Withdrawal</a></h6></div>
@@ -31,7 +31,7 @@
 					<div class="my-account-nav-containe padding-bottom-30">
 						
 						<ul class="my-account-nav padding-bottom-0">
-							{% if page_title == 'home' %}
+							{% if page_title == 'investors area' %}
 								<div class="row current margin-bottom-5 padding-left-10" onclick="location.href='{% url 'investors:home' %}';" style="cursor: pointer;">
 									<li><i class="sl sl-icon-speedometer"></i>&nbsp;&nbsp;Dashboard</li>
 								</div>

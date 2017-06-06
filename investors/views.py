@@ -135,7 +135,7 @@ class PasswordChangeView(PageTitleMixin, mixins.LoginRequiredMixin, FormView):
 	template_name = 'investors/security.html'
 	form_class = PasswordChangeForm
 	success_url = '/dashboard/change-password'
-	page_title = 'Reset Password'
+	page_title = 'Change Password'
 
 
 	def get_context_data(self, **kwargs):
@@ -146,18 +146,5 @@ class PasswordChangeView(PageTitleMixin, mixins.LoginRequiredMixin, FormView):
 
 	def get_form_kwargs(self):
 		kwargs = super(PasswordChangeView, self).get_form_kwargs()
-		kwargs['user'] = self.request.user
+		kwargs['request'] = self.request
 		return kwargs
-
-	# def form_valid(self, form):
-	# 	# user = authenticate(username=self.request.user.username, password=form.cleaned_data['password'])
-	# 	# if user is not None:
-	# 	# 	user.set_password(form.cleaned_data['new_password'])
-	# 	# 	user.save()
-	# 	# 	return super(PasswordUpdateView, self).form_valid(form)
-	# 	# else:
-	# 	# 	password = form.cleaned_data['password']
-	# 	# 	msg = "Incorrect Password"
-	# 	# 	PasswordForm.add_error('password', msg)
-		
-	# 	return super(PasswordUpdateView, self).form_valid(form)

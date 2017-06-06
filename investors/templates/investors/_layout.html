@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% load static from staticfiles %}
+{% load mathfilters %}
 
 {% block title %} Lagopoly | {{page_title}} {% endblock %}
 
@@ -18,7 +19,7 @@
 				<div>
 					<div class="my-profile">
 						<div align="center" class=" padding-bottom-10">
-							<h2>₦{{wallet.balance}}</h2>
+							<h2>₦{{wallet.balance|floatformat:"2"}}</h2>
 							<div>Available Funds</div>
 							<div><h6><a href="{% url 'investors:fund' %}">Add Funds</a> | 
 									<a href="{% url 'investors:withdraw' %}">Make Withdrawal</a></h6></div>
@@ -76,9 +77,15 @@
 							<div class="row margin-bottom-5 padding-left-10" onclick="location.href='#';" style="cursor: pointer;">
 								<li><i class="sl sl-icon-settings"></i>&nbsp;&nbsp;Settings</li>
 							</div>
-							<div class="row margin-bottom-5 padding-left-10" onclick="location.href='#';" style="cursor: pointer;">
+							{% if 'Reset Password' in page_title %}
+							<div class="row margin-bottom-5 padding-left-10 current" onclick="location.href='{% url 'investors:changepassword' %}';" style="cursor: pointer;">
 								<li><i class="sl sl-icon-shield"></i>&nbsp;&nbsp;Security</li>
 							</div>
+							{% else %}
+							<div class="row margin-bottom-5 padding-left-10" onclick="location.href='{% url 'investors:changepassword' %}';" style="cursor: pointer;">
+								<li><i class="sl sl-icon-shield"></i>&nbsp;&nbsp;Security</li>
+							</div>
+							{% endif %}
 						</ul>
 					</div>
 

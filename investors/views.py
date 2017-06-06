@@ -1,16 +1,16 @@
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import TemplateView, CreateView, ListView, View
+from django.views.generic import TemplateView, CreateView, ListView, FormView
 from .mixins import PageTitleMixin
 from .models import RentAccount, Wallet
-from listings import models
-from investors.forms import FundForm
-from django.contrib.sessions.backends.db import SessionStore
-from django.contrib.auth.mixins import LoginRequiredMixin
+from listings.models import Listing
+from django.contrib.auth import mixins, models, authenticate
+from investors.forms import FundForm, PasswordChangeForm
+from django import forms
 
 
-class DashboardView(PageTitleMixin, LoginRequiredMixin, TemplateView):
+class DashboardView(PageTitleMixin, mixins.LoginRequiredMixin, TemplateView):
 	template_name = "investors/home.html"
 	page_title = "investors area"
 	paginate_by = 6
@@ -18,7 +18,7 @@ class DashboardView(PageTitleMixin, LoginRequiredMixin, TemplateView):
 	def get_context_data(self, **kwargs):
 		context = super(DashboardView, self).get_context_data(**kwargs)
 
-		listing_query = models.Listing.objects.prefetch_related('investment_set','valuation_set')
+		listing_query = Listing.objects.prefetch_related('investment_set','valuation_set')
 
 		for val in listing_query:
 			for investment in val.investment_set.all():
@@ -51,7 +51,7 @@ class DashboardLayout():
 			return obj
 
 
-class WalletListView(PageTitleMixin, LoginRequiredMixin, ListView):
+class WalletListView(PageTitleMixin, mixins.LoginRequiredMixin, ListView):
 	context_object_name = "statements"
 	model = Wallet
 	page_title = "Wallet History"
@@ -66,7 +66,7 @@ class WalletListView(PageTitleMixin, LoginRequiredMixin, ListView):
 		return Wallet.objects.filter(investor_id=self.request.user).order_by('-created_at')
 
 
-class WalletCreateView(PageTitleMixin, LoginRequiredMixin, CreateView):
+class WalletCreateView(PageTitleMixin, mixins.LoginRequiredMixin, CreateView):
 	form_class = FundForm
 	template_name = 'investors/wallet_form.html'
 	success_url = '/dashboard/fund-wallet'
@@ -115,13 +115,8 @@ class WalletDebitView(WalletCreateView):
 		obj.set_transaction_type(Wallet.DEBIT)
 		return super(WalletDebitView, self).form_valid(form)
 
-	def get_context_data(self, **kwargs):
-		context = super(WalletDebitView, self).get_context_data(**kwargs)
-		context['wallet'] = DashboardLayout.get_wallet_balance(self.request.user.id)
-		return context
 
-
-class RentAccountCreateView(PageTitleMixin, LoginRequiredMixin, CreateView):
+class RentAccountCreateView(PageTitleMixin, mixins.LoginRequiredMixin, CreateView):
 	fields = ('account_name', 'account_number', 'sort_code')    
 	model = RentAccount
 	page_title = "Your Personal Bank Account Details"
@@ -134,3 +129,35 @@ class RentAccountCreateView(PageTitleMixin, LoginRequiredMixin, CreateView):
 		context = super(RentAccountCreateView, self).get_context_data(**kwargs)
 		context['wallet'] = DashboardLayout.get_wallet_balance(self.request.user.id)
 		return context
+
+
+class PasswordChangeView(PageTitleMixin, mixins.LoginRequiredMixin, FormView):
+	template_name = 'investors/security.html'
+	form_class = PasswordChangeForm
+	success_url = '/dashboard/change-password'
+	page_title = 'Reset Password'
+
+
+	def get_context_data(self, **kwargs):
+		context = super(PasswordChangeView, self).get_context_data(**kwargs)
+		context['wallet'] = DashboardLayout.get_wallet_balance(self.request.user.id)
+
+		return context
+
+	def get_form_kwargs(self):
+		kwargs = super(PasswordChangeView, self).get_form_kwargs()
+		kwargs['user'] = self.request.user
+		return kwargs
+
+	# def form_valid(self, form):
+	# 	# user = authenticate(username=self.request.user.username, password=form.cleaned_data['password'])
+	# 	# if user is not None:
+	# 	# 	user.set_password(form.cleaned_data['new_password'])
+	# 	# 	user.save()
+	# 	# 	return super(PasswordUpdateView, self).form_valid(form)
+	# 	# else:
+	# 	# 	password = form.cleaned_data['password']
+	# 	# 	msg = "Incorrect Password"
+	# 	# 	PasswordForm.add_error('password', msg)
+		
+	# 	return super(PasswordUpdateView, self).form_valid(form)

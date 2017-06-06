@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^wallet/$', views.WalletListView.as_view(), name='statement'),
     url(r'^fund-wallet/$', views.WalletCreateView.as_view(), name='fund'),
     url(r'^make-withdrawal/$', views.WalletDebitView.as_view(), name='withdraw'),
+    url(r'^change-password/$', views.PasswordChangeView.as_view(), name='changepassword'),
 ]

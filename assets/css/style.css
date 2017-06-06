@@ -837,6 +837,8 @@ button.widget-button {
 	padding: 5px 10px;
 }
 
+#navigation.style-1 ul { margin: 0 5px; margin-left:100px;}
+
 #navigation.style-1 ul li { margin: 0 5px; }
 
 #navigation.style-1 ul ul li { margin: 0; border-radius: 0; }
@@ -8422,8 +8424,7 @@ table.basic-table th:last-child { border-radius: 0 3px 3px 0; }
 
 table.basic-table th,
 table.basic-table td {
-	padding: 15px 28px;
-	text-align: right;
+	padding: 10px 10px;
 }
 
 table.basic-table tr:nth-child(odd) {

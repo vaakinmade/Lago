@@ -1670,9 +1670,9 @@ input.second-slider-value {
 
 .faq-parallax h1 {
 	color: white;
-	position: absolute;
-	top: 35%;
-	left: 45%;
+	text-align:center; 
+	padding-top:5%; 
+	padding-bottom:5%; 
 	text-shadow: 1px 1px 2px #000000;
 }
 
@@ -1683,9 +1683,9 @@ input.second-slider-value {
 
 .property-parallax h1 {
 	color: white;
-	position: absolute;
-	top: 35%;
-	left: 45%;
+	text-align:center; 
+	padding-top:5%; 
+	padding-bottom:5%; 
 	text-shadow: 1px 1px 2px #000000;
 }
 
@@ -1736,7 +1736,7 @@ input.second-slider-value {
 .parallax-content {
 	position: relative;
 	z-index: 999;
-	padding: 105px 0;
+	paddin: 105px 0;
 }
 
 /* ---------------------------------- */
@@ -10431,7 +10431,7 @@ body .counter-boxes-inside-parallax .counter-box-icon i,
 	    margin-bottom: 10px;
 	}
 
-	.parallax-content { padding: 70px 0; }
+	.parallax-content { paddin: 70px 0; }
 
 	.main-search-container h1,
 	.main-search-container h2 {

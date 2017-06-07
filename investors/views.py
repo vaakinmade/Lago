@@ -8,6 +8,7 @@ from listings.models import Listing
 from django.contrib.auth import mixins, models, authenticate
 from investors.forms import FundForm, PasswordChangeForm
 from django import forms
+from django.contrib import messages
 
 
 class DashboardView(PageTitleMixin, mixins.LoginRequiredMixin, TemplateView):

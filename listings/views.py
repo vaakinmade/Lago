@@ -1,20 +1,42 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.mixins import LoginRequiredMixin
-
 from django.views.generic import ListView, DetailView, CreateView, UpdateView 
 from .models import Listing, Report, Valuation, Investment
 from django.contrib import messages
-
 from .mixins import PageTitleMixin, InvestmentOperations
 from django.contrib.auth.decorators import login_required
 from .forms import InvestmentForm
 from . import models
+from django.db.models import Prefetch
 
 
 class ListingListView(ListView):
-	context_object_name = "listings"
-	model = models.Listing
+    context_object_name = "listings"
+    model = models.Listing
+
+    def get_queryset(self):
+        return  Listing.objects.order_by('created_at').prefetch_related(
+            Prefetch('investment_set',
+                queryset=Investment.objects.filter(status='active'),
+                to_attr='active_investments'),
+            Prefetch('valuation_set',
+                queryset=Valuation.objects.filter(status='current'),
+                to_attr='active_valuations')
+                )
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     listings =  Listing.objects.prefetch_related(
+    #         Prefetch('investment_set',
+    #             queryset=Investment.objects.filter(status='active'),
+    #             to_attr='active_investments'),
+    #         Prefetch('valuation_set')
+    #             )
+    #     context['listings'] = listings
+    #     return context
+
+
 
 
 class ListingDetailView(DetailView):

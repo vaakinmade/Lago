@@ -1,14 +1,17 @@
+from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, CreateView, UpdateView 
-from .models import Listing, Report, Valuation, Investment
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, FormView 
+from .models import Listing, Report, Valuation, Investment, ListingImage
 from django.contrib import messages
 from .mixins import PageTitleMixin, InvestmentOperations
 from django.contrib.auth.decorators import login_required
-from .forms import InvestmentForm
+from .forms import InvestmentForm, ListingImageForm
 from . import models
 from django.db.models import Prefetch
+from django.contrib import messages
+from blogs.mixins import ImageOperations
 
 
 class ListingListView(ListView):
@@ -16,7 +19,7 @@ class ListingListView(ListView):
     model = models.Listing
 
     def get_queryset(self):
-        return  Listing.objects.order_by('created_at').prefetch_related(
+        return  Listing.objects.exclude(id=1).order_by('-created_at').prefetch_related(
             Prefetch('investment_set',
                 queryset=Investment.objects.filter(status='active'),
                 to_attr='active_investments'),
@@ -25,29 +28,43 @@ class ListingListView(ListView):
                 to_attr='active_valuations')
                 )
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     listings =  Listing.objects.prefetch_related(
-    #         Prefetch('investment_set',
-    #             queryset=Investment.objects.filter(status='active'),
-    #             to_attr='active_investments'),
-    #         Prefetch('valuation_set')
-    #             )
-    #     context['listings'] = listings
-    #     return context
-
-
-
 
 class ListingDetailView(DetailView):
-	model = models.Listing
+    model = models.Listing
+
+    def get_queryset(self):
+        return  Listing.objects.filter(id=self.kwargs['pk']).prefetch_related(
+            Prefetch('investment_set',
+                queryset=Investment.objects.filter(status='active'),
+                to_attr='active_investments'),
+            Prefetch('valuation_set',
+                queryset=Valuation.objects.filter(status='current'),
+                to_attr='active_valuations'),
+            Prefetch('listingimage_set',
+                queryset=ListingImage.objects.filter(listing_id=self.kwargs['pk']).order_by('ordering'),
+                to_attr='ordered_images')
+                )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        listing_images = ListingImage.objects.filter(listing_id=self.kwargs['pk'])
+        obj_image = ImageOperations()
+        for image in listing_images:
+            obj_image.process_ratio(image.slide_image)
+
+        return context
+
+
+
 
 
 class ListingCreateView(PageTitleMixin, LoginRequiredMixin, CreateView):
-    fields = ('name', 'address', 'town', 'state', 
-    			'fund_status', 'shares_available', 'investment_case', 'listing_details', 'unit_block')
-    model = models.Listing
+    success_url = '/create'
+    template_name = 'listings/listing_form.html'
     page_title = 'Add a new Listing'
+    model = models.Listing
+    fields = ('name', 'address', 'town', 'state', 'fund_status', 'shares_available',
+             'investment_case', 'listing_details', 'unit_block','floor_plan')
 
     def get_initial(self):
         initial = super().get_initial()
@@ -55,14 +72,35 @@ class ListingCreateView(PageTitleMixin, LoginRequiredMixin, CreateView):
         return initial
 
 
+class ListingImageView(PageTitleMixin, LoginRequiredMixin, FormView):
+    form_class =ListingImageForm
+    page_title = 'Listing Images'
+    template_name = 'listings/listing_form.html'
+
+    def form_valid(self, form):
+        images = self.request.FILES.getlist('slide_images')
+        listing = Listing.objects.get(id=self.kwargs['listing_pk'])
+        for image in images:
+            ListingImage.objects.create(listing_id=listing.id, slide_image=image)
+        
+        messages.add_message(self.request, messages.SUCCESS, "All {} Images uploaded.".format(len(images)))    
+        return super(ListingImageView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('listings:add_images', kwargs={'listing_pk': self.kwargs['listing_pk']})
+
+
 class ListingUpdateView(PageTitleMixin, LoginRequiredMixin, UpdateView):
-    fields = ('name', 'address', 'town', 'state', 
-    			'fund_status', 'shares_available', 'investment_case', 'listing_details', 'unit_block')
+    fields = ('name', 'address', 'town', 'state', 'fund_status', 'shares_available',
+             'investment_case', 'listing_details', 'unit_block','floor_plan')
     model = models.Listing
 
     def get_page_title(self):
         obj = self.get_object()
         return 'Update {}'.format(obj.name)
+
+    def get_success_url(self):
+        return reverse('listings:update', kwargs={'pk': self.kwargs['pk']})
 
 
 @login_required
@@ -72,13 +110,19 @@ def prep_investment(request, listing_pk):
 
     if request.method == 'POST':
         form = InvestmentForm(request.POST)
+
         if form.is_valid:
             investment = form.save(commit=False)
             investment.listing = valuation.listing
             investment.investor = request.user
-            success_message = "You have successfully made an investment!"
+            success_message = "Well done! You have committed funds to invest in a property."
 
             obj = InvestmentOperations()
+            if obj.check_available_shares(valuation.listing.id, form.cleaned_data['unit_shares']) is False:
+                messages.add_message(request, messages.INFO,
+                             "Error: Unfortunately, there aren't that many shares left for this property.")
+                return HttpResponseRedirect(investment.get_absolute_url())
+
             archive_result = obj.archive_update_investment(request.user.id, valuation.listing.id)
             listing_shares = obj.update_listing_shares(valuation.listing.id, form.cleaned_data['unit_shares'])
 

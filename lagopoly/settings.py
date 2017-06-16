@@ -164,3 +164,4 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 #setting media path for imageUpload
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT_THUMB = os.path.join(MEDIA_ROOT, 'thumbnails')

@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% load static from staticfiles %}
 {% load mathfilters %}
+{% load custom_filters %}
 {% load humanize %}
 
 {% block title %} Lagopoly | Crowdfunding Property Investments  {% endblock%}
@@ -28,9 +29,10 @@
 		</div>
 		
 		<!-- Carousel -->
-		<div class="col-md-12">
+		<div class="col-md-">
 			<div class="carousel">
 				{% for listing in listings %}
+				<a href="{% url 'listings:detail' pk=listing.pk %}">
 				<div class="carousel-item">
 					<div class="listing-item">
 						<div class="listing-img-container">
@@ -42,44 +44,46 @@
 							<img class="margin-top-48" src="{% static 'images/listing-03.jpg' %}" alt="">
 						</div>
 						{% for valuation in listing.active_valuations %}
-						{% with total_shares=10000000 %}
-						<div class="listing-content-2 col-sm-12 padding-right-0 padding-left-0">
-							<div class="listing-title padding-left-0 padding-right-0 padding-bottom-0">
-								<div class="col-sm-6">
-									<h4>
-										<a href="single-property-page-1.html">₦{{ total_shares |sub:listing.shares_available |mul:valuation.listing_value |div:total_shares |floatformat:"0"|intcomma }}</a>
-									</h4>
-									<div class="listing-address">of ₦{{ valuation.listing_value|intcomma }}</div>
+						{% with total_shares=1000000 %}
+						<div class="listing-content-2 padding-right-0 padding-left-0">
+							<div class="row margin-left-0 margin-right-0">
+								<div class="col-xs-6 black-font">
+									<h3>							
+										<a href="{% url 'listings:detail' pk=listing.pk %}">£{{ total_shares |sub:listing.shares_available |mul:valuation.listing_value |div:total_shares |floatformat:"0"|intcomma }}</a>
+									</h3>
+									<div class="listing-address">						
+										of £{{ valuation.listing_value|intcomma }}
+									</div>
 								</div>
-								
-								<div class="col-sm-6" align="right">
-									<h4>
-										<a href="single-property-page-1.html">
-											{{ listing.active_investments|length }}
-										</a>
-									</h4>
+
+								<div class="col-xs-6 black-font" align="right">
+									<h3>
+										<a href="single-property-page-1.html">{{ listing.active_investments|length }}</a>
+									</h3>
 									<div class="listing-address">
 										Investors
 									</div>
 								</div>
 							</div>
 							
-							<div class="listing-features col-sm-12 padding-top-20 padding-left-5 padding-right-5 padding-bottom-10">
+							<div class="listing-features col-sm-12 padding-top-20 padding-left-5 padding-right-5 padding-bottom-10 margin-bottom-20">
 								<ul class="listing-feature padding-top-5 padding-right-0 padding-left-0 padding-bottom-10">
-									<div class="w3-progress-container w3-tiny w3-round-xlarge" style="heigh:7px">
-	  									<div class="w3-progressbar w3-round-xlarge w3-orange" style="widt:{{ listing.shares_available |mul:listing.shares_available |div:1000000 |mul:100  |div:listing.shares_available|floatformat:'0' |add:-100 |abs }}%;"></div>
-	  									<div class="padding-top-10 left-side"><small> {{ listing.shares_available |mul:listing.shares_available |div:1000000 |mul:100  |div:listing.shares_available|floatformat:"0" |add:-100 |abs }}% Funded</small>
-	  									</div>
-	  									<div class="right-side padding-top-10"><i class="fa fa-calendar-o"></i> <small>Closes in 14 days</small>
+									<div class="w3-progress-container w3-tiny w3-round-xlarge" style="height:7px">
+	  									<div class="w3-progressbar w3-round-xlarge w3-orange" style="width:{{ total_shares |sub:listing.shares_available |mul:valuation.listing_value |div:total_shares |mul:100 |div:valuation.listing_value|floatformat:'1' }}%;"></div>
+	  									<div class="padding-top-10"><small> {{total_shares |sub:listing.shares_available |mul:valuation.listing_value |div:total_shares |mul:100 |div:valuation.listing_value|floatformat:'1' }}% Funded</small>
 	  									</div>
 									</div>
 								</ul>
+							</div>	
+							<div class="margin-bottom-20">
+							{% with rent_percent=valuation.rental_income|mul:100|div:valuation.listing_value %}
+								<small><center>{{ rent_percent|floatformat:2 }}% Dividend Yield + {{ valuation.capital_growth}}% Targeted Capital Growth <br/>= {{ rent_percent|addfloat:valuation.capital_growth|floatformat:2}}% Combined Yield</center></small>
+							{% endwith %}
 							</div>
-							
 
-							
 						</div>
 						{% endwith %}
+						</a>
 						{% endfor %}
 						<!-- Listing Item / End -->
 
@@ -88,9 +92,6 @@
 				<!-- Listing Item / End -->
 
 				{% endfor %}
-				<!-- Listing Item -->
-				
-				<!-- Listing Item -->
 				<div class="carousel-item">
 					<div class="listing-item">
 						<div class="listing-img-container">
@@ -103,28 +104,29 @@
 						</div>
 						
 						<div class="listing-content-2 col-sm-12 padding-right-0 padding-left-0">
+							<div class="row margin-left-0 margin-right-0">
+								<div class="listing-title padding-left-0 padding-right-0 padding-bottom-0">
+									<div class="col-xs-6">
+										<h4>
+											<a href="single-property-page-1.html">£125,000</a>
+										</h4>
+										<div class="listing-address">Current Valuation</div>
+									</div>
 
-							<div class="listing-title padding-left-0 padding-right-0 padding-bottom-0">
-								<div class="col-sm-6">
-									<h4>
-										<a href="single-property-page-1.html">₦325,000,000</a>
-									</h4>
-									<div class="listing-address">Current Valuation</div>
-								</div>
-
-								<div class="col-sm-6" align="right">
-									<h4>
-										<a href="single-property-page-1.html">764</a>
-									</h4>
-									<div class="listing-address">
-										Investors
+									<div class="col-xs-6" align="right">
+										<h4>
+											<a href="single-property-page-1.html">464</a>
+										</h4>
+										<div class="listing-address">
+											Investors
+										</div>
 									</div>
 								</div>
 							</div>
 							
 							<div class="listing-features col-sm-12 padding-top-20 padding-left-5 padding-right-5 padding-bottom-10">
 								<ul class="listing-features padding-top-5 padding-right-5 padding-left-5 padding-bottom-10">
-									Lowest Selling Share Price <strong>₦240.00 (+ 9.35%)</strong>
+									Lowest Selling Share Price <strong>12.50p (+ 9.35%)</strong>
 								</ul>
 							</div>
 

@@ -21,7 +21,6 @@ class ImageOperations:
     def process_ratio(self, image, basewidth=None):
         basewidth=128 if basewidth is None else basewidth
         full_img_path = os.path.join(settings.MEDIA_ROOT, str(image))
-        print ("Image name", image)
         
         try:
             img = Image.open(full_img_path)
@@ -29,9 +28,15 @@ class ImageOperations:
             print("Image path not found: ", str(image))
             return False
 
-        wpercent = (basewidth/float(img.size[0]))
-        hsize = int((float(img.size[1])*float(wpercent)))
-        img = img.resize((basewidth,hsize), Image.ANTIALIAS)
+        full_thumb_path = os.path.join(settings.MEDIA_ROOT_THUMB, str(image))
+        try:
+            img_thumb = Image.open(full_thumb_path)
+        except FileNotFoundError:
+            print("Image thumb path not found: ", str(image))
+            print("proceeding to start thumb processing")
+            wpercent = (basewidth/float(img.size[0]))
+            hsize = 100 #int((float(img.size[1])*float(wpercent)))
+            img = img.resize((basewidth,hsize), Image.ANTIALIAS)
         
-        img.save('media/thumbnails/'+str(image))
-        return img
+            img.save('media/thumbnails/'+str(image))
+            return img

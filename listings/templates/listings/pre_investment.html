@@ -12,11 +12,28 @@
 ================================================== -->
 <div class="container">
 	<div class="row margin-bottom-50 margin-top-20">
-		<div class="col-xs-8 padding-left-100 padding-right-100">
-			<form method="post" action="">
+		<div class="col-md-offset-1 col-md-6 margin-bottom-50 padding-bottom-100">
+			<div id="error_div" class="notification warning closeable hidden"></div>
+			{% if messages %}
+				{% for message in messages %}
+					{% if message.tags == "success" %}
+					<div class="notification success closeable">
+						<p>{{message}}</p>
+						Monitor all your investments from your <a style="text-decoration: underline;" href="{% url 'investors:home' %}">dashboard</a>
+						<a class="close" href="#"></a>
+					</div>
+					{% elif message.tags == "info" %}
+						<div class="notification error closeable">
+							<p>{{message}}</p>
+							<a class="close" href="#"></a>
+						</div>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+			<form method="post" action="" onsubmit="return validate_amount()">
 				{% csrf_token %}
     			{{ form.as_p }}
-				<div class="listing-conten col-xs-12">
+				<div class="">
 					<div align="center">
 						<span>
 							<h3><i class="fa fa-map-marker"></i> {{ preinvestment.listing.town }}, {{ preinvestment.listing.state }}</h3> 
@@ -25,17 +42,17 @@
 					</div>
 					<div class="row listing-title padding-top-20 padding-left-0 padding-right-0 padding-bottom-0">
 						<div>
-							<div class="col-xs-6 black-font padding-top-10">Investment Amount</div>
-							<div class="col-xs-6 black-font select-input disabled-first-option" align="right"><input id="investment_amount" oninput="calculate_transaction_fees()" value="" placeholder="200000" type="text" data-unit="NGN" required>
+							<div class="col-xs-4 black-font padding-top-10 padding-right-0">
+								Amount <i class="tip" data-tip-content="How much are you willing to invest?"></i>
 							</div>
-
-							<h5>Investment Amount</h5>
-							<div class="select-input disabled-first-option">
-								<input type="text" data-unit="NGN">
+							<div class="col-xs-8 black-font">
+								<div class="select-input disabled-first-option" align="right">
+									<input id="investment_amount" oninput="calculate_transaction_fees()" type="text" data-unit="GBP" required>
+								</div>
 							</div>
 						</div>
 						<div class="fixed-size">
-							<div class="col-xs-6 black-font">Shares</div>
+							<div class="col-xs-6 black-font">Unit Shares</div>
 							<div class="col-xs-6 black-font" id="requested_shares" align="right"></div>
 						</div>
 						<div class="fixed-size">
@@ -47,7 +64,7 @@
 							<div class="col-xs-6 black-font" id="investment_cost" align="right"></div>
 						</div>
 						<div class="fixed-size">
-							<div class="col-xs-6 black-font">Transaction Costs</div>
+							<div class="col-xs-6 black-font">Transaction Cost</div>
 							<div class="col-xs-6 black-font" id="transaction_cost" align="right">
 								
 							</div>
@@ -59,7 +76,7 @@
 					</div>
 
 					<div class="row">
-						<div class="col-xs-6 black-font"><strong>Total Costs</strong></div>
+						<div class="col-xs-6 black-font"><strong>Total Cost</strong></div>
 						<div class="col-xs-6 black-font" align="right" id="id_total" ></div>
 					</div>
 
@@ -69,7 +86,7 @@
 				</div>
 			</form>
 		</div>
-		<div class="col-xs-4">
+		<div class="col-md-offset-1 col-md-4">
 			<!-- Agent Widget -->
 			<div class="listing-content-2">
 				<div>
@@ -187,38 +204,53 @@
 </div>
 
 <script type="text/javascript">
+
+	function validate_amount() {
+		var amount = document.getElementById('investment_amount').value;
+		if (amount%500!=0){
+			error_text = "Warning: Investment is only permissible in multiples of £500";
+			document.getElementById("error_div").classList.toggle("hidden");
+			document.getElementById("error_div").innerHTML = error_text;
+			return false;
+		}
+		
+	}
+
 	function calculate_transaction_fees() {
 
-	//if amount is less than unitprice??
+		var amount = document.getElementById('investment_amount').value;
 
-	var amount = document.getElementById('investment_amount').value;		
-	var transactionCost = amount * 0.02;
-	document.getElementById('transaction_cost').textContent = "₦"+transactionCost;
+		if (amount%500==0){
+					
+			var transactionCost = amount * 0.02;
+			document.getElementById('transaction_cost').textContent = "£"+transactionCost;
 
-	var sharePrice = {{preinvestment.listing_value |div:10000000 |floatformat:"2" | js }};
-	document.getElementById('share_price').textContent = "₦"+sharePrice;
-  	
-  	var requestedShares = parseInt(amount / sharePrice);
+			var DisplaysharePrice = {{preinvestment.listing_value |div:1000000 |mul:100  |floatformat:"2" | js }};
+			var sharePrice = {{preinvestment.listing_value |div:1000000 | js }}
+			document.getElementById('share_price').textContent = DisplaysharePrice+"p";
+		  	
+		  	var requestedShares = parseInt(amount / sharePrice);
 
-  	document.getElementById('requested_shares').textContent = requestedShares;
-  	var investmentCost = requestedShares * sharePrice;
-  	var roundInvestmentCost = round(investmentCost, 2).toFixed(2);
-  	document.getElementById('investment_cost').textContent = "₦"+roundInvestmentCost;
+		  	document.getElementById('requested_shares').textContent = requestedShares;
+		  	var investmentCost = requestedShares * sharePrice;
+		  	var roundInvestmentCost = round(investmentCost, 2).toFixed(2);
+		  	document.getElementById('investment_cost').textContent = "£"+roundInvestmentCost;
 
-  	var totalAmount = +roundInvestmentCost + +transactionCost;
-  	document.getElementById('id_total').textContent =  "₦"+round(totalAmount, 2).toFixed(2);
+		  	var totalAmount = +roundInvestmentCost + +transactionCost;
+		  	document.getElementById('id_total').textContent =  "£"+round(totalAmount, 2).toFixed(2);
 
-  	document.getElementById('id_investment_cost').value = roundInvestmentCost;
-  	document.getElementById('id_unit_price').value = sharePrice;
-  	document.getElementById('id_unit_shares').value = requestedShares;
-  	document.getElementById('id_transaction_cost').value = transactionCost;
-  	document.getElementById('id_total_cost').value = round(totalAmount, 2).toFixed(2);
+		  	document.getElementById('id_investment_cost').value = roundInvestmentCost;
+		  	document.getElementById('id_unit_price').value = sharePrice;
+		  	document.getElementById('id_unit_shares').value = requestedShares;
+		  	document.getElementById('id_transaction_cost').value = transactionCost;
+		  	document.getElementById('id_total_cost').value = round(totalAmount, 2).toFixed(2);
+		}
 	}
 
 	function round(value, precision) {
-    var multiplier = Math.pow(10, precision || 0);
-    return Math.round(value * multiplier) / multiplier;
-}
+    	var multiplier = Math.pow(10, precision || 0);
+    	return Math.round(value * multiplier) / multiplier;
+	}
 
 </script>
 {% endblock %}

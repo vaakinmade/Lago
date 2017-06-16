@@ -18,7 +18,7 @@ class PostCreateView(PageTitleMixin, CreateView):
 class PostListView(PageTitleMixin, ListView):
 	context_object_name = "posts"
 	model = models.Post
-	page_title = "Keep up to date with the latest in owning properties"
+	page_title = "Keep up to date with the latest in buy-to-let properties"
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)

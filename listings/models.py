@@ -14,14 +14,33 @@ class Listing(models.Model):
 	investment_case = models.TextField(blank=True, default='')
 	listing_details = models.TextField(blank=True, default='')
 	unit_block = models.CharField(max_length=225, default='')
-
-
-	#floor_plan = models.pathtoimagefile
+	floor_plan = models.ImageField(upload_to='images/lagopoly', default='pic_folder/None/no-img.jpg')
+	
 	def __str__(self):
 		return self.name
 
 	def get_absolute_url(self):
    	    return reverse('listings:detail', kwargs={'pk': self.pk})
+
+
+class ListingImage(models.Model):
+	created_at = models.DateTimeField(auto_now_add=True)
+	listing = models.ForeignKey(Listing)
+	slide_image = models.ImageField(upload_to='images/lagopoly', default='pic_folder/None/no-img.jpg')
+
+	ORDER = []
+	for i in range(1,7):
+		values = i, i
+		ORDER.append(values)
+	
+	ordering = models.IntegerField(
+        choices=ORDER,
+        default=0,
+    )
+
+	def __str__(self):
+		return str(self.listing) + " 's Image"
+
 
 class Report(models.Model):
 	title = models.CharField(max_length=225)
@@ -33,16 +52,17 @@ class Report(models.Model):
 	def __str__(self):
 		return self.title
 
+
 class Investment(models.Model):
 	created_at = models.DateTimeField(auto_now_add=True)
 	listing = models.ForeignKey(Listing)
 	investor = models.ForeignKey(User)
 	unit_shares = models.IntegerField()
-	unit_price = models.DecimalField(max_digits=5, decimal_places=2)
-	investment_cost = models.DecimalField(max_digits=19, decimal_places=2)
+	unit_price = models.DecimalField(max_digits=5, decimal_places=5)
+	investment_cost = models.DecimalField(max_digits=19, decimal_places=10)
 	status = models.CharField(max_length=25, default='active')
-	transaction_cost = models.DecimalField(max_digits=19, decimal_places=2)
-	total_cost = models.DecimalField(max_digits=19, decimal_places=2)
+	transaction_cost = models.DecimalField(max_digits=19, decimal_places=10)
+	total_cost = models.DecimalField(max_digits=19, decimal_places=10)
 
 
 	def get_absolute_url(self):
@@ -51,7 +71,7 @@ class Investment(models.Model):
 		    })
 
 	def __str__(self):
-		return "Investment by " + str(self.investor)
+		return "Investment by " + str(self.investor) + " on " + str(self.listing)
 
 class Valuation(models.Model):
 	created_at = models.DateTimeField(auto_now_add=True)
@@ -78,9 +98,5 @@ class Financial(models.Model):
 
 	def __str__(self):
 		return self.listing.name + " Financial"
-
-
-
-
 
 

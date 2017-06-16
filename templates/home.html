@@ -11,13 +11,13 @@
 <div class="parallax" data-background="{% static 'images/home-sliding.jpg' %}" data-color="#36383e" data-color-opacity="0.5" data-img-width="2500" data-img-height="1600">
 	<div class="parallax-content">
 		<div class="container">
-			<div class="col-md-12  argin-top-130 adding-top-130">
+			<div class="col-md-12 adding-top-100 adding-bottom-100">
 
 				<!-- Home Background Text -->
 				<div class="home-parallax">
 					<h1><strong>Property investment made simple</strong></h1>
 					<h4>Invest at your natural pace. Own shares in multiple properties. Earn rent.</h4>
-					<p><a class="button" href="submit-property.html">View Properties</a></p>
+					<p><a class="button" href="{% url 'listings:list' %}">View Properties</a></p>
 				</div>
 				<!-- Home Background Text / End -->
 

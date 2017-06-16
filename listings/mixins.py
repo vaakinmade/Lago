@@ -1,5 +1,6 @@
-from .models import Investment, Listing
+from .models import Investment, Listing, Valuation
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Prefetch
 
 
 class PageTitleMixin:
@@ -29,11 +30,28 @@ class InvestmentOperations:
             investment.save()
             return investment.status, investment.unit_shares
 
-        return investment 
+        return investment
+
+    def get_listing(self, listing_pk):
+         return Listing.objects.get(id=listing_pk)
 
     def update_listing_shares(self, listing_pk, unit_shares):
-        listing = Listing.objects.get(id=listing_pk)
+        listing = self.get_listing(listing_pk)
         listing.shares_available -= unit_shares
         return listing
+
+    def check_available_shares(self, listing_pk, requested_shares):
+        listing = Listing.objects.filter(id=listing_pk).prefetch_related( 
+            Prefetch('valuation_set',
+                queryset=Valuation.objects.filter(status='current'),
+                to_attr='current_valuation'
+                ))
+        if requested_shares > listing[0].shares_available:
+            listing_valuation = listing[0].current_valuation[0].listing_value
+            remaining_amount = listing[0].shares_available * (listing_valuation/1000000)
+            return False
+        else:
+            return True
+
 
     #investment.unit_shares = 

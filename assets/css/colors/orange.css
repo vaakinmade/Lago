@@ -119,8 +119,8 @@ a.button.border.white:hover {
     background-color: #fa5b0f
 }
 
-.listing-img-container:after {
-    background: linear-gradient(to bottom, transparent 60%, #fa5b0f)
+.listing-img-containe:after {
+    background: linear-gradient(to bottom, transparent 5%, #fa5b0f)
 }
 
 .listing-badges .featured {
@@ -131,8 +131,8 @@ a.button.border.white:hover {
     background-color: #fa5b0f
 }
 
-.list-layout .listing-img-container:after {
-    background: linear-gradient(to bottom, transparent 55%, #fa5b0f)
+.list-layout .listing-img-containe:after {
+    background: linear-gradient(to bottom, transparent 5%, #fa5b0f)
 }
 
 #titlebar.property-titlebar span.property-badge,
@@ -169,8 +169,8 @@ a.button.border.white:hover {
     background-color: #fa5b0f
 }
 
-.map-box .listing-img-container:after {
-    background: linear-gradient(to bottom, transparent 50%, #fa5b0f)
+.map-box .listing-img-containe:after {
+    background: linear-gradient(to bottom, transparent 5%, #fa5b0f)
 }
 
 #geoLocation:hover,
@@ -188,7 +188,7 @@ a.button.border.white:hover {
 .listing-carousel.owl-theme.outer .owl-controls .owl-prev:hover::before,
 .slick-next:after,
 .slick-prev:after {
-    background-color: #fa5b0f
+    background-color: None;
 }
 
 .cluster div:before {

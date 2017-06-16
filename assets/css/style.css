@@ -280,7 +280,7 @@ header.fullwidth .container {
 
 #logo { 
 	float: left;
-	margin-right: 200px;
+	margin-right: 5%;
 }
 
 .header-widget { text-align: right; }
@@ -837,7 +837,7 @@ button.widget-button {
 	padding: 5px 10px;
 }
 
-#navigation.style-1 ul { margin: 0 5px; margin-left:100px;}
+#navigation.style-1 ul { margin: 0 0px; margin-left:0px;}
 
 #navigation.style-1 ul li { margin: 0 5px; }
 
@@ -1659,8 +1659,8 @@ input.second-slider-value {
 }
 
 .home-parallax{
-	padding-top:5%; 
-	padding-bottom:5%; 
+	padding-top:15%; 
+	padding-bottom:12%; 
 }
 
 .home-parallax h1,
@@ -3250,8 +3250,7 @@ section.fullwidth.border-bottom { border-bottom: 1px solid #e4e4e4;}
 
 .property-description h3.desc-headline  {
 	font-size: 22px;
-	margin: 50px 0 25px 0;
-	padding-bottom: 25px;
+	padding-bottom: 5px;
 	border-bottom: 1px solid #eaeaea
 }
 
@@ -3413,7 +3412,7 @@ section.fullwidth.border-bottom { border-bottom: 1px solid #e4e4e4;}
 
 /* Show more */
 .show-more {
-	max-height: 240px;
+	max-height: 120px;
 	overflow: hidden;
 	position: relative;
 	transition: max-height 1s;
@@ -10067,6 +10066,7 @@ body .counter-boxes-inside-parallax .counter-box-icon i,
 	.padding-left-80 {padding-left: 80px !important; }
 	.padding-left-90 {padding-left: 90px !important; }
 	.padding-left-100 {padding-left: 100px !important; }
+	.padding-left-150 {padding-left: 150px !important; }
 
 	.padding-right-0 {padding-right: 0px !important; }
 	.padding-right-2 {padding-right: 2px !important; }
@@ -10667,12 +10667,12 @@ hr {
 	margin-top:-50px;
     height:200px;
     overflow:hidden;
-    widt: 500px; /* it is only important to be bigger then parent for one image width size */
+    width: 100%; /* it is only important to be bigger then parent for one image width size */
 }
 
 #listing-wrapper{
   height: 100px;
-  width: 372px;
+  width: 100%;
   overflow:hidden;
 }
 

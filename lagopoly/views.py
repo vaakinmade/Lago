@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import View, TemplateView
+from listings import models
+from django.views.generic import View, TemplateView, ListView
+from django.db.models import Prefetch
 
 
 def home(request):
@@ -26,5 +28,15 @@ class HomeView(TemplateView):
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
-		context["games_today"] = 6
+		context["listings"] = self.get_latest_listing
 		return context
+
+	def get_latest_listing(self, **kwargs):
+		return  models.Listing.objects.order_by('-created_at')[:1].prefetch_related(
+            Prefetch('investment_set',
+                queryset=models.Investment.objects.filter(status='active'),
+                to_attr='active_investments'),
+            Prefetch('valuation_set',
+                queryset=models.Valuation.objects.filter(status='current'),
+                to_attr='active_valuations')
+                )

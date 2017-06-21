@@ -22,13 +22,13 @@
 				</td>
 				<td  style="text-align:right; width: 20%;">
 				{% if statement.transaction == 'DR' %}
-					₦ -{{statement.amount}} {{statement.transaction}}
+					-£{{statement.amount}} {{statement.transaction}}
 				{% else %}
-					₦ {{statement.amount}} {{statement.transaction}}
+					£{{statement.amount}} {{statement.transaction}}
 				{% endif %}
 				</td>
 				<td  style="text-align:right; width: 15%;">
-					<strong>₦ {{statement.balance}}</strong>
+					<strong>£ {{statement.balance}}</strong>
 				</td>
 			
 			</tr>

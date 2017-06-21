@@ -1,4 +1,5 @@
 {% extends "investors/_layout.html" %}
+{% load mathfilters %}
 
 {% block body_content %}
 	<div class="col-md-9">
@@ -13,7 +14,7 @@
 						
 						<span class="trigger trigger-dashbox">
 							<center>
-								<a><h4>₦0.00</h4>
+								<a><h4>£0.00</h4>
 								Net transactions <i class="sl sl-icon-arrow-down-circle"></i></a>
 							</center>
 						</span>
@@ -22,11 +23,11 @@
 							<table class="dashtable margin-top-10">
 								<tr>
 									<td class="padding-top-10">Deposits:</td>
-									<td class="padding-top-10 pull-right">₦0.00</td>
+									<td class="padding-top-10 pull-right">£0.00</td>
 								</tr>
 								<tr>
 									<td>Withdrwals:</td>
-									<td class="pull-right">₦0.00</td>
+									<td class="pull-right">£0.00</td>
 								</tr>
 							</table>
 						</div>
@@ -38,7 +39,7 @@
 					
 					<span class="trigger trigger-dashbox">
 						<center>
-							<a><h4>₦0.00</h4>
+							<a><h4>£0.00</h4>
 							Growth <i class="sl sl-icon-arrow-down-circle"></i></a>
 						</center>
 					</span>
@@ -47,15 +48,15 @@
 						<table class="dashtable margin-top-10">
 							<tr>
 								<td class="padding-top-10">Dividends Received:</td>
-								<td class="padding-top-10 pull-right">₦0.00</td>
+								<td class="padding-top-10 pull-right">£0.00</td>
 							</tr>
 							<tr>
 								<td>Latest Valuation Gains:</td>
-								<td class="pull-right">₦0.00</td>
+								<td class="pull-right">£0.00</td>
 							</tr>
 							<tr>
 								<td>Realised Capital Gains:</td>
-								<td class="pull-right">₦0.00</td>
+								<td class="pull-right">£0.00</td>
 							</tr>
 						</table>
 					</div>
@@ -67,7 +68,7 @@
 					
 					<span class="trigger trigger-dashbox">
 						<center>
-							<a><h4>₦0.00</h4>
+							<a><h4>£0.00</h4>
 							Portfolio <i class="sl sl-icon-arrow-down-circle"></i></a>
 						</center>
 					</span>
@@ -76,15 +77,15 @@
 						<table class="dashtable margin-top-10">
 							<tr>
 								<td class="padding-top-10">Available Funds:</td>
-								<td class="padding-top-10 pull-right">₦0.00</td>
+								<td class="padding-top-10 pull-right">£0.00</td>
 							</tr>
 							<tr>
 								<td>Committed Funds:</td>
-								<td class="pull-right">₦0.00</td>
+								<td class="pull-right">£0.00</td>
 							</tr>
 							<tr>
 								<td>Latest Valuation:</td>
-								<td class="pull-right">₦0.00</td>
+								<td class="pull-right">£0.00</td>
 							</tr>
 						</table>
 					</div>
@@ -123,11 +124,11 @@
 											{{investment.unit_shares}}
 										</td>
 										<td>
-											₦ {{investment.unit_price}}
+											{{investment.unit_price|mul:100|floatformat:"2"}}p
 										</td>
 										{% for valuation in listing.valuation_set.all %}
 										<td>
-											₦ {{valuation.rental_income}}
+											£ {{valuation.rental_income}}
 										</td>
 										{% endfor %}
 									</tr>
@@ -166,11 +167,11 @@
 											{{investment.unit_shares}}
 										</td>
 										<td>
-											₦ {{investment.unit_price}}
+											£ {{investment.unit_price}}
 										</td>
 										{% for valuation in listing.valuation_set.all %}
 										<td>
-											₦ {{valuation.rental_income}}
+											£ {{valuation.rental_income}}
 										</td>
 										{% endfor %}
 									</tr>

@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% load static from staticfiles %}
 {% load mathfilters %}
+{% load humanize %}
 
 {% block title %} Lagopoly | {{page_title}} {% endblock %}
 
@@ -15,74 +16,71 @@
 		<div class="sideba lef">
 			
 			<div class="my-account-nav-container padding-bottom-0">
-				
-				<div>
-					<div class="my-profile">
-						<div align="center" class=" padding-bottom-10">
-							<h2>₦{{wallet.balance|floatformat:"2"}}</h2>
-							<div>Available Funds</div>
-							<div><h6><a href="{% url 'investors:fund' %}">Add Funds</a> | 
-									<a href="{% url 'investors:withdraw' %}">Make Withdrawal</a></h6></div>
-						</div>
-					</div>
+			
+				<div class="my-profile padding-bottom-20" align="center">
+					<h2>£{{wallet.balance|floatformat:"2"|intcomma}}</h2>
+					<p>Available Funds</p>
+					<h6>
+						<a href="{% url 'investors:fund' %}">Fund Wallet</a> | 
+						<a href="{% url 'investors:withdraw' %}">Make Withdrawal</a>
+					</h6>
 				</div>
 				<hr/>
 				
 				<div class="padding-top-0">
 					<div class="my-account-nav-containe padding-bottom-30">
-						
 						<ul class="my-account-nav padding-bottom-0">
 							{% if page_title == 'investors area' %}
-								<div class="row current margin-bottom-5 padding-left-10" onclick="location.href='{% url 'investors:home' %}';" style="cursor: pointer;">
+								<div class="current margin-bottom-5 padding-left-10" onclick="location.href='{% url 'investors:home' %}';" style="cursor: pointer;">
 									<li><i class="sl sl-icon-speedometer"></i>&nbsp;&nbsp;Dashboard</li>
 								</div>
 							{% else %}
-								<div class="row margin-bottom-5 padding-left-10" onclick="location.href='{% url 'investors:home' %}';" style="cursor: pointer;">
+								<div class="margin-bottom-5 padding-left-10" onclick="location.href='{% url 'investors:home' %}';" style="cursor: pointer;">
 									<li><i class="sl sl-icon-speedometer"></i>&nbsp;&nbsp;Dashboard</li>
 								</div>
 							{% endif %}
 
 							{% if 'Wallet History' in page_title %}
-							<div class="row margin-bottom-5 padding-left-10 current" onclick="location.href='{% url 'investors:statement' %}';" style="cursor: pointer;">
+							<div class="margin-bottom-5 padding-left-10 current" onclick="location.href='{% url 'investors:statement' %}';" style="cursor: pointer;">
 								<li><i class="fa fa-database"></i>&nbsp;&nbsp;Financial Statement</li>
 							</div>
 							{% else %}
-							<div class="row margin-bottom-5 padding-left-10" onclick="location.href='{% url 'investors:statement' %}';" style="cursor: pointer;">
+							<div class="margin-bottom-5 padding-left-10" onclick="location.href='{% url 'investors:statement' %}';" style="cursor: pointer;">
 								<li><i class="fa fa-database"></i>&nbsp;&nbsp;Financial Statement</li>
 							</div>
 							{% endif %}
 
 							{% if 'Investment' in page_title %}
-							<div class="row margin-bottom-5 padding-left-10 current" onclick="location.href='#';" style="cursor: pointer;">
+							<div class="margin-bottom-5 padding-left-10 current" onclick="location.href='#';" style="cursor: pointer;">
 								<li><i class="fa fa-file-word-o"></i>&nbsp;&nbsp;Investment Documents</li>
 							</div>
 							{% else %}
-							<div class="row margin-bottom-5 padding-left-10" onclick="location.href='#';" style="cursor: pointer;">
+							<div class="margin-bottom-5 padding-left-10" onclick="location.href='#';" style="cursor: pointer;">
 								<li><i class="fa fa-file-word-o"></i>&nbsp;&nbsp;Investment Documents</li>
 							</div>
 							{% endif %}
 
 
 							{% if 'Bank Account' in page_title %}
-								<div class="row margin-bottom-5 padding-left-10 current" 
+								<div class="margin-bottom-5 padding-left-10 current" 
 									onclick="location.href='{% url 'investors:account' %}';" style="cursor: pointer;">
 									<li><i class="sl sl-icon-credit-card"></i>&nbsp;&nbsp;Bank Account</li>
 								</div>
 							{% else %}
-								<div class="row margin-bottom-5 padding-left-10" 
+								<div class="margin-bottom-5 padding-left-10" 
 									onclick="location.href='{% url 'investors:account' %}';" style="cursor: pointer;">
 									<li><i class="sl sl-icon-credit-card"></i>&nbsp;&nbsp;Bank Account</li>
 								</div>
 							{% endif %}
-							<div class="row margin-bottom-5 padding-left-10" onclick="location.href='#';" style="cursor: pointer;">
+							<div class="margin-bottom-5 padding-left-10" onclick="location.href='#';" style="cursor: pointer;">
 								<li><i class="sl sl-icon-settings"></i>&nbsp;&nbsp;Settings</li>
 							</div>
 							{% if 'Change Password' in page_title %}
-							<div class="row margin-bottom-5 padding-left-10 current" onclick="location.href='{% url 'investors:changepassword' %}';" style="cursor: pointer;">
+							<div class="margin-bottom-5 padding-left-10 current" onclick="location.href='{% url 'investors:changepassword' %}';" style="cursor: pointer;">
 								<li><i class="sl sl-icon-shield"></i>&nbsp;&nbsp;Security</li>
 							</div>
 							{% else %}
-							<div class="row margin-bottom-5 padding-left-10" onclick="location.href='{% url 'investors:changepassword' %}';" style="cursor: pointer;">
+							<div class="margin-bottom-5 padding-left-10" onclick="location.href='{% url 'investors:changepassword' %}';" style="cursor: pointer;">
 								<li><i class="sl sl-icon-shield"></i>&nbsp;&nbsp;Security</li>
 							</div>
 							{% endif %}

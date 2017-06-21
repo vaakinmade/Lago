@@ -46,12 +46,13 @@ class InvestmentOperations:
                 queryset=Valuation.objects.filter(status='current'),
                 to_attr='current_valuation'
                 ))
+        print("shares available", listing[0].shares_available)
         if requested_shares > listing[0].shares_available:
             listing_valuation = listing[0].current_valuation[0].listing_value
             remaining_amount = listing[0].shares_available * (listing_valuation/1000000)
-            return False
+            return False, remaining_amount
         else:
-            return True
+            return True, None
 
 
     #investment.unit_shares = 

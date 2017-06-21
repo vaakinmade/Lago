@@ -10,6 +10,14 @@ class RentAccount(models.Model):
 	investor = models.ForeignKey(User)
 
 
+class BankTransfer(models.Model):
+	created_at = models.DateTimeField(auto_now_add=True)
+	reference_code = models.CharField(max_length=50)
+	amount = models.DecimalField(max_digits=10, decimal_places=2)
+	status = models.TextField()
+	investor = models.ForeignKey(User)
+
+
 class Wallet(models.Model):
 	created_at = models.DateTimeField(auto_now_add=True)
 	amount = models.DecimalField(max_digits=10, decimal_places=2)

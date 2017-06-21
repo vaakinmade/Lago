@@ -10,8 +10,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import InvestmentForm, ListingImageForm
 from . import models
 from django.db.models import Prefetch
-from django.contrib import messages
 from blogs.mixins import ImageOperations
+from investors.views import DashboardLayout
 
 
 class ListingListView(ListView):
@@ -53,9 +53,6 @@ class ListingDetailView(DetailView):
             obj_image.process_ratio(image.slide_image)
 
         return context
-
-
-
 
 
 class ListingCreateView(PageTitleMixin, LoginRequiredMixin, CreateView):
@@ -117,10 +114,22 @@ def prep_investment(request, listing_pk):
             investment.investor = request.user
             success_message = "Well done! You have committed funds to invest in a property."
 
+            #check account balance befor proceeding
+            account = DashboardLayout.get_wallet_balance(request.user)
+            if account.balance < form.cleaned_data['total_cost']:
+                messages.add_message(request, messages.WARNING,
+                     "Insufficient Funds. Fund your lagopoly wallet in order to proceed with this investment opportunity")
+                return HttpResponseRedirect(investment.get_absolute_url())
+
             obj = InvestmentOperations()
-            if obj.check_available_shares(valuation.listing.id, form.cleaned_data['unit_shares']) is False:
-                messages.add_message(request, messages.INFO,
-                             "Error: Unfortunately, there aren't that many shares left for this property.")
+            availability, remaining_amount = obj.check_available_shares(valuation.listing.id, 
+                                                                        form.cleaned_data['unit_shares'])
+            if availability is False:
+                messages.add_message(request, messages.ERROR,
+                            "Error: Unfortunately, there are now limited shares on this property. \n" +
+                            "You requested to invest: £" + str(round(form.cleaned_data['investment_cost'])) + '\n' +
+                            "Amount left on offer: £" + str(round(remaining_amount))
+                             )
                 return HttpResponseRedirect(investment.get_absolute_url())
 
             archive_result = obj.archive_update_investment(request.user.id, valuation.listing.id)
@@ -128,6 +137,7 @@ def prep_investment(request, listing_pk):
 
             if "archived" in archive_result:
                 investment.unit_shares = form.cleaned_data['unit_shares']  + archive_result[-1]
+                print("Unit shares combined", investment.unit_shares)
                 investment.save()
                 listing_shares.save()
                 messages.add_message(request, messages.SUCCESS,

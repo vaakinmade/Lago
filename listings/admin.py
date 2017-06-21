@@ -9,7 +9,7 @@ class ListingImageInline(admin.StackedInline):
 	model = ListingImage
 
 class ListingAdmin(admin.ModelAdmin):
-	inlines = [ReportInline, ListingImageInline,]
+	inlines = [ReportInline,]
 
 
 admin.site.register(Listing, ListingAdmin)

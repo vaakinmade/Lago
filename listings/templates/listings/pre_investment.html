@@ -22,9 +22,9 @@
 						Monitor all your investments from your <a style="text-decoration: underline;" href="{% url 'investors:home' %}">dashboard</a>
 						<a class="close" href="#"></a>
 					</div>
-					{% elif message.tags == "info" %}
-						<div class="notification error closeable">
-							<p>{{message}}</p>
+					{% elif message.tags != "success" %}
+						<div class="notification {{message.tags}} closeable">
+							<p>{{message|linebreaksbr}}</p>
 							<a class="close" href="#"></a>
 						</div>
 					{% endif %}

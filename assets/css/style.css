@@ -3469,11 +3469,14 @@ section.fullwidth.border-bottom { border-bottom: 1px solid #e4e4e4;}
 }
 
 .my-account-nav {
-	padding: 0;
+	padding-left: 0px;
+	margin-left: -25px;
+	margin-right: -25px;
 	padding: 0 35px;
 	padding-bottom: 20px;
 	margin-bottom: 20px;
 	border-bottom: 1px solid #e6e6e6;
+	font-size: 14px;
 }
 
 .my-account-nav-container .my-account-nav:last-child {
@@ -8288,9 +8291,9 @@ body .style-2 .trigger a { text-transform: none; }
 
 .style-3 .tabs-nav li a:hover,
 .style-3 .tabs-nav li.active a {
-	border-color: #66676b;
-	background-color: #66676b;
-	color: #fff;
+	border: 2px #fa5b0f solid;
+	background-color: none;
+	color: #fa5b0f;
 	z-index: 11;
 }
 
@@ -10792,4 +10795,9 @@ input[type=number]::-webkit-outer-spin-button {
 .pagination-sm > li:last-child > span {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
+}
+
+.full-access {
+	border: 2px #fa5b0f solid;
+	padding: 10px;
 }

@@ -31,6 +31,8 @@ class ImageOperations:
         full_thumb_path = os.path.join(settings.MEDIA_ROOT_THUMB, str(image))
         try:
             img_thumb = Image.open(full_thumb_path)
+            print("Image thunmnail already exists: ", str(img_thumb))
+            return False
         except FileNotFoundError:
             print("Image thumb path not found: ", str(image))
             print("proceeding to start thumb processing")

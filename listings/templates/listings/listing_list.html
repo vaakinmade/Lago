@@ -24,7 +24,7 @@
 ================================================== -->
 <section class="fullwidth margin-top-50 padding-top-10 padding-bottom-55" data-background-color="ffff">
 <div class="container">
-	<div class="row">
+	<div class="ro">
 		<div class="col-md-12">
 		</div>
 		
@@ -32,17 +32,19 @@
 		<div class="col-md-">
 			<div class="carousel">
 				{% for listing in listings %}
-				<a href="{% url 'listings:detail' pk=listing.pk %}">
+				
 				<div class="carousel-item">
 					<div class="listing-item">
-						<div class="listing-img-container">
-							<div class="listing-badges-2">
-								<span class="featured">{{ listing.fund_status | upper }}</span>
-								<span><i class="fa fa-map-marker"></i> {{ listing.town }}, {{ listing.state }}<br/> {{ listing.unit_block }} in {{ listing.name}}</span>
-							</div>
+						<a href="{% url 'listings:detail' pk=listing.pk %}">
+							<div class="listing-img-container">
+								<div class="listing-badges-2">
+									<span class="featured">{{ listing.fund_status | upper }}</span>
+									<span><i class="fa fa-map-marker"></i> {{ listing.town }}, {{ listing.state }}<br/> {{ listing.unit_block }} in {{ listing.name}}</span>
+								</div>
 
-							<img class="margin-top-48" src="{% static 'images/listing-03.jpg' %}" alt="">
-						</div>
+								<img class="margin-top-48" src="{% static 'images/listing-03.jpg' %}" alt="">
+							</div>
+						</a>
 						{% for valuation in listing.active_valuations %}
 						{% with total_shares=1000000 %}
 						<div class="listing-content-2 padding-right-0 padding-left-0">
@@ -76,15 +78,14 @@
 								</ul>
 							</div>	
 							<div class="margin-bottom-20">
-							{% with rent_percent=valuation.rental_income|mul:100|div:valuation.listing_value %}
-								<small><center>{{ rent_percent|floatformat:2 }}% Dividend Yield + {{ valuation.capital_growth}}% Targeted Capital Growth <br/>= {{ rent_percent|addfloat:valuation.capital_growth|floatformat:2}}% Combined Yield</center></small>
-							{% endwith %}
+								{% with rent_percent=valuation.rental_income|mul:100|div:valuation.listing_value %}
+									<small><center>{{ rent_percent|floatformat:2 }}% Dividend Yield + {{ valuation.capital_growth}}% Targeted Capital Growth <br/>= {{ rent_percent|addfloat:valuation.capital_growth|floatformat:2}}% Combined Yield</center></small>
+								{% endwith %}
 							</div>
 
 						</div>
 						{% endwith %}
-						</a>
-						{% endfor %}
+					{% endfor %}
 						<!-- Listing Item / End -->
 
 					</div>
@@ -92,12 +93,13 @@
 				<!-- Listing Item / End -->
 
 				{% endfor %}
+
 				<div class="carousel-item">
 					<div class="listing-item">
 						<div class="listing-img-container">
 
 							<div class="listing-badges-2">
-								<span><i class="fa fa-map-marker"></i> Ocean Parade Towers, Banana Island, Lagos<br/> 12 Flats Blocks</span>
+								<span><i class="fa fa-map-marker"></i> Banana Island, Ikoyi, Lagos<br/> 12 Flats in Ocean Parade Towers</span>
 							</div>
 
 							<img class="margin-top-48" src="{% static 'images/listing-03.jpg' %}" alt="">
@@ -106,14 +108,14 @@
 						<div class="listing-content-2 col-sm-12 padding-right-0 padding-left-0">
 							<div class="row margin-left-0 margin-right-0">
 								<div class="listing-title padding-left-0 padding-right-0 padding-bottom-0">
-									<div class="col-xs-6">
+									<div class="col-xs-7">
 										<h4>
 											<a href="single-property-page-1.html">£125,000</a>
 										</h4>
 										<div class="listing-address">Current Valuation</div>
 									</div>
 
-									<div class="col-xs-6" align="right">
+									<div class="col-xs-5" align="right">
 										<h4>
 											<a href="single-property-page-1.html">464</a>
 										</h4>
@@ -126,7 +128,9 @@
 							
 							<div class="listing-features col-sm-12 padding-top-20 padding-left-5 padding-right-5 padding-bottom-10">
 								<ul class="listing-features padding-top-5 padding-right-5 padding-left-5 padding-bottom-10">
-									Lowest Selling Share Price <strong>12.50p (+ 9.35%)</strong>
+									<center>
+										<small>Lowest Selling Share Price <strong>12.50p (+ 9.35%)</strong></small>
+									</center>
 								</ul>
 							</div>
 

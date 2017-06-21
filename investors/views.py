@@ -3,12 +3,14 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import TemplateView, CreateView, ListView, FormView
 from .mixins import PageTitleMixin
-from .models import RentAccount, Wallet
-from listings.models import Listing
+from .models import RentAccount, Wallet, BankTransfer
+from listings.models import Listing, Investment
 from django.contrib.auth import mixins, models, authenticate
 from investors.forms import FundForm, PasswordChangeForm
 from django import forms
 from django.contrib import messages
+from django.db.models import Prefetch
+import shortuuid
 
 
 class DashboardView(PageTitleMixin, mixins.LoginRequiredMixin, TemplateView):
@@ -18,9 +20,10 @@ class DashboardView(PageTitleMixin, mixins.LoginRequiredMixin, TemplateView):
 
 	def get_context_data(self, **kwargs):
 		context = super(DashboardView, self).get_context_data(**kwargs)
-
-		listing_query = Listing.objects.prefetch_related('investment_set','valuation_set')
-
+		listing_query = Listing.objects.prefetch_related(
+			Prefetch('investment_set',
+				queryset=Investment.objects.filter(status='active')),
+			'valuation_set')
 		for val in listing_query:
 			for investment in val.investment_set.all():
 				if investment.investor_id == self.request.user.pk:
@@ -70,18 +73,25 @@ class WalletListView(PageTitleMixin, mixins.LoginRequiredMixin, ListView):
 class WalletCreateView(PageTitleMixin, mixins.LoginRequiredMixin, CreateView):
 	form_class = FundForm
 	template_name = 'investors/wallet_form.html'
-	success_url = '/dashboard/fund-wallet'
+	success_url = '/dashboard/fund-wallet/#tab2'
 	page_title = "Fund Wallet"
 	transaction = "CR"
+	active_tab = ''
 
 	def form_valid(self, form):
-		if self.transaction == "CR":
-			form.instance.investor = self.request.user
-			form.instance.transaction = Wallet.CREDIT
+		reference_code = self.generate_code()
+		form.instance.reference_code = reference_code
+		form.instance.investor = self.request.user
+		form.instance.status = "Awaiting confirmation from bank"
+		WalletCreateView.active_tab = "active"
 
-			obj = DashboardLayout()
-			wallet = obj.get_wallet_balance(self.request.user.id)
-			form.instance.balance =  wallet.balance + form.cleaned_data['amount']
+		if self.transaction == "CR":
+			#form.instance.investor = self.request.user
+			#form.instance.transaction = Wallet.CREDIT
+
+			#obj = DashboardLayout()
+			#wallet = obj.get_wallet_balance(self.request.user.id)
+			#form.instance.balance =  wallet.balance + form.cleaned_data['amount']
 
 			return super(WalletCreateView, self).form_valid(form)
 
@@ -97,13 +107,17 @@ class WalletCreateView(PageTitleMixin, mixins.LoginRequiredMixin, CreateView):
 				return HttpResponseRedirect(reverse('investors:withdraw'))
 			return super(WalletCreateView, self).form_valid(form)
 
+	def generate_code(self):
+		return shortuuid.ShortUUID().random(length=10)
+		
 	def set_transaction_type(self, transaction_type):
 		WalletCreateView.transaction = transaction_type
 		return WalletCreateView.transaction
 
 	def get_context_data(self, **kwargs):
 		context = super(WalletCreateView, self).get_context_data(**kwargs)
-		context['wallet'] = DashboardLayout.get_wallet_balance(self.request.user.id)
+		context['active_tab'] = WalletCreateView.active_tab
+		WalletCreateView.active_tab = ""
 		return context
 
 

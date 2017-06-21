@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/1.9/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
-
+import accounts
 import os
+
 
 def get_env_variable(var_name):
     try:
@@ -134,6 +135,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Custom authentication
+# Using email or Username
+
+AUTHENTICATION_BACKENDS = ['accounts.views.EmailOrUsernameModelBackend']
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/

@@ -7,13 +7,13 @@ from django.contrib import messages
 
 class FundForm(forms.ModelForm):
 	class Meta:
-		model = models.Wallet
-		fields = ('amount', 'activity')
+		model = models.BankTransfer
+		fields = ['amount']
 
 		widgets = {
-            'activity': forms.Textarea(attrs={'rows': 1, 'required':True}),
-            'amount': forms.TextInput(attrs={'required':True}),
+            'amount': forms.HiddenInput()
         }
+
 
 class PasswordChangeForm(forms.Form):
 	password = forms.CharField(widget=forms.PasswordInput())

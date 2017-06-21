@@ -1,6 +1,5 @@
 from PIL import Image
 from django.conf import settings
-
 import os
 
 
@@ -16,12 +15,10 @@ class PageTitleMixin:
         return context
 
 
-class ImageOperations:
-   
+class ImageOperations:   
     def process_ratio(self, image, basewidth=None):
-        basewidth=128 if basewidth is None else basewidth
+        basewidth = 128 if basewidth is None else basewidth
         full_img_path = os.path.join(settings.MEDIA_ROOT, str(image))
-        
         try:
             img = Image.open(full_img_path)
         except FileNotFoundError:
@@ -36,8 +33,8 @@ class ImageOperations:
         except FileNotFoundError:
             print("Image thumb path not found: ", str(image))
             print("proceeding to start thumb processing")
-            wpercent = (basewidth/float(img.size[0]))
-            hsize = 100 #int((float(img.size[1])*float(wpercent)))
+            # wpercent = (basewidth/float(img.size[0]))
+            hsize = 100 # int((float(img.size[1])*float(wpercent)))
             img = img.resize((basewidth,hsize), Image.ANTIALIAS)
         
             img.save('media/thumbnails/'+str(image))

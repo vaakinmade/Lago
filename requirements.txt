@@ -1,4 +1,3 @@
-$ pip freeze
 coverage==4.3.4
 dj-database-url==0.4.1
 Django==1.9

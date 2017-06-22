@@ -14,7 +14,7 @@ class Listing(models.Model):
 	investment_case = models.TextField(blank=True, default='')
 	listing_details = models.TextField(blank=True, default='')
 	unit_block = models.CharField(max_length=225, default='')
-	floor_plan = models.ImageField(upload_to='images/lagopoly', default='pic_folder/None/no-img.jpg')
+	#floor_plan = models.ImageField(upload_to='images/lagopoly', default='pic_folder/None/no-img.jpg')
 	
 	def __str__(self):
 		return self.name

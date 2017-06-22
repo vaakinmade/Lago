@@ -1,3 +1,4 @@
-accounts/tests.py:1: [E] PYFLAKES:'django.test.TestCase' imported but unused
 accounts/admin.py:1: [E] PYFLAKES:'django.contrib.admin' imported but unused
 accounts/forms.py:3: [E] PYFLAKES:'django.contrib.auth.models.User' imported but unused
+accounts/tests.py:1: [E] PYFLAKES:'django.test.TestCase' imported but unused
+listings/forms.py:2: [E] PYFLAKES:'django.core.urlresolvers.reverse' imported but unused

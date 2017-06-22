@@ -1,19 +1,129 @@
 {% extends "layout.html" %}
+{% load static from staticfiles %}
+{% load mathfilters %}
+{% load custom_filters %}
+{% load humanize %}
 
-{% block title %}{{ listing.title }}{% endblock %}
+{% block title %}{{ listing.name }}{% endblock %}
 
 {% block content %}
-<article>
-	<h2>{{ listing.name }}</h2>
-	{{ listing.description }}
 
-	<section>
-		{% for report in listing.report_set.all %}
-			<h3>
-				<a href="{% url 'listings:report' listing_pk=report.listing.pk report_pk=report.pk %}">{{ report.title }}</a>
-			</h3>
-			{{ report.overview }}
-		{% endfor %}
-	</section>
-</article>
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row margin-bottom-0 margin-top-20">
+		<div class="col-md-8 margin-bottom-10">
+		
+			<!-- Slider Container -->
+			<div class="property-slider-container">
+
+				<!-- Slider -->
+				<div class="property-slider">
+				{% for image in listing.ordered_images %}
+					<a href="/media/{{image.slide_image}}" data-background-image="/media/{{image.slide_image}}" class="item mfp-gallery"></a>
+				{% endfor %}
+				</div>
+				<!-- Slider / End -->
+
+			</div>
+			<!-- Slider Container / End -->
+
+			<!-- Slider Thumbs -->
+			<div class="property-slider-nav">
+			{% for image in listing.ordered_images %}
+				<div class="item"><img src="/media/thumbnails/{{image.slide_image}}" alt=""></div>
+			{% endfor %}
+			</div>
+		</div>
+		<div class="col-md-4">
+			<!-- Agent Widget -->
+			<div class="listing-content-2 col-xs-12">
+				<div align="center">
+					<span>
+						<h3><i class="fa fa-map-marker"></i> {{ listing.town }}, {{ listing.state }}</h3> 
+						<small>{{ listing.unit_block }} in {{ listing.name }}</small>
+					</span>
+				</div>
+				{% for valuation in listing.valuation_set.all %}
+				{% with total_shares=1000000 %}
+				<div class="listing-title padding-top-20 padding-left-0 padding-right-0 padding-bottom-0">
+					<div class="row margin-left-0 margin-right-0">
+						<div class="col-xs-6 black-font">
+							<h3>							
+								<a href="{% url 'listings:detail' pk=listing.pk %}">£{{ total_shares |sub:listing.shares_available |mul:valuation.listing_value |div:total_shares |floatformat:"0"|intcomma }}</a>
+							</h3>
+							<div class="listing-address">						
+								of £{{ valuation.listing_value|intcomma }}
+							</div>
+						</div>
+
+						<div class="col-xs-6 black-font" align="right">
+							<h3>
+								<a href="single-property-page-1.html">{{ listing.active_investments|length }}</a>
+							</h3>
+							<div class="listing-address">
+								Investors
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+				<div class="listing-features col-sm-12 padding-top-20 padding-left-5 padding-right-5 padding-bottom-10">
+					<ul class="listing-feature padding-top-5 padding-right-0 padding-left-0 padding-bottom-10">
+						<div class="w3-progress-container w3-tiny w3-round-xlarge" style="height:7px">
+							<div class="w3-progressbar w3-round-xlarge w3-orange" style="width:{{ total_shares |sub:listing.shares_available |mul:valuation.listing_value |div:total_shares |mul:100 |div:valuation.listing_value|floatformat:'1' }}%;"></div>
+							<div class="padding-top-10 left-side"><small> {{total_shares |sub:listing.shares_available |mul:valuation.listing_value |div:total_shares |mul:100 |div:valuation.listing_value|floatformat:'1' }}% Funded</small>
+							</div>
+						</div>
+					</ul>
+				</div>
+				</div>	
+				{% endwith %}
+				
+
+				<div class="margin-top-20 margin-bottom-20">
+					{% with rent_percent=valuation.rental_income|mul:100|div:valuation.listing_value %}
+						<small><center>{{ rent_percent|floatformat:2 }}% Dividend Yield + {{ valuation.capital_growth}}% Targeted Capital Growth <br/>= {{ rent_percent|addfloat:valuation.capital_growth|floatformat:2}}% Combined Yield</center></small>
+					{% endwith %}
+				</div>
+				{% endfor %}
+				<a href="{% url 'listings:invest' listing_pk=listing.pk %}" class="sign-in button col-xs-12 margin-bottom-10"><strong><center>INVEST</center></strong></a>				
+			</div>
+			<!-- Agent Widget / End -->
+		</div>
+	</div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<!-- Property Description -->
+		<div class="col-lg-8 col-md-7">
+			<div class="property-description">
+				<!-- Description -->
+				<h3 class="desc-headline">Property Details</h3>
+				<div class="show-more">
+					{{listing.listing_details|linebreaksbr}}
+
+					<a href="#" class="show-more-button">Show More <i class="fa fa-angle-down"></i></a>
+				</div>
+
+				<!-- Investent case -->
+				<h3 class="desc-headline">Investment Case</h3>
+				<div class="show-more">
+					{{listing.investment_case|linebreaksbr}}
+					<a href="#" class="show-more-button">Show More <i class="fa fa-angle-down"></i></a>
+				</div>
+				<!-- Floor Plan -->
+				<h3 class="desc-headline">Floor Plan</h3>
+				<img src="/media/{{listing.floor_plan}}" alt="">
+
+			</div>
+		</div>
+		<!-- Property Description / End -->
+	</div>
+</div>
+
 {% endblock %}

@@ -45,14 +45,14 @@
 
 
 				<!-- Main Navigation -->
-				<nav id="navigation" class="style-1">
-					<ul id="responsive">
+				<nav id="navigation" class="style-3 col-md-offset-5">
+					<ul id="responsive" class="padding-top-10">
 
-						<li><a href="{% url 'listings:list' %}">PROPERTIES</a></li>
+						<li class="margin-right-20"><a href="{% url 'listings:list' %}">PROPERTIES</a></li>
 
-						<li><a href="#">HOW IT WORKS</a></li>
+						<li class="margin-right-20"><a href="#">HOW IT WORKS</a></li>
 
-						<li><a href="#">BLOG</a></li>
+						<li class=""><a href="{% url 'blogs:list' %}">BLOG</a></li>
 
 					</ul>
 				</nav>
@@ -63,13 +63,39 @@
 			<!-- Left Side Content / End -->
 
 			<!-- Right Side Content / End -->
-			<div class="right-side">
-				
-				<a href="login-register.html" id="sign-in" class="sign-in button border col-sm-offset-6">Log In </a>
 			
-				<a href="login-register.html" id="sign-in" class="sign-in button margin-left-30">Sign Up</a>
+				{% if user.is_authenticated %}
+				<div class="right-side">
+					<div class="header-widget padding-top-10" style="text-align:left;">
+
+						<div class="top-bar-dropdown">
+							<span><a href="#" class="sign-in margin-left-25 margin-right-0"><i class="fa fa-user"></i> {{user.first_name}}&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a></span>
+							<ul class="options">
+								<li><div class="arrow"></div></li>
+								<li>
+									<a href="{% url 'investors:home' %}"><i class="sl sl-icon-speedometer"></i>&nbsp;&nbsp;&nbsp;&nbsp;Dashboard</a>
+								</li>
+								<li><a href="{% url 'investors:statement' %}"><i class="fa fa-database"></i>&nbsp;&nbsp;&nbsp;&nbsp;Financial Statement</a></li>
+								<li><a><i class="fa fa-file-word-o"></i>&nbsp;&nbsp;&nbsp;&nbsp;Investment Docs</a></li>
+								<li><a href="{% url 'investors:account' %}"><i class="sl sl-icon-credit-card"></i>&nbsp;&nbsp;&nbsp;&nbsp;Bank Account</a></li>
+								<li><a><i class="sl sl-icon-settings"></i>&nbsp;&nbsp;&nbsp;&nbsp;Settings</a></li>
+								<li><a href="{% url 'investors:changepassword' %}"><i class="sl sl-icon-shield"></i>&nbsp;&nbsp;&nbsp;&nbsp;Security</a></li>
+								<hr/>
+								<li><a href="{% url 'accounts:logout' %}"><i class="sl sl-icon-logout"></i>&nbsp;&nbsp;&nbsp;&nbsp;Logout</a></li>
+							</ul>
+						</div>
+						<a href="{% url 'investors:fund' %}" id="sign-in" class="button border">Fund Wallet</a>
+					</div>
+				</div>
+				{% else %}
+				<div class="margin-right-20 pull-right">
+					<a href="{% url 'login' %}" id="sign-in" class="sign-in button border">Log In </a>
 				
-			</div>
+					<a href="{% url 'accounts:signup' %}" id="sign-in" class="sign-in button margin-left-30">Sign Up</a>
+				</div>
+				{% endif %}
+				
+			
 			<!-- Right Side Content / End -->
 
 		</div>
@@ -151,6 +177,7 @@
 <script type="text/javascript" src="{% static 'scripts/jquery.jpanelmenu.js' %}"></script>
 <script type="text/javascript" src="{% static 'scripts/tooltips.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'scripts/custom.js' %}"></script>
+<script type="text/javascript" src="{% static 'scripts/helper.js' %}"></script>
 
 <!-- Maps -->
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
@@ -158,6 +185,13 @@
 <script type="text/javascript" src="{% static 'scripts/markerclusterer.js' %}"></script>
 <script type="text/javascript" src="{% static 'scripts/maps.js' %}"></script>
 
+<!-- DropZone | Documentation: http://dropzonejs.com -->
+<script type="text/javascript" src="{% static 'scripts/dropzone.js' %}"></script>
+<script>
+	$(".dropzone").dropzone({
+		dictDefaultMessage: "<i class='sl sl-icon-plus'></i> Click here or drop files to upload",
+	});
+</script>
 </div>
 <!-- Wrapper / End -->
 

@@ -1,5 +1,8 @@
 {% extends "layout.html" %}
 {% load static from staticfiles %}
+{% load mathfilters %}
+{% load custom_filters %}
+{% load humanize %}
 
 {% block title %} Lagopoly | Crowdfunding Property Investments {% endblock %}
 
@@ -8,16 +11,16 @@
 <!-- Home background image
 ================================================== -->
 
-<div class="parallax" data-background="{% static 'images/home-sliding.jpg' %}" data-color="#36383e" data-color-opacity="0.5" data-img-width="2500" data-img-height="1600">
+<div class="parallax" data-background="{% static 'images/family-house.jpg' %}" data-color="#36383e" data-color-opacity="0.8" data-img-width="2500" data-img-height="1600">
 	<div class="parallax-content">
 		<div class="container">
-			<div class="col-md-12  margin-top-130 padding-top-130">
+			<div class="col-md-12 adding-top-100 adding-bottom-100">
 
 				<!-- Home Background Text -->
 				<div class="home-parallax">
-					<h1><strong>&nbsp;&nbsp;Property investment made simple</strong></h1>
+					<h1><strong>Property investment made simple</strong></h1>
 					<h4>Invest at your natural pace. Own shares in multiple properties. Earn rent.</h4>
-					<a class="button" href="submit-property.html">View Properties</a>
+					<p><a class="button" href="{% url 'listings:list' %}">View Properties</a></p>
 				</div>
 				<!-- Home Background Text / End -->
 
@@ -38,45 +41,7 @@
 		<li>Be a co-landlord alongside other lagopolists and become a player in Africa's largest market</li>
 		<li>Earn rent monthly without the heavy lifting</li>
 	</div>	
-	<div class="col-md-4">
-		<div class="col-md-3 col-sm-6">
-			<!-- Icon Box -->
-			<div class="icon-box-1">
-
-				<div class="icon-container">
-					<i class="im im-icon-Office"></i>
-					<div class="icon-links">
-					</div>
-				</div>
-
-			</div>
-		</div>
-
-		<div class="col-md-3 col-sm-6 right-side">
-				<!-- Icon Box -->
-				<div class="icon-box-1">
-
-					<div class="icon-container">
-						<i class="im im-icon-Home-2"></i>
-						<div class="icon-links">							
-						</div>
-					</div>
-			</div>
-		</div>
-
-		<div class="col-md-3 col-sm-6 right-side">
-			<!-- Icon Box -->
-			<div class="icon-box-1">
-
-				<div class="icon-container">
-					<i class="im im-icon-Building"></i>
-					<div class="icon-links">
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</div>
+	
 </div>
 
 <!-- How It Works -->
@@ -145,24 +110,96 @@
 </section>
 <!-- How It Works  / End -->
 
-<!-- Container -->
-<section class="fullwidth padding-top-100" data-background-color="#fff">
+<!-- Fullwidth Section -->
+<section class="fullwidth margin-top-105" data-background-color="#f7f7f7">
+
+	<!-- Box Headline -->
+	<h3 class="headline-box">What's your preference?</h3>
+	
+	<!-- Content -->
 	<div class="container">
 		<div class="row">
-			<div class="layout-switcher hidden"><a href="#" class="list"><i class="fa fa-th-list"></i></a></div>
-				<div class="listings-container list-layout">
 
+			<div class="col-md-3 col-sm-6">
+				<!-- Icon Box -->
+				<div class="icon-box-1">
+
+					<div class="icon-container">
+						<i class="im im-icon-Office"></i>
+						<div class="icon-links">
+							<a href="listings-grid-standard-with-sidebar.html">Apartments</a>
+						</div>
+					</div>
+
+					<h3>Apartments</h3>
+				</div>
+			</div>
+
+			<div class="col-md-3 col-sm-6">
+				<!-- Icon Box -->
+				<div class="icon-box-1">
+
+					<div class="icon-container">
+						<i class="im im-icon-Home-2"></i>
+						<div class="icon-links">
+							<a href="listings-grid-standard-with-sidebar.html">Houses</a>
+						</div>
+					</div>
+
+					<h3>Houses</h3>
+				</div>
+			</div>
+
+			<div class="col-md-3 col-sm-6">
+				<!-- Icon Box -->
+				<div class="icon-box-1">
+
+					<div class="icon-container">
+						<i class="im im-icon-Warehouse"></i>
+						<div class="icon-links">
+							<a href="listings-grid-standard-with-sidebar.html">Warehouses</a>
+						</div>
+					</div>
+
+					<h3>Warehouses</h3>
+				</div>
+			</div>
+
+			<div class="col-md-3 col-sm-6">
+				<!-- Icon Box -->
+				<div class="icon-box-1">
+
+					<div class="icon-container">
+						<i class="im im-icon-Building"></i>
+						<div class="icon-links">
+							<a href="listings-grid-standard-with-sidebar.html">Commercial</a>
+						</div>
+					</div>
+
+					<h3>Commercial</h3>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+<!-- Fullwidth Section / End -->
+
+
+<!-- Container -->
+<section class="fullwidth padding-top-10" data-background-color="#fff">
+	<div class="container">
+		<div class="col-md-10 col-md-offset-1">
+			<div class="layout-switcher hidden"><a href="#" class="list"><i class="fa fa-th-list"></i></a></div>
+			{% for listing in listings %}
+				<div class="listings-container list-layout">
+					
 					<!-- Listing Item -->
 					<div class="listing-item padding-top-0 padding-bottom-0 padding-left-0 padding-right-0">
 
-						<a href="#" class="listing-img-container">
-
+						<a href="{% url 'listings:detail' pk=listing.pk %}" class="listing-img-container">
 							<div class="listing-badges">
-								<span class="featured">FUNDING</span>
-							</div>
-
-							<div class="listing-img-content">
-								<span class="listing-price"><i class="im im-icon-Coins"> FINANCED</i></span>
+								<span class="featured">{{ listing.fund_status | upper }}</span>
 							</div>
 
 							<img src="{% static 'images/listing-03.jpg' %}" alt="">
@@ -171,39 +208,54 @@
 						<div class="listing-content">
 
 							<div class="listing-title">
-								<h4><a href="#"><i class="fa fa-map-marker"></i> Ocean Parade Towers, Banana Island, Lagos</a></h4>
-								<a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom" class="listing-address popup-gmaps">
-									12 Unit Block Apartments
-								</a>
+								<h4><a><i class="fa fa-map-marker"></i> {{ listing.town }}, {{ listing.state }}</a></h4>
+								<a>{{ listing.unit_block }} in {{ listing.name}}</a>
 							</div>
 
+							{% for valuation in listing.active_valuations %}
+							{% with rent_percent=valuation.rental_income|mul:100|div:valuation.listing_value %}
 							<ul class="listing-details-2 padding-left-0">
-								<li><center>₦185,000,000</center>
-								<center><font size="1px"><strong>Note:</strong> This investment opportunity closes once the funding target is reached</font></center></li>
+								<li>
+									<table width="100%" border="0">
+										<tr>
+											<td width="50%">
+												<center>£{{ valuation.listing_value|intcomma}}</center>
+												<center><font size="2px">Funding Target</font></center>
+											</td>
+											<td width="50%">
+												<center>{{rent_percent|addfloat:valuation.capital_growth|floatformat:2}}%</center>
+												<center><font size="2px">Combined Yield</font></center>
+											</td>
+										</tr>
+									</table>
+								</li>
 							</ul>
+							{% endwith %}
 
+							{% with total_shares=1000000 %}
 							<div class="listing-footer">
-								<div class="col-sm-12 padding-top-20 padding-left-5 padding-right-5 padding-bottom-10">
+								<div class="col-sm-12 padding-top-0 padding-left-5 padding-right-5 padding-bottom-10">
 									<ul class="padding-top-5 padding-right-0 padding-left-0 padding-bottom-10">
 										<div class="w3-progress-container w3-tiny w3-round-xlarge" style="height:7px">
-		  									<div class="w3-progressbar w3-round-xlarge w3-orange" style="width:75%;"></div>
-		  									<div class="padding-top-10 left-side"><small>75% Funded</small></div>
-		  									<div class="right-side padding-top-10"><i class="fa fa-calendar-o"></i> <small>Closes in 14 days</small></div>
+		  									<div class="w3-progressbar w3-round-xlarge w3-orange" style="width:{{ total_shares |sub:listing.shares_available |mul:valuation.listing_value |div:total_shares |mul:100 |div:valuation.listing_value|floatformat:'1' }}%;"></div>
+		  									<div class="padding-top-10 left-side"><small>{{total_shares |sub:listing.shares_available |mul:valuation.listing_value |div:total_shares |mul:100 |div:valuation.listing_value|floatformat:'1' }}% Funded</small></div>
 										</div>
 									</ul>
 								</div>
 							</div>
+							{% endwith %}
+							{% endfor %}
 						</div>
 					</div>
 					<!-- Listing Item / End -->
 				</div>
-			</div>
+			{% endfor %}
 		</div>
 	</div>		
 </section>
 <!-- Container / End -->
 
-<section class="fullwidth border-top margin-top-55 margin-bottom-0 padding-top-60 padding-bottom-65" data-background-color="#ffffff">
+<section class="fullwidth border-top margin-top-0 margin-bottom-0 padding-top-60 padding-bottom-65" data-background-color="#ffffff">
 	<!-- Logo Carousel -->
 	<div class="container">
 		<div class="row">

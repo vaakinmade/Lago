@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/1.9/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
-
+import accounts
 import os
+
 
 def get_env_variable(var_name):
     try:
@@ -52,6 +53,8 @@ INSTALLED_APPS = [
     'bootstrap3',
     'mathfilters',
     'accounts',
+    'investors',
+    'blogs',
     'listings',
 ]
 
@@ -62,6 +65,7 @@ JENKINS_TASKS = (
 
 PROJECT_APPS = (
     'accounts',
+    'dashboard',
     'listings',
 )
 
@@ -131,6 +135,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Custom authentication
+# Using email or Username
+
+AUTHENTICATION_BACKENDS = ['accounts.views.EmailOrUsernameModelBackend']
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
@@ -153,8 +161,12 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'assets')]
 
-LOGIN_REDIRECT_URL = "listings:list"
+LOGIN_REDIRECT_URL = "home"
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
+#setting media path for imageUpload
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT_THUMB = os.path.join(MEDIA_ROOT, 'thumbnails')

@@ -1,0 +1,38 @@
+{% extends "listings/_layout.html" %}
+
+{% block body_content %}
+
+{% if perms.listings %}
+<h1>{{ page_title }}</h1>
+<form method='POST' enctype="multipart/form-data" class="margin-bottom-150">
+	{% csrf_token %}
+	{% if messages %}
+		{% for message in messages %}
+			<div class="notification success closeable">
+				<p>{{message}}</p>
+				<a class="close" href="#"></a>
+			</div>
+		{% endfor %}
+	{% endif %}
+	
+	{{ form.non_field_errors }}
+	
+	{% for field in form %}
+        {% if form.errors %}
+            {% for error in field.errors %}
+	            <ul class="error-msg">
+	                <li><strong>{{ error|escape }}</strong></li>
+	            </ul>
+            {% endfor %}
+        {% endif %}
+        {{ field.label_tag }} 
+        {{ field }}
+    {% endfor %}
+	<input type="submit" class="btn btn-primary" value="Save">
+</form>
+{% else %}
+	<div class="margin-bottom-150" >
+		<h2><center>Insufficient Permissions</center></h2>
+	</div>
+{% endif %}
+{% endblock %}

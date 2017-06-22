@@ -1,0 +1,229 @@
+{% extends "investors/_layout.html" %}
+{% load mathfilters %}
+
+{% block body_content %}
+	<div class="col-md-9">
+		<center><h3 class="headline margin-top-0 margin-bottom-10">Your Account</h3></center>
+		<center><h5 class="headline margin-top-0 margin-bottom-20">Stay on top of your properties</h5></center>
+		
+		<div class="style-2">
+			<div class="row margin-left-0 margin-right-0">
+				<!-- Dash Toggle -->
+				<div class="col-md-4 padding-left-0 padding-right-5">
+					<div class="toggle-wrap dashbox">
+						
+						<span class="trigger trigger-dashbox">
+							<center>
+								<a><h4>£0.00</h4>
+								Net transactions <i class="sl sl-icon-arrow-down-circle"></i></a>
+							</center>
+						</span>
+						
+						<div class="toggle-container">
+							<table class="dashtable margin-top-10">
+								<tr>
+									<td class="padding-top-10">Deposits:</td>
+									<td class="padding-top-10 pull-right">£0.00</td>
+								</tr>
+								<tr>
+									<td>Withdrwals:</td>
+									<td class="pull-right">£0.00</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 padding-left-0 padding-right-5">			
+					<div class="toggle-wrap dashbox">
+					
+					<span class="trigger trigger-dashbox">
+						<center>
+							<a><h4>£0.00</h4>
+							Growth <i class="sl sl-icon-arrow-down-circle"></i></a>
+						</center>
+					</span>
+					
+					<div class="toggle-container">
+						<table class="dashtable margin-top-10">
+							<tr>
+								<td class="padding-top-10">Dividends Received:</td>
+								<td class="padding-top-10 pull-right">£0.00</td>
+							</tr>
+							<tr>
+								<td>Latest Valuation Gains:</td>
+								<td class="pull-right">£0.00</td>
+							</tr>
+							<tr>
+								<td>Realised Capital Gains:</td>
+								<td class="pull-right">£0.00</td>
+							</tr>
+						</table>
+					</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 padding-left-0 padding-right-5">
+					<div class="toggle-wrap dashbox">
+					
+					<span class="trigger trigger-dashbox">
+						<center>
+							<a><h4>£0.00</h4>
+							Portfolio <i class="sl sl-icon-arrow-down-circle"></i></a>
+						</center>
+					</span>
+					
+					<div class="toggle-container">
+						<table class="dashtable margin-top-10">
+							<tr>
+								<td class="padding-top-10">Available Funds:</td>
+								<td class="padding-top-10 pull-right">£0.00</td>
+							</tr>
+							<tr>
+								<td>Committed Funds:</td>
+								<td class="pull-right">£0.00</td>
+							</tr>
+							<tr>
+								<td>Latest Valuation:</td>
+								<td class="pull-right">£0.00</td>
+							</tr>
+						</table>
+					</div>
+					</div>
+				</div>
+			</div>
+			<!-- Tab Start-->
+
+			<div class="margin-top-30">
+				
+				<!-- Tabs Navigation -->
+					<ul class="tabs-nav">
+						<li class="active"><a href="#tab1a"><i class="sl sl-icon-clock"></i> Pending Properties</a></li>
+						<li><a href="#tab2a"><i class="sl sl-icon-home"></i> Let Properties</a></li>
+						<li><a href="#tab3a"><i class="sl sl-icon-eye"></i> Watchlist</a></li>
+					</ul>
+
+					<!-- Tabs Content -->
+					<div class="tabs-container">
+						<div class="tab-content" id="tab1a">
+							<table class="basic-table-dash ">
+							<tr>
+								<th>Property</th>
+								<th>Shares</th>
+								<th>Valuation per share</th>
+								<th>Monthly revenue</th>
+							</tr>
+							{% for listing in dashboard %}
+								{% for investment in listing.investment_set.all %}
+									{% if investment.investor == request.user and listing.fund_status != "funded" %}
+									<tr>
+										<td>
+											{{listing.address}}, {{listing.town}}, {{listing.state}}
+										</td>
+										<td>
+											{{investment.unit_shares}}
+										</td>
+										<td>
+											{{investment.unit_price|mul:100|floatformat:"2"}}p
+										</td>
+										{% for valuation in listing.valuation_set.all %}
+										<td>
+											£ {{valuation.rental_income}}
+										</td>
+										{% endfor %}
+									</tr>
+									{% endif %}
+								{% endfor %}
+							{% endfor %}
+						</table>
+
+						{% if not pre_or_funding %}
+						<div>
+						<table class="margin-top-10">
+							<tr>
+								<td class="col-md-8"><div>You have no properties in the funding or pre-fund stage. </div></td>
+							</tr>
+						</table>
+						</div>
+						{% endif %}
+						</div>
+
+						<div align="left" class="tab-content" id="tab2a">
+						<table class="basic-table-dash ">
+							<tr>
+								<th>Property</th>
+								<th>Shares</th>
+								<th>Valuation per share</th>
+								<th>Monthly revenue</th>
+							</tr>
+							{% for listing in dashboard %}
+								{% for investment in listing.investment_set.all %}
+									{% if investment.investor == request.user and listing.fund_status == "funded" %}
+									<tr>
+										<td>
+											{{listing.address}}, {{listing.town}}, {{listing.state}}
+										</td>
+										<td>
+											{{investment.unit_shares}}
+										</td>
+										<td>
+											£ {{investment.unit_price}}
+										</td>
+										{% for valuation in listing.valuation_set.all %}
+										<td>
+											£ {{valuation.rental_income}}
+										</td>
+										{% endfor %}
+									</tr>
+									{% endif %}
+								{% endfor %}
+							{% endfor %}
+						</table>
+
+						{% if not funded %}
+						<div>
+						<table class="margin-top-10">
+							<tr>
+								<td class="col-md-8"><div> You have no let properties yet. </div></td>
+							</tr>
+						</table>
+						</div>
+						{% endif %}
+						
+						</div>
+
+						<div class="tab-content" id="tab3a">
+						You are currently watching no properties.
+						</div>
+					</div>
+			</div>
+
+			<div class="col-md-5 col-md-offset-4">
+				{% if is_paginated %}
+					<ul class="pagination">
+						{% if page_obj.has_previous %}
+							<li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+						{% else %}
+							<li class="disabled"><span>&laquo;</span></li>
+						{% endif %}
+
+						{% for i in paginator.page_range %}
+							{% if page_obj.number == i %}
+								<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+							{% else %}
+								<li><a href="?page={{ i }}">{{ i }}</a></li>
+							{% endif %}
+						{% endfor %}
+
+						{% if page_obj.has_next %}
+							<li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+						{% else %}
+							<li class="disabled"><span>&raquo;</span></li>
+						{% endif %}
+					</ul>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

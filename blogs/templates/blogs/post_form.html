@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% load static from staticfiles %}
+
+{% block content %}
+<!-- Content
+================================================== -->
+<div class="container" style="min-height: 400px;">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2 margin-top-20">
+		{% if perms.blogs %}
+       		<h3><center>{{ page_title }}</center></h3>
+			<form method='POST' enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<input type="submit" class="btn btn-primary" value="Save">
+			</form>
+		{% else %}
+			<div class="margin-bottom-150" >
+				<h2><center>Insufficient Permissions</center></h2>
+			</div>
+		{% endif %}
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	window.onload = function(e){ 
+    document.getElementById('id_author').value = {{author}};
+}
+</script>
+
+{% endblock %}

@@ -1,28 +1,38 @@
 accounts/forms.py:10:80: E501 line too long (91 > 79 characters)
 accounts/forms.py:16:1: W293 blank line contains whitespace
-accounts/forms.py:24:80: E501 line too long (82 > 79 characters)
-accounts/forms.py:25:80: E501 line too long (80 > 79 characters)
-accounts/forms.py:24:25: E203 whitespace before ':'
-accounts/forms.py:25:24: E203 whitespace before ':'
-accounts/forms.py:26:20: E203 whitespace before ':'
-accounts/forms.py:27:23: E203 whitespace before ':'
-accounts/forms.py:24:49: E251 unexpected spaces around keyword / parameter equals
-accounts/forms.py:24:51: E251 unexpected spaces around keyword / parameter equals
-accounts/forms.py:25:48: E251 unexpected spaces around keyword / parameter equals
-accounts/forms.py:25:50: E251 unexpected spaces around keyword / parameter equals
-accounts/forms.py:26:44: E251 unexpected spaces around keyword / parameter equals
-accounts/forms.py:26:46: E251 unexpected spaces around keyword / parameter equals
-accounts/forms.py:27:49: E251 unexpected spaces around keyword / parameter equals
-accounts/forms.py:27:51: E251 unexpected spaces around keyword / parameter equals
-accounts/forms.py:29:1: W293 blank line contains whitespace
-accounts/forms.py:37:80: E501 line too long (96 > 79 characters)
-accounts/forms.py:38:80: E501 line too long (109 > 79 characters)
-accounts/forms.py:39:80: E501 line too long (88 > 79 characters)
-accounts/forms.py:39:9: E265 block comment should start with '# '
-accounts/forms.py:40:1: W191 indentation contains tabs
-accounts/forms.py:40:1: E101 indentation contains mixed spaces and tabs
-accounts/forms.py:40:1: W391 blank line at end of file
-accounts/forms.py:40:1: W293 blank line contains whitespace
+accounts/forms.py:25:80: E501 line too long (105 > 79 characters)
+accounts/forms.py:26:80: E501 line too long (103 > 79 characters)
+accounts/forms.py:27:80: E501 line too long (95 > 79 characters)
+accounts/forms.py:24:9: E303 too many blank lines (2)
+accounts/forms.py:25:25: E203 whitespace before ':'
+accounts/forms.py:26:24: E203 whitespace before ':'
+accounts/forms.py:27:20: E203 whitespace before ':'
+accounts/forms.py:28:23: E203 whitespace before ':'
+accounts/forms.py:25:92: E231 missing whitespace after ':'
+accounts/forms.py:26:90: E231 missing whitespace after ':'
+accounts/forms.py:27:82: E231 missing whitespace after ':'
+accounts/forms.py:25:49: E251 unexpected spaces around keyword / parameter equals
+accounts/forms.py:25:51: E251 unexpected spaces around keyword / parameter equals
+accounts/forms.py:26:48: E251 unexpected spaces around keyword / parameter equals
+accounts/forms.py:26:50: E251 unexpected spaces around keyword / parameter equals
+accounts/forms.py:27:44: E251 unexpected spaces around keyword / parameter equals
+accounts/forms.py:27:46: E251 unexpected spaces around keyword / parameter equals
+accounts/forms.py:28:47: E251 unexpected spaces around keyword / parameter equals
+accounts/forms.py:28:49: E251 unexpected spaces around keyword / parameter equals
+accounts/forms.py:30:1: W293 blank line contains whitespace
+accounts/forms.py:36:80: E501 line too long (89 > 79 characters)
+accounts/forms.py:41:80: E501 line too long (96 > 79 characters)
+accounts/forms.py:42:80: E501 line too long (109 > 79 characters)
+accounts/forms.py:43:80: E501 line too long (88 > 79 characters)
+accounts/forms.py:43:9: E265 block comment should start with '# '
+accounts/forms.py:44:1: W191 indentation contains tabs
+accounts/forms.py:44:1: E101 indentation contains mixed spaces and tabs
+accounts/forms.py:44:1: W293 blank line contains whitespace
+accounts/forms.py:47:1: E303 too many blank lines (3)
+accounts/forms.py:49:1: E101 indentation contains mixed spaces and tabs
+accounts/forms.py:52:1: W293 blank line contains whitespace
+accounts/forms.py:54:80: E501 line too long (80 > 79 characters)
+accounts/forms.py:77:26: W292 no newline at end of file
 accounts/models.py:16:1: W293 blank line contains whitespace
 accounts/models.py:25:1: W293 blank line contains whitespace
 accounts/models.py:48:1: W293 blank line contains whitespace
@@ -32,11 +42,11 @@ accounts/models.py:56:1: W293 blank line contains whitespace
 accounts/models.py:59:1: W293 blank line contains whitespace
 accounts/models.py:61:69: W292 no newline at end of file
 accounts/urls.py:9:2: W292 no newline at end of file
-accounts/urls.py:6:5: E265 block comment should start with '# '
 accounts/views.py:13:1: W293 blank line contains whitespace
 accounts/views.py:18:1: W293 blank line contains whitespace
-accounts/views.py:26:1: W293 blank line contains whitespace
-accounts/views.py:35:43: W292 no newline at end of file
+accounts/views.py:26:80: E501 line too long (96 > 79 characters)
+accounts/views.py:50:1: W293 blank line contains whitespace
+accounts/views.py:60:1: W391 blank line at end of file
 accounts/migrations/0001_initial.py:21:80: E501 line too long (114 > 79 characters)
 accounts/migrations/0001_initial.py:22:80: E501 line too long (88 > 79 characters)
 accounts/migrations/0001_initial.py:23:80: E501 line too long (103 > 79 characters)
@@ -46,15 +56,36 @@ accounts/migrations/0001_initial.py:29:80: E501 line too long (83 > 79 character
 accounts/migrations/0001_initial.py:30:80: E501 line too long (89 > 79 characters)
 accounts/migrations/0001_initial.py:33:80: E501 line too long (266 > 79 characters)
 accounts/migrations/0001_initial.py:34:80: E501 line too long (229 > 79 characters)
+listings/admin.py:3:80: E501 line too long (83 > 79 characters)
 listings/admin.py:5:1: E302 expected 2 blank lines, found 1
 listings/admin.py:6:1: W191 indentation contains tabs
 listings/admin.py:8:1: E302 expected 2 blank lines, found 1
 listings/admin.py:9:1: W191 indentation contains tabs
-listings/admin.py:9:25: E231 missing whitespace after ','
-listings/admin.py:15:29: W292 no newline at end of file
-listings/models.py:4:1: E302 expected 2 blank lines, found 1
-listings/models.py:5:1: W191 indentation contains tabs
-listings/models.py:6:1: W191 indentation contains tabs
+listings/admin.py:11:1: E302 expected 2 blank lines, found 1
+listings/admin.py:12:1: W191 indentation contains tabs
+listings/admin.py:12:25: E231 missing whitespace after ','
+listings/admin.py:20:34: W292 no newline at end of file
+listings/forms.py:19:26: E203 whitespace before ':'
+listings/forms.py:20:25: E203 whitespace before ':'
+listings/forms.py:21:30: E203 whitespace before ':'
+listings/forms.py:22:31: E203 whitespace before ':'
+listings/forms.py:23:25: E203 whitespace before ':'
+listings/forms.py:30:32: E231 missing whitespace after ','
+listings/forms.py:33:80: E501 line too long (94 > 79 characters)
+listings/forms.py:34:10: W292 no newline at end of file
+listings/forms.py:33:26: E203 whitespace before ':'
+listings/forms.py:33:71: E231 missing whitespace after ':'
+listings/forms.py:33:88: E231 missing whitespace after ':'
+listings/mixins.py:21:80: E501 line too long (112 > 79 characters)
+listings/mixins.py:36:10: E111 indentation is not a multiple of four
+listings/mixins.py:44:74: W291 trailing whitespace
+listings/mixins.py:46:17: E128 continuation line under-indented for visual indent
+listings/mixins.py:47:17: E128 continuation line under-indented for visual indent
+listings/mixins.py:48:17: E124 closing bracket does not match visual indentation
+listings/mixins.py:52:80: E501 line too long (88 > 79 characters)
+listings/mixins.py:58:30: W291 trailing whitespace
+listings/mixins.py:58:5: E303 too many blank lines (2)
+listings/mixins.py:58:5: E265 block comment should start with '# '
 listings/models.py:7:1: W191 indentation contains tabs
 listings/models.py:8:1: W191 indentation contains tabs
 listings/models.py:9:1: W191 indentation contains tabs
@@ -65,22 +96,85 @@ listings/models.py:13:1: W191 indentation contains tabs
 listings/models.py:14:1: W191 indentation contains tabs
 listings/models.py:15:1: W191 indentation contains tabs
 listings/models.py:16:1: W191 indentation contains tabs
+listings/models.py:17:80: E501 line too long (98 > 79 characters)
 listings/models.py:17:1: W191 indentation contains tabs
+listings/models.py:18:1: W191 indentation contains tabs
+listings/models.py:18:1: W293 blank line contains whitespace
+listings/models.py:19:1: W191 indentation contains tabs
 listings/models.py:20:1: W191 indentation contains tabs
-listings/models.py:20:2: E303 too many blank lines (2)
-listings/models.py:20:2: E265 block comment should start with '# '
-listings/models.py:21:1: W191 indentation contains tabs
 listings/models.py:22:1: W191 indentation contains tabs
-listings/models.py:24:1: E302 expected 2 blank lines, found 1
-listings/models.py:25:1: W191 indentation contains tabs
-listings/models.py:26:1: W191 indentation contains tabs
+listings/models.py:23:4: W191 indentation contains tabs
+listings/models.py:23:1: E101 indentation contains mixed spaces and tabs
 listings/models.py:27:1: W191 indentation contains tabs
+listings/models.py:27:1: E101 indentation contains mixed spaces and tabs
 listings/models.py:28:1: W191 indentation contains tabs
+listings/models.py:29:80: E501 line too long (99 > 79 characters)
 listings/models.py:29:1: W191 indentation contains tabs
-listings/models.py:29:2: E265 block comment should start with '# '
 listings/models.py:31:1: W191 indentation contains tabs
 listings/models.py:32:1: W191 indentation contains tabs
-listings/models.py:32:20: W292 no newline at end of file
+listings/models.py:32:18: E231 missing whitespace after ','
+listings/models.py:33:1: W191 indentation contains tabs
+listings/models.py:34:1: W191 indentation contains tabs
+listings/models.py:35:1: W191 indentation contains tabs
+listings/models.py:35:1: W293 blank line contains whitespace
+listings/models.py:36:1: W191 indentation contains tabs
+listings/models.py:37:1: E101 indentation contains mixed spaces and tabs
+listings/models.py:37:9: E122 continuation line missing indentation or outdented
+listings/models.py:38:9: E122 continuation line missing indentation or outdented
+listings/models.py:39:5: E122 continuation line missing indentation or outdented
+listings/models.py:41:1: W191 indentation contains tabs
+listings/models.py:41:1: E101 indentation contains mixed spaces and tabs
+listings/models.py:42:1: W191 indentation contains tabs
+listings/models.py:46:1: W191 indentation contains tabs
+listings/models.py:47:1: W191 indentation contains tabs
+listings/models.py:48:1: W191 indentation contains tabs
+listings/models.py:49:1: W191 indentation contains tabs
+listings/models.py:50:1: W191 indentation contains tabs
+listings/models.py:50:2: E265 block comment should start with '# '
+listings/models.py:52:1: W191 indentation contains tabs
+listings/models.py:53:1: W191 indentation contains tabs
+listings/models.py:57:1: W191 indentation contains tabs
+listings/models.py:58:1: W191 indentation contains tabs
+listings/models.py:59:1: W191 indentation contains tabs
+listings/models.py:60:1: W191 indentation contains tabs
+listings/models.py:61:1: W191 indentation contains tabs
+listings/models.py:62:1: W191 indentation contains tabs
+listings/models.py:63:1: W191 indentation contains tabs
+listings/models.py:64:1: W191 indentation contains tabs
+listings/models.py:65:1: W191 indentation contains tabs
+listings/models.py:68:1: W191 indentation contains tabs
+listings/models.py:68:2: E303 too many blank lines (2)
+listings/models.py:69:1: W191 indentation contains tabs
+listings/models.py:70:1: W191 indentation contains tabs
+listings/models.py:70:3: E101 indentation contains mixed spaces and tabs
+listings/models.py:71:1: W191 indentation contains tabs
+listings/models.py:71:3: E101 indentation contains mixed spaces and tabs
+listings/models.py:73:1: W191 indentation contains tabs
+listings/models.py:74:1: W191 indentation contains tabs
+listings/models.py:76:1: E302 expected 2 blank lines, found 1
+listings/models.py:77:1: W191 indentation contains tabs
+listings/models.py:78:1: W191 indentation contains tabs
+listings/models.py:79:1: W191 indentation contains tabs
+listings/models.py:80:1: W191 indentation contains tabs
+listings/models.py:81:1: W191 indentation contains tabs
+listings/models.py:82:80: E501 line too long (83 > 79 characters)
+listings/models.py:82:1: W191 indentation contains tabs
+listings/models.py:83:1: W191 indentation contains tabs
+listings/models.py:84:1: W191 indentation contains tabs
+listings/models.py:85:1: W191 indentation contains tabs
+listings/models.py:87:1: W191 indentation contains tabs
+listings/models.py:88:1: W191 indentation contains tabs
+listings/models.py:90:1: E302 expected 2 blank lines, found 1
+listings/models.py:91:1: W191 indentation contains tabs
+listings/models.py:92:1: W191 indentation contains tabs
+listings/models.py:93:1: W191 indentation contains tabs
+listings/models.py:94:1: W191 indentation contains tabs
+listings/models.py:95:1: W191 indentation contains tabs
+listings/models.py:96:1: W191 indentation contains tabs
+listings/models.py:97:1: W191 indentation contains tabs
+listings/models.py:99:1: W191 indentation contains tabs
+listings/models.py:100:1: W191 indentation contains tabs
+listings/models.py:102:1: W391 blank line at end of file
 listings/tests.py:9:1: E302 expected 2 blank lines, found 1
 listings/tests.py:10:1: W191 indentation contains tabs
 listings/tests.py:11:1: W191 indentation contains tabs
@@ -95,7 +189,6 @@ listings/tests.py:19:1: W191 indentation contains tabs
 listings/tests.py:20:1: W191 indentation contains tabs
 listings/tests.py:21:1: W191 indentation contains tabs
 listings/tests.py:22:1: W191 indentation contains tabs
-listings/tests.py:23:1: W191 indentation contains tabs
 listings/tests.py:12:8: E251 unexpected spaces around keyword / parameter equals
 listings/tests.py:12:10: E251 unexpected spaces around keyword / parameter equals
 listings/tests.py:13:11: E251 unexpected spaces around keyword / parameter equals
@@ -106,23 +199,21 @@ listings/tests.py:15:9: E251 unexpected spaces around keyword / parameter equals
 listings/tests.py:15:11: E251 unexpected spaces around keyword / parameter equals
 listings/tests.py:16:15: E251 unexpected spaces around keyword / parameter equals
 listings/tests.py:16:17: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:17:21: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:17:23: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:18:20: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:18:22: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:19:17: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:17:20: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:17:22: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:18:19: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:18:21: E251 unexpected spaces around keyword / parameter equals
 listings/tests.py:19:19: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:20:18: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:20:20: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:21:19: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:21:21: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:22:19: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:22:21: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:19:21: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:20:14: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:20:16: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:21:14: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:23:1: W191 indentation contains tabs
+listings/tests.py:23:18: E261 at least two spaces before inline comment
 listings/tests.py:24:1: W191 indentation contains tabs
-listings/tests.py:24:18: E261 at least two spaces before inline comment
 listings/tests.py:25:1: W191 indentation contains tabs
-listings/tests.py:26:1: W191 indentation contains tabs
-listings/tests.py:28:1: E302 expected 2 blank lines, found 1
+listings/tests.py:27:1: E302 expected 2 blank lines, found 1
+listings/tests.py:28:1: W191 indentation contains tabs
 listings/tests.py:29:1: W191 indentation contains tabs
 listings/tests.py:30:1: W191 indentation contains tabs
 listings/tests.py:31:1: W191 indentation contains tabs
@@ -135,48 +226,45 @@ listings/tests.py:37:1: W191 indentation contains tabs
 listings/tests.py:38:1: W191 indentation contains tabs
 listings/tests.py:39:1: W191 indentation contains tabs
 listings/tests.py:40:1: W191 indentation contains tabs
-listings/tests.py:41:1: W191 indentation contains tabs
-listings/tests.py:42:1: W191 indentation contains tabs
-listings/tests.py:31:8: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:31:10: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:32:11: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:32:13: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:33:8: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:33:10: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:34:9: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:34:11: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:35:15: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:35:17: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:30:8: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:30:10: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:31:11: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:31:13: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:32:8: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:32:10: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:33:9: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:33:11: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:34:15: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:34:17: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:35:20: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:35:22: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:36:19: E251 unexpected spaces around keyword / parameter equals
 listings/tests.py:36:21: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:36:23: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:37:20: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:37:22: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:38:17: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:38:19: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:39:18: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:39:20: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:40:19: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:40:21: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:41:19: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:41:21: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:37:19: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:37:21: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:38:14: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:38:16: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:39:14: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:43:1: W191 indentation contains tabs
+listings/tests.py:43:2: E303 too many blank lines (2)
+listings/tests.py:44:1: W191 indentation contains tabs
 listings/tests.py:45:1: W191 indentation contains tabs
-listings/tests.py:45:2: E303 too many blank lines (2)
 listings/tests.py:46:1: W191 indentation contains tabs
 listings/tests.py:47:1: W191 indentation contains tabs
 listings/tests.py:48:1: W191 indentation contains tabs
 listings/tests.py:49:1: W191 indentation contains tabs
-listings/tests.py:50:1: W191 indentation contains tabs
+listings/tests.py:45:9: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:45:11: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:46:12: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:46:14: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:47:15: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:47:17: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:48:11: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:48:13: E251 unexpected spaces around keyword / parameter equals
 listings/tests.py:51:1: W191 indentation contains tabs
-listings/tests.py:47:9: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:47:11: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:48:12: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:48:14: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:49:15: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:49:17: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:50:11: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:50:13: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:53:1: W191 indentation contains tabs
-listings/tests.py:55:1: E302 expected 2 blank lines, found 1
+listings/tests.py:53:1: E302 expected 2 blank lines, found 1
+listings/tests.py:54:1: W191 indentation contains tabs
+listings/tests.py:55:1: W191 indentation contains tabs
 listings/tests.py:56:1: W191 indentation contains tabs
 listings/tests.py:57:1: W191 indentation contains tabs
 listings/tests.py:58:1: W191 indentation contains tabs
@@ -188,31 +276,28 @@ listings/tests.py:63:1: W191 indentation contains tabs
 listings/tests.py:64:1: W191 indentation contains tabs
 listings/tests.py:65:1: W191 indentation contains tabs
 listings/tests.py:66:1: W191 indentation contains tabs
+listings/tests.py:56:8: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:56:10: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:57:11: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:57:13: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:58:8: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:58:10: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:59:9: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:59:11: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:60:15: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:60:17: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:61:20: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:61:22: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:62:19: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:62:21: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:63:19: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:63:21: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:64:14: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:64:16: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:65:14: E251 unexpected spaces around keyword / parameter equals
 listings/tests.py:67:1: W191 indentation contains tabs
 listings/tests.py:68:1: W191 indentation contains tabs
 listings/tests.py:69:1: W191 indentation contains tabs
-listings/tests.py:58:8: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:58:10: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:59:11: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:59:13: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:60:8: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:60:10: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:61:9: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:61:11: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:62:15: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:62:17: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:63:21: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:63:23: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:64:20: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:64:22: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:65:17: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:65:19: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:66:18: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:66:20: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:67:19: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:67:21: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:68:19: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:68:21: E251 unexpected spaces around keyword / parameter equals
 listings/tests.py:70:1: W191 indentation contains tabs
 listings/tests.py:71:1: W191 indentation contains tabs
 listings/tests.py:72:1: W191 indentation contains tabs
@@ -222,95 +307,190 @@ listings/tests.py:75:1: W191 indentation contains tabs
 listings/tests.py:76:1: W191 indentation contains tabs
 listings/tests.py:77:1: W191 indentation contains tabs
 listings/tests.py:78:1: W191 indentation contains tabs
+listings/tests.py:68:8: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:68:10: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:69:11: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:69:13: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:70:8: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:70:10: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:71:9: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:71:11: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:72:15: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:72:17: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:73:20: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:73:22: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:74:19: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:74:21: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:75:19: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:75:21: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:76:14: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:76:16: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:77:14: E251 unexpected spaces around keyword / parameter equals
 listings/tests.py:79:1: W191 indentation contains tabs
 listings/tests.py:80:1: W191 indentation contains tabs
-listings/tests.py:71:8: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:71:10: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:72:11: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:72:13: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:73:8: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:73:10: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:74:9: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:74:11: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:75:15: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:75:17: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:76:21: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:76:23: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:77:20: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:77:22: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:78:17: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:78:19: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:79:18: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:79:20: E251 unexpected spaces around keyword / parameter equals
 listings/tests.py:81:1: W191 indentation contains tabs
 listings/tests.py:82:1: W191 indentation contains tabs
 listings/tests.py:83:1: W191 indentation contains tabs
 listings/tests.py:84:1: W191 indentation contains tabs
-listings/tests.py:85:1: W191 indentation contains tabs
+listings/tests.py:80:9: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:80:11: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:81:12: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:81:14: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:82:15: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:82:17: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:83:11: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:83:13: E251 unexpected spaces around keyword / parameter equals
 listings/tests.py:86:1: W191 indentation contains tabs
-listings/tests.py:82:9: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:82:11: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:83:12: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:83:14: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:84:15: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:84:17: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:85:11: E251 unexpected spaces around keyword / parameter equals
-listings/tests.py:85:13: E251 unexpected spaces around keyword / parameter equals
+listings/tests.py:87:1: W191 indentation contains tabs
 listings/tests.py:88:1: W191 indentation contains tabs
 listings/tests.py:89:1: W191 indentation contains tabs
 listings/tests.py:90:1: W191 indentation contains tabs
 listings/tests.py:91:1: W191 indentation contains tabs
 listings/tests.py:92:1: W191 indentation contains tabs
-listings/tests.py:93:1: W191 indentation contains tabs
 listings/tests.py:94:1: W191 indentation contains tabs
+listings/tests.py:95:1: W191 indentation contains tabs
 listings/tests.py:96:1: W191 indentation contains tabs
+listings/tests.py:96:11: E128 continuation line under-indented for visual indent
 listings/tests.py:97:1: W191 indentation contains tabs
 listings/tests.py:98:1: W191 indentation contains tabs
-listings/tests.py:98:11: E128 continuation line under-indented for visual indent
 listings/tests.py:99:1: W191 indentation contains tabs
 listings/tests.py:100:1: W191 indentation contains tabs
+listings/tests.py:100:1: W293 blank line contains whitespace
 listings/tests.py:101:1: W191 indentation contains tabs
 listings/tests.py:102:1: W191 indentation contains tabs
-listings/tests.py:102:1: W293 blank line contains whitespace
+listings/tests.py:102:52: W291 trailing whitespace
 listings/tests.py:103:1: W191 indentation contains tabs
 listings/tests.py:104:1: W191 indentation contains tabs
-listings/tests.py:104:52: W291 trailing whitespace
+listings/tests.py:103:10: E128 continuation line under-indented for visual indent
+listings/tests.py:104:10: E128 continuation line under-indented for visual indent
 listings/tests.py:105:1: W191 indentation contains tabs
 listings/tests.py:106:1: W191 indentation contains tabs
-listings/tests.py:105:10: E128 continuation line under-indented for visual indent
-listings/tests.py:106:10: E128 continuation line under-indented for visual indent
 listings/tests.py:107:1: W191 indentation contains tabs
 listings/tests.py:108:1: W191 indentation contains tabs
-listings/tests.py:109:1: W191 indentation contains tabs
-listings/tests.py:110:1: W191 indentation contains tabs
-listings/tests.py:110:1: W391 blank line at end of file
-listings/tests.py:110:1: W293 blank line contains whitespace
+listings/tests.py:108:1: W391 blank line at end of file
+listings/tests.py:108:1: W293 blank line contains whitespace
 listings/urls.py:6:1: W191 indentation contains tabs
 listings/urls.py:7:1: W191 indentation contains tabs
 listings/urls.py:8:1: W191 indentation contains tabs
+listings/urls.py:9:80: E501 line too long (96 > 79 characters)
 listings/urls.py:9:1: W191 indentation contains tabs
-listings/urls.py:9:61: W291 trailing whitespace
-listings/urls.py:10:2: W292 no newline at end of file
+listings/urls.py:10:1: W191 indentation contains tabs
+listings/urls.py:11:80: E501 line too long (81 > 79 characters)
+listings/urls.py:11:1: W191 indentation contains tabs
+listings/urls.py:12:1: W191 indentation contains tabs
+listings/urls.py:13:1: W191 indentation contains tabs
+listings/urls.py:14:1: W191 indentation contains tabs
+listings/urls.py:15:2: W292 no newline at end of file
 listings/urls.py:8:3: E128 continuation line under-indented for visual indent
-listings/views.py:2:1: E265 block comment should start with '# '
-listings/views.py:7:1: E265 block comment should start with '# '
-listings/views.py:9:1: E265 block comment should start with '# '
-listings/views.py:11:1: E265 block comment should start with '# '
-listings/views.py:13:1: E265 block comment should start with '# '
-listings/views.py:15:1: E302 expected 2 blank lines, found 1
-listings/views.py:16:1: W191 indentation contains tabs
-listings/views.py:17:1: W191 indentation contains tabs
-listings/views.py:19:1: E302 expected 2 blank lines, found 1
-listings/views.py:20:1: W191 indentation contains tabs
-listings/views.py:22:1: E302 expected 2 blank lines, found 1
-listings/views.py:23:1: W191 indentation contains tabs
-listings/views.py:24:1: W191 indentation contains tabs
-listings/views.py:26:1: E302 expected 2 blank lines, found 1
-listings/views.py:27:1: W191 indentation contains tabs
-listings/views.py:28:1: W191 indentation contains tabs
-listings/views.py:28:75: W292 no newline at end of file
+listings/urls.py:6:2: E265 block comment should start with '# '
+listings/views.py:6:80: E501 line too long (87 > 79 characters)
+listings/views.py:6:88: W291 trailing whitespace
+listings/views.py:23:80: E501 line too long (87 > 79 characters)
+listings/views.py:25:17: E128 continuation line under-indented for visual indent
+listings/views.py:26:17: E128 continuation line under-indented for visual indent
+listings/views.py:28:17: E128 continuation line under-indented for visual indent
+listings/views.py:29:17: E128 continuation line under-indented for visual indent
+listings/views.py:23:15: E271 multiple spaces after keyword
+listings/views.py:45:80: E501 line too long (104 > 79 characters)
+listings/views.py:39:17: E128 continuation line under-indented for visual indent
+listings/views.py:40:17: E128 continuation line under-indented for visual indent
+listings/views.py:42:17: E128 continuation line under-indented for visual indent
+listings/views.py:43:17: E128 continuation line under-indented for visual indent
+listings/views.py:45:17: E128 continuation line under-indented for visual indent
+listings/views.py:46:17: E128 continuation line under-indented for visual indent
+listings/views.py:37:15: E271 multiple spaces after keyword
+listings/views.py:51:80: E501 line too long (82 > 79 characters)
+listings/views.py:64:80: E501 line too long (84 > 79 characters)
+listings/views.py:65:14: E128 continuation line under-indented for visual indent
+listings/views.py:65:64: E231 missing whitespace after ','
+listings/views.py:74:17: E225 missing whitespace around operator
+listings/views.py:82:80: E501 line too long (81 > 79 characters)
+listings/views.py:83:1: W293 blank line contains whitespace
+listings/views.py:84:80: E501 line too long (107 > 79 characters)
+listings/views.py:84:108: W291 trailing whitespace
+listings/views.py:88:80: E501 line too long (95 > 79 characters)
+listings/views.py:92:80: E501 line too long (84 > 79 characters)
+listings/views.py:93:14: E128 continuation line under-indented for visual indent
+listings/views.py:93:64: E231 missing whitespace after ','
+listings/views.py:106:80: E501 line too long (85 > 79 characters)
+listings/views.py:116:80: E501 line too long (92 > 79 characters)
+listings/views.py:118:13: E265 block comment should start with '# '
+listings/views.py:122:80: E501 line too long (122 > 79 characters)
+listings/views.py:122:22: E128 continuation line under-indented for visual indent
+listings/views.py:126:80: E501 line too long (93 > 79 characters)
+listings/views.py:126:94: W291 trailing whitespace
+listings/views.py:127:80: E501 line too long (105 > 79 characters)
+listings/views.py:130:80: E501 line too long (103 > 79 characters)
+listings/views.py:131:80: E501 line too long (116 > 79 characters)
+listings/views.py:132:80: E501 line too long (84 > 79 characters)
+listings/views.py:130:29: E128 continuation line under-indented for visual indent
+listings/views.py:131:29: E128 continuation line under-indented for visual indent
+listings/views.py:132:29: E128 continuation line under-indented for visual indent
+listings/views.py:133:30: E124 closing bracket does not match visual indentation
+listings/views.py:136:80: E501 line too long (97 > 79 characters)
+listings/views.py:137:80: E501 line too long (110 > 79 characters)
+listings/views.py:140:80: E501 line too long (95 > 79 characters)
+listings/views.py:140:74: E221 multiple spaces before operator
+listings/views.py:145:22: E128 continuation line under-indented for visual indent
+listings/views.py:154:30: E128 continuation line under-indented for visual indent
+listings/views.py:157:80: E501 line too long (102 > 79 characters)
+listings/views.py:161:1: W191 indentation contains tabs
+listings/views.py:161:1: E101 indentation contains mixed spaces and tabs
+listings/views.py:165:1: E101 indentation contains mixed spaces and tabs
+listings/views.py:168:1: E265 block comment should start with '# '
+listings/views.py:170:80: E501 line too long (80 > 79 characters)
+listings/views.py:172:1: E265 block comment should start with '# '
+listings/views.py:174:80: E501 line too long (80 > 79 characters)
+listings/views.py:174:81: W292 no newline at end of file
+listings/templatetags/custom_filters.py:4:30: W291 trailing whitespace
+listings/templatetags/custom_filters.py:6:1: E302 expected 2 blank lines, found 1
+listings/templatetags/custom_filters.py:9:1: W191 indentation contains tabs
+listings/templatetags/custom_filters.py:10:1: W191 indentation contains tabs
+listings/templatetags/custom_filters.py:11:1: W191 indentation contains tabs
+listings/templatetags/custom_filters.py:12:1: W191 indentation contains tabs
+listings/templatetags/custom_filters.py:12:1: W391 blank line at end of file
+listings/templatetags/custom_filters.py:12:1: W293 blank line contains whitespace
+listings/templatetags/js.py:8:1: E303 too many blank lines (3)
+listings/templatetags/js.py:13:38: W292 no newline at end of file
 listings/migrations/0001_initial.py:19:80: E501 line too long (114 > 79 characters)
 listings/migrations/0001_initial.py:28:80: E501 line too long (89 > 79 characters)
 listings/migrations/0001_initial.py:29:80: E501 line too long (88 > 79 characters)
 listings/migrations/0003_report.py:19:80: E501 line too long (114 > 79 characters)
 listings/migrations/0003_report.py:23:80: E501 line too long (115 > 79 characters)
+listings/migrations/0006_investment.py:19:80: E501 line too long (114 > 79 characters)
+listings/migrations/0006_investment.py:22:80: E501 line too long (84 > 79 characters)
+listings/migrations/0006_investment.py:23:80: E501 line too long (81 > 79 characters)
+listings/migrations/0006_investment.py:25:80: E501 line too long (115 > 79 characters)
+listings/migrations/0007_auto_20170420_1255.py:19:80: E501 line too long (114 > 79 characters)
+listings/migrations/0007_auto_20170420_1255.py:26:80: E501 line too long (115 > 79 characters)
+listings/migrations/0011_auto_20170420_1757.py:22:80: E501 line too long (83 > 79 characters)
+listings/migrations/0012_auto_20170420_1823.py:19:80: E501 line too long (114 > 79 characters)
+listings/migrations/0012_auto_20170420_1823.py:21:80: E501 line too long (93 > 79 characters)
+listings/migrations/0012_auto_20170420_1823.py:22:80: E501 line too long (84 > 79 characters)
+listings/migrations/0012_auto_20170420_1823.py:23:80: E501 line too long (86 > 79 characters)
+listings/migrations/0012_auto_20170420_1823.py:24:80: E501 line too long (90 > 79 characters)
+listings/migrations/0012_auto_20170420_1823.py:25:80: E501 line too long (89 > 79 characters)
+listings/migrations/0012_auto_20170420_1823.py:26:80: E501 line too long (115 > 79 characters)
+listings/migrations/0012_auto_20170420_1823.py:32:80: E501 line too long (83 > 79 characters)
+listings/migrations/0014_investment_investor.py:21:80: E501 line too long (121 > 79 characters)
+listings/migrations/0015_auto_20170515_1136.py:23:80: E501 line too long (84 > 79 characters)
+listings/migrations/0015_auto_20170515_1136.py:29:80: E501 line too long (84 > 79 characters)
+listings/migrations/0017_statement.py:21:80: E501 line too long (114 > 79 characters)
+listings/migrations/0017_statement.py:23:80: E501 line too long (81 > 79 characters)
+listings/migrations/0017_statement.py:24:80: E501 line too long (80 > 79 characters)
+listings/migrations/0017_statement.py:25:80: E501 line too long (82 > 79 characters)
+listings/migrations/0017_statement.py:27:80: E501 line too long (122 > 79 characters)
+listings/migrations/0019_statement.py:21:80: E501 line too long (114 > 79 characters)
+listings/migrations/0019_statement.py:23:80: E501 line too long (81 > 79 characters)
+listings/migrations/0019_statement.py:24:80: E501 line too long (80 > 79 characters)
+listings/migrations/0019_statement.py:25:80: E501 line too long (82 > 79 characters)
+listings/migrations/0019_statement.py:27:80: E501 line too long (122 > 79 characters)
+listings/migrations/0021_bankaccount.py:18:80: E501 line too long (114 > 79 characters)
+listings/migrations/0023_auto_20170602_2102.py:18:80: E501 line too long (82 > 79 characters)
+listings/migrations/0023_auto_20170602_2102.py:23:80: E501 line too long (82 > 79 characters)
+listings/migrations/0025_listing_floor_plan.py:18:80: E501 line too long (103 > 79 characters)
+listings/migrations/0026_listing_slide_images.py:18:80: E501 line too long (103 > 79 characters)
+listings/migrations/0027_auto_20170610_1706.py:19:80: E501 line too long (114 > 79 characters)
+listings/migrations/0027_auto_20170610_1706.py:21:80: E501 line too long (119 > 79 characters)
+listings/migrations/0027_auto_20170610_1706.py:31:80: E501 line too long (104 > 79 characters)
+listings/migrations/0029_auto_20170611_1348.py:23:80: E501 line too long (107 > 79 characters)

@@ -39,8 +39,6 @@ mark.color {
 
 table.manage-table td.action a:hover,
 table.manage-table .title-container .title h4 a:hover,
-.my-account-nav li a.current,
-.my-account-nav li a:hover,
 #footer .social-icons li a:hover i,
 #navigation.style-1 .current,
 #posts-nav li a:hover,
@@ -121,8 +119,8 @@ a.button.border.white:hover {
     background-color: #fa5b0f
 }
 
-.listing-img-container:after {
-    background: linear-gradient(to bottom, transparent 60%, #fa5b0f)
+.listing-img-containe:after {
+    background: linear-gradient(to bottom, transparent 5%, #fa5b0f)
 }
 
 .listing-badges .featured {
@@ -133,8 +131,8 @@ a.button.border.white:hover {
     background-color: #fa5b0f
 }
 
-.list-layout .listing-img-container:after {
-    background: linear-gradient(to bottom, transparent 55%, #fa5b0f)
+.list-layout .listing-img-containe:after {
+    background: linear-gradient(to bottom, transparent 5%, #fa5b0f)
 }
 
 #titlebar.property-titlebar span.property-badge,
@@ -171,8 +169,8 @@ a.button.border.white:hover {
     background-color: #fa5b0f
 }
 
-.map-box .listing-img-container:after {
-    background: linear-gradient(to bottom, transparent 50%, #fa5b0f)
+.map-box .listing-img-containe:after {
+    background: linear-gradient(to bottom, transparent 5%, #fa5b0f)
 }
 
 #geoLocation:hover,
@@ -190,7 +188,7 @@ a.button.border.white:hover {
 .listing-carousel.owl-theme.outer .owl-controls .owl-prev:hover::before,
 .slick-next:after,
 .slick-prev:after {
-    background-color: #fa5b0f
+    background-color: None;
 }
 
 .cluster div:before {
@@ -222,6 +220,14 @@ input[type=submit] {
     background-color: #fa5b0f
 }
 
+a.success-button,
+input[type=button],
+input[type=submit] {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
 .dropzone:hover .dz-message,
 .sort-by .chosen-container-single .chosen-default,
 .sort-by .chosen-container-single .chosen-single div b:after {
@@ -251,13 +257,13 @@ a.button.border {
 
 .style-3 .tabs-nav li a:hover,
 .style-3 .tabs-nav li.active a {
-    border-color: #fa5b0f;
-    background-color: #fa5b0f
+    border-colo: #fa5b0f;
+    background-colo: #fa5b0f
 }
 
 .style-4 .tabs-nav li.active a,
 .style-5 .tabs-nav li.active a,
-table.basic-table th {
+{
     background-color: #fa5b0f
 }
 

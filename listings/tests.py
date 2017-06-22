@@ -17,7 +17,8 @@ class ListingModelTests(TestCase):
 			shares_available = "1000000",
 			investment_case = "great buy, go for it!",
 			listing_details = "3 bedroom, furnished, 19 minutes from train station",
-			unit_block = "30 units"
+			unit_block = "30 units",
+			floor_plan ="pic_folder/None/no-img.jpg"
 		)
 		time.sleep(0.1) # delays for 0.1 seconds
 		now = timezone.now()
@@ -34,7 +35,8 @@ class ReportModelTests(TestCase):
 			shares_available = "1000000",
 			investment_case = "great buy, go for it!",
 			listing_details = "3 bedroom, furnished, 19 minutes from train station",
-			unit_block = "30 units"
+			unit_block = "30 units",
+			floor_plan ="pic_folder/None/no-img.jpg"
 		)
 
 
@@ -59,7 +61,8 @@ class ListingViewsTests(TestCase):
 			shares_available = "1000000",
 			investment_case = "great buy, go for it!",
 			listing_details = "3 bedroom, furnished, 19 minutes from train station",
-			unit_block = "30 units"
+			unit_block = "30 units",
+			floor_plan ="pic_folder/None/no-img.jpg"
 		)
 		self.listing2 = Listing.objects.create(
 			name = "ABC Heights",
@@ -70,7 +73,8 @@ class ListingViewsTests(TestCase):
 			shares_available = "1000000",
 			investment_case = "great buy, go for it!",
 			listing_details = "3 bedroom, furnished, 19 minutes from train station",
-			unit_block = "30 units"
+			unit_block = "30 units",
+			floor_plan ="pic_folder/None/no-img.jpg"
 		)
 		self.report = Report.objects.create(
 			title = "Residential report for Ikeja Property",

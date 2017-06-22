@@ -45,6 +45,14 @@ class UserCreateForm(UserCreationForm):
 
 
 class AuthenticateForm(AuthenticationForm):
+    username = forms.CharField(max_length=254, label=_("Username or Email"))
+    password = forms.CharField(label=_("Password"), widget=forms.PasswordInput)
+
+    error_messages = {
+        'invalid_login': _("Please enter a correct username/email and password. "
+                           "Note that both fields may be case-sensitive."),
+        'inactive': _("This account is inactive."),
+    }
 
     def clean(self):
         username = self.cleaned_data.get('username')
@@ -62,16 +70,3 @@ class AuthenticateForm(AuthenticationForm):
                 self.confirm_login_allowed(self.user_cache)
 
         return self.cleaned_data
-
-    # def authenticate(self, username, password):
-    #     print("Got this far2")
-    #     if '@' in username:
-    #         kwargs = {'email': username}
-    #     else:
-    #         kwargs = {'username': username}
-    #     try:
-    #         user = get_user_model().objects.get(**kwargs)
-    #         if user.check_password(password):
-    #             return user
-    #     except User.DoesNotExist:
-    #         return None

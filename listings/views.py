@@ -47,7 +47,7 @@ class ListingDetailView(DetailView):
                 )
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(ListingDetailView, self).get_context_data(**kwargs)
         listing_images = ListingImage.objects.filter(listing_id=self.kwargs['pk'])
         obj_image = ImageOperations()
         for image in listing_images:

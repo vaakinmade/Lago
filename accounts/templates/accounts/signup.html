@@ -5,37 +5,49 @@
 
 {% block content %}
 <div class="container">
-	<div class="col-md-4 col-md-offset-4 margin-bottom-150">
+	<div class="col-md-6 col-md-offset-3 margin-bottom-150">
 		<center><h1>Sign Up</h1></center>
 		<center><h5>New Users</h5></center>
-	    <form method="POST">
+	    <form method="POST" class="padding-top-20">
 	        {% csrf_token %}
 	        {% if form.non_field_errors %}
 				{% for error in form.non_field_errors %}
 		     		<div class="notification error closeable">
-						<p>{{form.non_field_errors|escape}}</p>
+						<p>{{error|escape}}</p>
 						<a class="close" href="#"></a>
 					</div>
 		        {% endfor %}
 			{% endif %}
 
 			{% for field in form %}
-		        {% if form.errors %}
-		            {% for error in field.errors %}
-			            <ul class="error-msg">
-			                <li><strong>{{ error|escape }}</strong></li>
-			            </ul>
-		            {% endfor %}
-		        {% endif %}
+				{% if "password" not in field.name %}
+					<div class="col-md-6">
+				        {% if field.errors %}
+				            {% for error in field.errors %}
+					            <ul class="error-msg error">
+					                <li><strong>{{ error|escape }}</strong></li>
+					            </ul>
+				            {% endfor %}
+				        {% endif %}
 
-		        {{ field.label_tag }} 
+				        {{field}}
+				    </div>
+				{% else %}
+					<div class="col-md-12">
+				        {% if field.errors %}
+				            {% for error in field.errors %}
+					            <ul class="error-msg error">
+					                <li><strong>{{ error|escape }}</strong></li>
+					            </ul>
+				            {% endfor %}
+				        {% endif %}
 
-		        {{ field }}
-		        {% if field.help_text %}
-		        	<em>{{ field.help_text|safe }}</em>
-		        {% endif %}
-		    {% endfor %}
-	        <input type="submit" value="Sign Up" class="btn btn-default">
+				        {{field}}
+				    </div>
+			    {% endif %}
+		    {% endfor %}       
+		 
+	        <div class="col-md-12"><input type="submit" value="Sign Up" class="btn btn-default"></div>
 	    </form>
 	</div>
 </div>

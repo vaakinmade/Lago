@@ -7,13 +7,13 @@
 <div class="container">
 	<div class="col-md-4 col-md-offset-4 margin-bottom-150">
 	   <center><h1>Log In</h1></center>
-		<center><h5>Existing Users.</h5></center>
+		<center><h5>Existing Users</h5></center>
 	    <form method="POST">
 	        {% csrf_token %}
 	        {% if form.non_field_errors %}
 				{% for error in form.non_field_errors %}
 		     		<div class="notification error closeable">
-						<p>{{form.non_field_errors|escape}}</p>
+						<p>{{error|escape}}</p>
 						<a class="close" href="#"></a>
 					</div>
 		        {% endfor %}

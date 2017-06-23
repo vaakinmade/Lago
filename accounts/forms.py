@@ -39,7 +39,7 @@ class UserCreateForm(UserCreationForm):
         self.fields["password2"].label = ""
         self.fields["password2"].help_text = None
         self.fields['password1'].widget = forms.PasswordInput(attrs={'placeholder': 'Password'})
-        self.fields['password2'].widget = forms.PasswordInput(attrs={'placeholder': 'Password Confirmation'})
+        self.fields['password2'].widget = forms.PasswordInput(attrs={'placeholder': 'Re-type Password'})
         #self.fields["username"].widget = forms.HiddenInput(attrs={'value': 'Username'})
 		
 

@@ -31,3 +31,6 @@ assets/images
 
 # Ignore env file
 .env
+
+# Ignore test reports
+/reports

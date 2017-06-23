@@ -15,15 +15,22 @@
 /log/*.log
 /tmp
 
-#Ignore htmlcov and reports
+# Ignore htmlcov and reports
 htmlcov/
 
-#Ignore Image files to increase bandwith
+# Ignore Image files to increase bandwith
 assets/images
+
+# Ignore swap files and python compiled files
 *.swo
 *.pyc
 *~
 
-#Ignore virtualenv
+# Ignore virtualenv
 /lagovenv
 
+# Ignore env file
+.env
+
+# Ignore test reports
+/reports

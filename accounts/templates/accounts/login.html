@@ -10,6 +10,12 @@
 		<center><h5>Existing Users</h5></center>
 	    <form method="POST">
 	        {% csrf_token %}
+	        {% if msg != '' %}
+				<div class="notification success closeable col-md-12">
+					<p>Sign up successful. Now login with your username/email and password.</p>
+						<a class="close" href="#"></a>
+				</div>
+			{% endif %}
 	        {% if form.non_field_errors %}
 				{% for error in form.non_field_errors %}
 		     		<div class="notification error closeable">

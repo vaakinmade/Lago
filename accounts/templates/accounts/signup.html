@@ -10,6 +10,17 @@
 		<center><h5>New Users</h5></center>
 	    <form method="POST" class="padding-top-20">
 	        {% csrf_token %}
+	        {% if messages %}
+				{% for message in messages %}
+					{% if message.tags == "error" %}
+					<div class="notification {{message.tags}} closeable col-md-12">
+						<p>{{message|linebreaksbr}}</p>
+						<a class="close" href="#"></a>
+					</div>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+
 	        {% if form.non_field_errors %}
 				{% for error in form.non_field_errors %}
 		     		<div class="notification error closeable">
@@ -45,10 +56,13 @@
 				        {{field}}
 				    </div>
 			    {% endif %}
-		    {% endfor %}       
-		 
+		    {% endfor %}
+
+		    <div class="g-recaptcha col-md-12 margin-bottom-10" data-sitekey="6LfyhyYUAAAAAFihJAaVSO-n9n1VOnnk3EuFujPQ"></div>       
 	        <div class="col-md-12"><input type="submit" value="Sign Up" class="btn btn-default"></div>
 	    </form>
 	</div>
 </div>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
 {% endblock %}

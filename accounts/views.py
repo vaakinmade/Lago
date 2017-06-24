@@ -4,6 +4,12 @@ from django.views import generic
 from django.contrib.auth import get_user_model
 from . import forms
 from django.contrib.auth.models import User
+from django.conf import settings
+from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+import urllib
+import json
 
 
 class LoginView(generic.FormView):
@@ -57,4 +63,31 @@ class SignUp(generic.CreateView):
     form_class = forms.UserCreateForm
     success_url = reverse_lazy("login")
     template_name = "accounts/signup.html"
+    msg = ''
 
+    def form_valid(self, form):
+        ''' Begin reCAPTCHA validation '''
+        recaptcha_response = self.request.POST.get('g-recaptcha-response')
+        url = 'https://www.google.com/recaptcha/api/siteverify'
+        values = {
+            'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+            'response': recaptcha_response
+        }
+        data = urllib.parse.urlencode(values).encode()
+        req =  urllib.request.Request(url, data=data)
+        response = urllib.request.urlopen(req)
+        result = json.loads(response.read().decode())
+        ''' End reCAPTCHA validation '''
+
+        if result['success'] is False:
+            messages.add_message(self.request, messages.ERROR,
+                         "Invalid reCAPTCHA. Please try again.")
+            return HttpResponseRedirect(reverse('accounts:signup'))
+
+        SignUp.msg = "Sign up successful. Login with your username/email and password."
+        return super(SignUp, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(SignUp, self).get_context_data(**kwargs)
+        context['msg'] = SignUp.msg
+        return context

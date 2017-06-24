@@ -8,7 +8,6 @@ from listings.models import Listing, Investment
 from django.contrib.auth import mixins, models, authenticate
 from investors.forms import FundForm, PasswordChangeForm
 from django import forms
-from django.contrib import messages
 from django.db.models import Prefetch
 import shortuuid
 

@@ -62,9 +62,9 @@ class LogoutView(generic.RedirectView):
 
 class SignUp(generic.CreateView):
     form_class = forms.UserCreateForm
-    success_url = reverse_lazy("login")
+    success_url = reverse_lazy("accounts:signup")
     template_name = "accounts/signup.html"
-    msg = ''
+    login_message = ""
 
     def form_valid(self, form):
         ''' Begin reCAPTCHA validation '''
@@ -84,11 +84,6 @@ class SignUp(generic.CreateView):
             messages.add_message(self.request, messages.ERROR,
                          "Invalid reCAPTCHA. Please try again.")
             return HttpResponseRedirect(reverse('accounts:signup'))
-
-        SignUp.msg = "Sign up successful. Login with your username/email and password."
+        messages.add_message(self.request, messages.SUCCESS,
+                     "Sign up successful.")
         return super(SignUp, self).form_valid(form)
-
-    def get_context_data(self, **kwargs):
-        context = super(SignUp, self).get_context_data(**kwargs)
-        context['msg'] = SignUp.msg
-        return context

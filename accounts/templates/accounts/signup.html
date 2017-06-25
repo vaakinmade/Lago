@@ -17,6 +17,12 @@
 						<p>{{message|linebreaksbr}}</p>
 						<a class="close" href="#"></a>
 					</div>
+					{% elif message.tags == "success" %}
+					<div class="notification {{message.tags}} closeable col-md-12">
+						<p align="center">{{message|linebreaksbr}} Proceed to 
+						<a style="text-decoration: underline;" href="{% url 'accounts:login' %}">Login</a></p>
+						<a class="close" href="#"></a>
+					</div>
 					{% endif %}
 				{% endfor %}
 			{% endif %}

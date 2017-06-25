@@ -41,8 +41,9 @@
 									<span class="featured">{{ listing.fund_status | upper }}</span>
 									<span><i class="fa fa-map-marker"></i> {{ listing.town }}, {{ listing.state }}<br/> {{ listing.unit_block }} in {{ listing.name}}</span>
 								</div>
-
-								<img class="margin-top-48" src="{% static 'images/listing-03.jpg' %}" alt="">
+								{% for image in listing.first_images %}
+									<div class="item"><img src="/media/{{image.slide_image}}" height="330" alt=""></div>
+								{% endfor %}
 							</div>
 						</a>
 						{% for valuation in listing.active_valuations %}

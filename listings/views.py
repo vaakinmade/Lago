@@ -20,13 +20,16 @@ class ListingListView(ListView):
     model = models.Listing
 
     def get_queryset(self):
-        return  Listing.objects.exclude(id=1).order_by('-created_at').prefetch_related(
+        return  Listing.objects.order_by('-created_at').prefetch_related(
             Prefetch('investment_set',
                 queryset=Investment.objects.filter(status='active'),
                 to_attr='active_investments'),
             Prefetch('valuation_set',
                 queryset=Valuation.objects.filter(status='current'),
-                to_attr='active_valuations')
+                to_attr='active_valuations'),
+            Prefetch('listingimage_set',
+                queryset=ListingImage.objects.filter(ordering=1),
+                to_attr='first_images')
                 )
 
 

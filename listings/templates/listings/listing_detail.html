@@ -40,7 +40,7 @@
 			<div class="listing-content-2 col-xs-12">
 				<div align="center">
 					<span>
-						<h3><i class="fa fa-map-marker"></i> {{ listing.town }}, {{ listing.state }}</h3> 
+						<h4><i class="fa fa-map-marker"></i> {{ listing.town }}, {{ listing.state }}</h4> 
 						{{ listing.unit_block }} in {{ listing.name }}
 					</span>
 				</div>
@@ -50,7 +50,7 @@
 					<div class="row margin-left-0 margin-right-0">
 						<div class="col-xs-6 black-font">
 							<h3>							
-								<a href="{% url 'listings:detail' pk=listing.pk %}">£{{ total_shares |sub:listing.shares_available |mul:valuation.listing_value |div:total_shares |floatformat:"0"|intcomma }}</a>
+								£{{ total_shares |sub:listing.shares_available |mul:valuation.listing_value |div:total_shares |floatformat:"0"|intcomma }}
 							</h3>
 							<div class="listing-address">						
 								of £{{ valuation.listing_value|intcomma }}
@@ -60,11 +60,11 @@
 						<div class="col-xs-6 black-font" align="right">
 						{% if listing.id == 1 %}
 							<h3>
-								<a href="single-property-page-1.html">{{ listing.active_investments|length |add:92}}</a>
+								{{ listing.active_investments|length |add:92}}
 							</h3>
 						{% else %}
 							<h3>
-								<a href="single-property-page-1.html">{{ listing.active_investments|length |add:112}}</a>
+								{{ listing.active_investments|length |add:112}}
 							</h3>
 						{% endif %}
 							<div class="listing-address">

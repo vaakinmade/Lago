@@ -40,7 +40,6 @@ class DashboardView(PageTitleMixin, mixins.LoginRequiredMixin, TemplateView):
 class DashboardLayout():
 	@staticmethod
 	def get_wallet_balance(investor_pk):
-		#sess = SessionStore()
 		try:
 			return Wallet.objects.filter(investor_id=investor_pk).order_by('-created_at')[:1].get()
 		except Wallet.DoesNotExist:

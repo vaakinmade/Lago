@@ -121,7 +121,7 @@ def prep_investment(request, listing_pk):
             success_message = "Well done! You have committed funds to invest in a property."
 
             #check account balance befor proceeding
-            account = DashboardLayout.get_wallet_balance(request.user)
+            account = DashboardLayout.get_wallet_balance(request.user.id)
             if account.balance < form.cleaned_data['total_cost']:
                 messages.add_message(request, messages.WARNING,
                      "Insufficient Funds. Fund your lagopoly wallet in order to proceed with this investment opportunity")

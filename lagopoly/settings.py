@@ -109,11 +109,8 @@ WSGI_APPLICATION = 'lagopoly.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 if 'DYNO' in os.environ:
-    DATABASES = {
-        'default': dj_database_url.config(
-            default=config('DATABASE_URL')
-        )
-    }
+    db_from_env = dj_database_url.config()
+    DATABASES['default'].update(db_from_env)
 else:
     DATABASES = {
     'default': {

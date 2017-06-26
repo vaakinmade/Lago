@@ -84,7 +84,8 @@ class ListingImageView(PageTitleMixin, LoginRequiredMixin, FormView):
         for image in images:
             ListingImage.objects.create(listing_id=listing.id, slide_image=image)
         
-        messages.add_message(self.request, messages.SUCCESS, "All {} Images uploaded.".format(len(images)))    
+        messages.add_message(self.request, messages.SUCCESS, 
+            "All {} Images uploaded.".format(len(images)))    
         return super(ListingImageView, self).form_valid(form)
 
     def get_success_url(self):
@@ -106,7 +107,8 @@ class ListingUpdateView(PageTitleMixin, LoginRequiredMixin, UpdateView):
 
 @login_required
 def prep_investment(request, listing_pk):
-    valuation = get_object_or_404(Valuation, listing_id=listing_pk, status='current')
+    listing = Listing.objects.get(id=listing_pk, valuation__status='current',
+         listingimage__ordering=1)
     form = InvestmentForm()
 
     if request.method == 'POST':
@@ -114,7 +116,7 @@ def prep_investment(request, listing_pk):
 
         if form.is_valid:
             investment = form.save(commit=False)
-            investment.listing = valuation.listing
+            investment.listing = listing
             investment.investor = request.user
             success_message = "Well done! You have committed funds to invest in a property."
 
@@ -126,18 +128,18 @@ def prep_investment(request, listing_pk):
                 return HttpResponseRedirect(investment.get_absolute_url())
 
             obj = InvestmentOperations()
-            availability, remaining_amount = obj.check_available_shares(valuation.listing.id, 
+            availability, remaining_amount = obj.check_available_shares(listing.id, 
                                                                         form.cleaned_data['unit_shares'])
             if availability is False:
                 messages.add_message(request, messages.ERROR,
-                            "Error: Unfortunately, there are now limited shares on this property. \n" +
+                            "Error: Request exceeds availability. \n" +
                             "You requested to invest: £" + str(round(form.cleaned_data['investment_cost'])) + '\n' +
                             "Amount left on offer: £" + str(round(remaining_amount))
                              )
                 return HttpResponseRedirect(investment.get_absolute_url())
 
-            archive_result = obj.archive_update_investment(request.user.id, valuation.listing.id)
-            listing_shares = obj.update_listing_shares(valuation.listing.id, form.cleaned_data['unit_shares'])
+            archive_result = obj.archive_update_investment(request.user.id, listing.id)
+            listing_shares = obj.update_listing_shares(listing.id, form.cleaned_data['unit_shares'])
 
             if "archived" in archive_result:
                 investment.unit_shares = form.cleaned_data['unit_shares']  + archive_result[-1]
@@ -157,7 +159,7 @@ def prep_investment(request, listing_pk):
                              success_message)
                 return HttpResponseRedirect(investment.get_absolute_url())
 
-    return render(request, 'listings/pre_investment.html', {'form': form, 'preinvestment': valuation})
+    return render(request, 'listings/pre_investment.html', {'form': form, 'listing': listing})
 
 
 def home(request):

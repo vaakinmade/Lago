@@ -32,11 +32,5 @@ class HomeView(TemplateView):
 		return context
 
 	def get_latest_listing(self, **kwargs):
-		return  models.Listing.objects.order_by('-created_at')[:1].prefetch_related(
-            Prefetch('investment_set',
-                queryset=models.Investment.objects.filter(status='active'),
-                to_attr='active_investments'),
-            Prefetch('valuation_set',
-                queryset=models.Valuation.objects.filter(status='current'),
-                to_attr='active_valuations')
-                )
+		return  models.Listing.objects.filter(valuation__status='current', 
+			listingimage__ordering=1).order_by('-created_at')[:1]

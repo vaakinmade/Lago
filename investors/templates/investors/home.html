@@ -106,12 +106,12 @@
 					<!-- Tabs Content -->
 					<div class="tabs-container">
 						<div class="tab-content" id="tab1a">
-							<table class="basic-table-dash ">
+							<table class="basic-table-dash">
 							<tr>
-								<th>Property</th>
-								<th>Shares</th>
-								<th>Valuation per share</th>
-								<th>Monthly revenue</th>
+								<th width="60%">Property</th>
+								<th width="12%">Shares</th>
+								<th width="12%">Valuation per share</th>
+								<th width="12%">Monthly revenue</th>
 							</tr>
 							{% for listing in dashboard %}
 								{% for investment in listing.investment_set.all %}

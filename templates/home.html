@@ -202,7 +202,7 @@
 								<span class="featured">{{ listing.fund_status | upper }}</span>
 							</div>
 
-							<img src="{% static 'images/listing-03.jpg' %}" alt="">
+							<img src="/media/{{listing.listingimage_set.first.slide_image}}" alt="">
 
 						</a>
 						<div class="listing-content">
@@ -212,7 +212,7 @@
 								<a>{{ listing.unit_block }} in {{ listing.name}}</a>
 							</div>
 
-							{% for valuation in listing.active_valuations %}
+							{% for valuation in listing.valuation_set.all%}
 							{% with rent_percent=valuation.rental_income|mul:100|div:valuation.listing_value %}
 							<ul class="listing-details-2 padding-left-0">
 								<li>

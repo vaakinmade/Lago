@@ -108,8 +108,11 @@ WSGI_APPLICATION = 'lagopoly.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
-DATABASES = {
+if 'DYNO' in os.environ:
+    db_from_env = dj_database_url.config()
+    DATABASES['default'].update(db_from_env)
+else:
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': config('DB_NAME'),
@@ -119,10 +122,6 @@ DATABASES = {
         'PORT': '',
         }
     }
-    
-if 'DYNO' in os.environ:
-    db_from_env = dj_database_url.config()
-    DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators

@@ -18,8 +18,8 @@
 # Ignore htmlcov and reports
 htmlcov/
 
-# Ignore Image files to increase bandwith
-assets/images
+# Ignore uploaded Image files to increase bandwith
+
 
 # Ignore swap files and python compiled files
 *.swo

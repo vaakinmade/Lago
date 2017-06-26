@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath lagopoly lagopoly.deploy --log-file -
+web: gunicorn lagopoly.wsgi --log-file -

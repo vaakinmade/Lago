@@ -2,7 +2,6 @@ import dj_database_url
 from lagopoly.settings import *
 
 DEBUG = False
-TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [
 	'localhost',

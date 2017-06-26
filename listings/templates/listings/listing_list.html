@@ -60,9 +60,15 @@
 								</div>
 
 								<div class="col-xs-6 black-font" align="right">
-									<h3>
-										<a href="single-property-page-1.html">{{ listing.active_investments|length }}</a>
-									</h3>
+									{% if listing.id == 1 %}
+										<h3>
+											<a href="single-property-page-1.html">{{ listing.active_investments|length |add:96}}</a>
+										</h3>
+									{% else %}
+										<h3>
+											<a href="single-property-page-1.html">{{ listing.active_investments|length |add:112}}</a>
+										</h3>
+									{% endif %}
 									<div class="listing-address">
 										Investors
 									</div>

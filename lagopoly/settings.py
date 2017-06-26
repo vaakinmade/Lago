@@ -38,7 +38,7 @@ SECRET_KEY = config('SECRET_KEY')
 GOOGLE_RECAPTCHA_SECRET_KEY = config('GOOGLE_RECAPTCHA_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
@@ -109,8 +109,11 @@ WSGI_APPLICATION = 'lagopoly.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 if 'DYNO' in os.environ:
-    db_from_env = dj_database_url.config()
-    DATABASES['default'].update(db_from_env)
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=config('DATABASE_URL')
+        )
+    }
 else:
     DATABASES = {
     'default': {

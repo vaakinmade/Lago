@@ -41,7 +41,7 @@
 				<div align="center">
 					<span>
 						<h3><i class="fa fa-map-marker"></i> {{ listing.town }}, {{ listing.state }}</h3> 
-						<small>{{ listing.unit_block }} in {{ listing.name }}</small>
+						{{ listing.unit_block }} in {{ listing.name }}
 					</span>
 				</div>
 				{% for valuation in listing.valuation_set.all %}

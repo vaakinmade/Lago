@@ -32,6 +32,7 @@ class ImageOperations:
             img = Image.open(image_file)
         except OSError:
             print("Image File does not exist", str(image))
+            return False
         width, height = img.size
 
         if width > height:

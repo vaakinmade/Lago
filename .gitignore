@@ -19,7 +19,8 @@
 htmlcov/
 
 # Ignore uploaded Image files to increase bandwith
-
+/media/*
+/assets/*
 
 # Ignore swap files and python compiled files
 *.swo
@@ -34,3 +35,6 @@ htmlcov/
 
 # Ignore test reports
 /reports
+
+# Ignore local cred file
+cred.txt

@@ -1,6 +1,8 @@
 from PIL import Image
-from django.conf import settings
+from django.core.files.storage import default_storage as storage
 import os
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
 class PageTitleMixin:
@@ -15,27 +17,41 @@ class PageTitleMixin:
         return context
 
 
-class ImageOperations:   
+class ImageOperations:
     def process_ratio(self, image, basewidth=None):
         basewidth = 128 if basewidth is None else basewidth
-        full_img_path = os.path.join(settings.MEDIA_ROOT, str(image))
-        try:
-            img = Image.open(full_img_path)
-        except FileNotFoundError:
-            print("Image path not found: ", str(image))
+        filename_base, filename_ext = os.path.splitext(str(image))
+        thumb_path = "thumbnails/%s.jpg" % filename_base
+        if storage.exists(thumb_path):
+            print(thumb_path, " exists.")
             return False
+        print("Image thumb path not found: ", thumb_path)
+        print("proceeding to start thumb processing")
+        try:
+            image_file = storage.open(str(image), 'r')
+            img = Image.open(image_file)
+        except OSError:
+            print("Image File does not exist", str(image))
+        width, height = img.size
 
-        full_thumb_path = os.path.join(settings.MEDIA_ROOT_THUMB, str(image))
-        try:
-            img_thumb = Image.open(full_thumb_path)
-            print("Image thunmnail already exists: ", str(img_thumb))
-            return False
-        except FileNotFoundError:
-            print("Image thumb path not found: ", str(image))
-            print("proceeding to start thumb processing")
-            # wpercent = (basewidth/float(img.size[0]))
-            hsize = 100 # int((float(img.size[1])*float(wpercent)))
-            img = img.resize((basewidth,hsize), Image.ANTIALIAS)
-        
-            img.save('media/thumbnails/'+str(image))
-            return img
+        if width > height:
+            delta = width - height
+            left = int(delta/2)
+            upper = 0
+            right = height + left
+            lower = height
+        else:
+            delta = height - width
+            left = 0
+            upper = int(delta/2)
+            right = width
+            lower = width + upper
+
+        img = img.crop((left, upper, right, lower))
+        img = img.resize((128, 100), Image.ANTIALIAS)
+        img_io = BytesIO()
+        img = img.save(img_io, format="JPEG")
+        thumb_file = InMemoryUploadedFile(img_io, None, 'foo.jpg',
+                                          'image/jpeg', None, None)
+        storage.save("thumbnails/"+image.name, thumb_file)
+        return True

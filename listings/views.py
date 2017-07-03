@@ -55,7 +55,7 @@ class ListingDetailView(DetailView):
         obj_image = ImageOperations()
         for image in listing_images:
             obj_image.process_ratio(image.slide_image)
-
+            #pass
         return context
 
 

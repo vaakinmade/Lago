@@ -20,7 +20,7 @@
 				
 				<!-- Img -->
 				<a href="{% url 'blogs:detail' pk=post.pk %}">
-					<img src="/media/{{post.image}}" alt="">
+					<img src="{{post.image.url}}" alt="">
 				</a>
 			
 			
@@ -77,7 +77,7 @@
 							<li>
 								<div class="widget-content">
 										<div class="widget-thumb">
-										<a href="{% url 'blogs:detail' pk=post.pk %}"><img src="/media/thumbnails/{{post.image}}" alt=""></a>
+										<a href="{% url 'blogs:detail' pk=post.pk %}"><img src="{{post.image.url}}" alt=""></a>
 									</div>
 									
 									<div class="widget-text">

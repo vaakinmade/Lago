@@ -9,10 +9,12 @@ https://docs.djangoproject.com/en/1.9/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
-import accounts
+import accounts   # NOQA
 import os
 from decouple import config, Csv
 import dj_database_url
+import warnings
+from django.core.exceptions import ImproperlyConfigured
 
 
 def get_env_variable(var_name):
@@ -24,6 +26,7 @@ def get_env_variable(var_name):
             warnings.warn(error_msg)
         else:
             raise ImproperlyConfigured(error_msg)
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -42,6 +45,13 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
+# Cache to store S3 images for a long time
+# see http://developer.yahoo.com/performance/rules.html#expires
+AWS_HEADERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'Cache-Control': 'max-age=94608000',
+    }
+
 
 # Application definition
 
@@ -53,6 +63,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django_jenkins',
     'django.contrib.staticfiles',
+    'storages',
     'django.contrib.humanize',
     'bootstrap3',
     'mathfilters',
@@ -108,6 +119,7 @@ WSGI_APPLICATION = 'lagopoly.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+
 if 'DYNO' in os.environ:
     DATABASES = {
         'default': dj_database_url.config(
@@ -125,6 +137,26 @@ else:
         'PORT': '',
     }
 }
+
+# AWS S3 Storage settings
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME', cast=str)
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID', cast=str)
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY', cast=str)
+AWS_S3_CALLING_FORMAT = config('AWS_S3_CALLING_FORMAT')
+AWS_QUERYSTRING_AUTH = False
+
+if config('AWS_STORAGE_BUCKET_NAME'):
+    STATICFILES_STORAGE = 'lagopoly.customstorages.StaticStorage'
+    STATICFILES_LOCATION = 'static'
+    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+    STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+
+    MEDIAFILES_LOCATION = 'media'
+    DEFAULT_FILE_STORAGE = 'lagopoly.customstorages.MediaStorage'
+    MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+else:
+    STATIC_URL = '/static/'
+    MEDIA_URL = '/media/'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -166,17 +198,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = os.environ.get('STATIC_URL', STATIC_URL)
 STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'assets')]
-STATICFILES_STORAGE = "whitenoise.django.GzipManifestStaticFilesStorage"
-
 LOGIN_REDIRECT_URL = "home"
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
-#setting media path for imageUpload
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_ROOT_THUMB = os.path.join(MEDIA_ROOT, 'thumbnails')
+# setting media path for imageUpload
+MEDIA_URL = os.environ.get('MEDIA_URL', MEDIA_URL)

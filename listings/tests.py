@@ -103,7 +103,7 @@ class ListingViewsTests(TestCase):
 	def test_report_detail_view(self):
 		resp = self.client.get(reverse('listings:doc', 
 									kwargs={'listing_pk': self.listing.pk,
-									'docfile_pk': self.report.pk}))
+									'docfile_pk': self.report.pk, 'filename':'filename'}))
 		self.assertEqual(resp.status_code, 200)
 		self.assertEqual(self.report, resp.context['report'])
 		self.assertTemplateUsed(resp, 'listings/report_detail.html')

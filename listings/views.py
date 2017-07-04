@@ -61,6 +61,9 @@ class ListingDetailView(DetailView):
         return context
 
 
+class PdfView(TemplateView):
+    pass
+
 class ListingCreateView(PageTitleMixin, LoginRequiredMixin, CreateView):
     success_url = '/create'
     template_name = 'listings/listing_form.html'
@@ -168,8 +171,8 @@ def home(request):
 	return render(request, 'home.html')
 
 
-def report_detail(request, listing_pk, report_pk):
-    report = get_object_or_404(DocFile, listing_id=listing_pk, pk=report_pk)
+def report_detail(request, listing_pk, docfile_pk, filename):
+    report = get_object_or_404(DocFile, listing_id=listing_pk, pk=docfile_pk)
     return render(request, 'listings/report_detail.html', {'report': report})
 
 #def listing_list(request):

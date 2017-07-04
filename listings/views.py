@@ -3,8 +3,9 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, FormView 
-from .models import Listing, Report, Valuation, Investment, ListingImage
+from django.views.generic import (ListView, DetailView, CreateView,
+                                  UpdateView, FormView, TemplateView)
+from .models import Listing, DocFile, Valuation, Investment, ListingImage
 from django.contrib import messages
 from .mixins import PageTitleMixin, InvestmentOperations
 from django.contrib.auth.decorators import login_required
@@ -13,6 +14,8 @@ from . import models
 from django.db.models import Prefetch
 from blogs.mixins import ImageOperations
 from investors.views import DashboardLayout
+from django.core.files.storage import FileSystemStorage
+from django.http import HttpResponse, HttpResponseNotFound
 
 
 class ListingListView(ListView):
@@ -55,7 +58,6 @@ class ListingDetailView(DetailView):
         obj_image = ImageOperations()
         for image in listing_images:
             obj_image.process_ratio(image.slide_image)
-            #pass
         return context
 
 
@@ -167,7 +169,7 @@ def home(request):
 
 
 def report_detail(request, listing_pk, report_pk):
-    report = get_object_or_404(Report, listing_id=listing_pk, pk=report_pk)
+    report = get_object_or_404(DocFile, listing_id=listing_pk, pk=report_pk)
     return render(request, 'listings/report_detail.html', {'report': report})
 
 #def listing_list(request):

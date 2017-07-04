@@ -42,15 +42,18 @@ class ListingImage(models.Model):
 		return str(self.listing) + " 's Image"
 
 
-class Report(models.Model):
+class DocFile(models.Model):
+	created_at = models.DateTimeField(auto_now_add=True)
 	title = models.CharField(max_length=225)
 	overview = models.TextField()
 	report_type = models.CharField(max_length=225)
-	listing = models.ForeignKey(Listing)
-	#pdf_path = models.FileField(upload_to=None, max_length=225)
+	listing = models.ForeignKey(Listing, null=True)
+	doc = models.FileField(upload_to='documents', max_length=225, default="documents/no-file.pdf")
 
 	def __str__(self):
-		return self.title
+		if str(self.listing) is not None:
+			return str(self.listing) + " 's Doc"
+		return "General Investment Doc"
 
 
 class Investment(models.Model):

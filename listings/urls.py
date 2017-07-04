@@ -3,9 +3,8 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-	#url(r'^$', views.listing_list, name='list'),
-	url(r'(?P<listing_pk>\d+)/(?P<report_pk>\d+)/$', views.report_detail,
-		name='report'),
+	# url(r'(?P<listing_pk>\d+)/(?P<docfile_pk>\d+)/(?P<filename>[\w\-]+)/$', views.PdfView.as_view(), 
+	# 	name='doc'),
 	url(r'^add-images/(?P<listing_pk>\d+)/$', views.ListingImageView.as_view(), name='add_images'),
 	url(r'^create/$', views.ListingCreateView.as_view(), name='create'),
 	url(r'^pre-invest/(?P<listing_pk>\d+)/$', views.prep_investment, name='invest'),

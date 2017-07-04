@@ -108,6 +108,16 @@
 		<!-- Property Description -->
 		<div class="col-lg-8 col-md-7">
 			<div class="property-description">
+				<!-- Property Docs -->
+				<h3 class="desc-headline">Docs</h3>
+				<div class="padding-bottom-50 padding-top-10 padding-left-100">
+				{% for doc in listing.docfile_set.all %}
+					<a href="https://s3.us-east-2.amazonaws.com/lagoroku/media/{{doc.doc}}">
+					<i class="sl sl-icon-cloud-download"></i> {{doc.report_type}}</a>
+				{% endfor %}
+
+				</div>
+
 				<!-- Description -->
 				<h3 class="desc-headline">Property Details</h3>
 				<div class="show-more">

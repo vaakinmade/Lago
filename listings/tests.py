@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.core.urlresolvers import reverse
 import time
 
-from .models import Listing, Report
+from .models import Listing, DocFile
 # Create your tests here.
 
 class ListingModelTests(TestCase):
@@ -24,7 +24,7 @@ class ListingModelTests(TestCase):
 		now = timezone.now()
 		self.assertLess(listing.created_at, now)
 
-class ReportModelTests(TestCase):
+class DocFileModelTests(TestCase):
 	def setUp(self):
 		self.listing = Listing.objects.create(
 			name = "ABC Heights",
@@ -41,14 +41,15 @@ class ReportModelTests(TestCase):
 
 
 	def test_report_creation(self):
-		report = Report.objects.create(
+		report = DocFile.objects.create(
 			title = "Residential report for Ikeja Property",
 			overview = "Property is in good condition",
 			report_type = "Solicitor's Report",
-			listing = self.listing
+			listing = self.listing,
+			doc = "documents/no-file.pdf"
 		)
 
-		self.assertIn(report, self.listing.report_set.all())
+		self.assertIn(report, self.listing.docfile_set.all())
 
 class ListingViewsTests(TestCase):
 	def setUp(self):
@@ -76,11 +77,12 @@ class ListingViewsTests(TestCase):
 			unit_block = "30 units",
 			floor_plan ="pic_folder/None/no-img.jpg"
 		)
-		self.report = Report.objects.create(
+		self.report = DocFile.objects.create(
 			title = "Residential report for Ikeja Property",
 			overview = "Property is in good condition",
 			report_type = "Surveyor's Report",
-			listing = self.listing
+			listing = self.listing,
+			doc = "documents/no-file.pdf"
 		)
 
 	def test_listing_list_view(self):
@@ -99,9 +101,9 @@ class ListingViewsTests(TestCase):
 		self.assertTemplateUsed(resp, 'listings/listing_detail.html')
 		
 	def test_report_detail_view(self):
-		resp = self.client.get(reverse('listings:report', 
+		resp = self.client.get(reverse('listings:doc', 
 									kwargs={'listing_pk': self.listing.pk,
-									'report_pk': self.report.pk}))
+									'docfile_pk': self.report.pk}))
 		self.assertEqual(resp.status_code, 200)
 		self.assertEqual(self.report, resp.context['report'])
 		self.assertTemplateUsed(resp, 'listings/report_detail.html')

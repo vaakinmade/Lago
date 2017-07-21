@@ -111,11 +111,16 @@
 				<!-- Property Docs -->
 				<h3 class="desc-headline">Docs</h3>
 				<div class="padding-bottom-50 padding-top-10 padding-left-100">
-				{% for doc in listing.docfile_set.all %}
-					<a href="https://s3.us-east-2.amazonaws.com/lagoroku/media/{{doc.doc}}">
-					<i class="sl sl-icon-cloud-download"></i> {{doc.report_type}}</a>
-				{% endfor %}
+					{% for doc in listing.docfile_set.all %}
+						<a href="https://s3.us-east-2.amazonaws.com/lagoroku/media/{{doc.doc}}">
+						<i class="sl sl-icon-cloud-download"></i> {{doc.report_type}}</a>
+					{% endfor %}
 
+					<a class="padding-left-100" href="https://s3.us-east-2.amazonaws.com/lagoroku/media/{{listing.docfile_set.first.doc}}">
+					<i class="sl sl-icon-cloud-download"></i> Legal Report</a>
+
+					<a class="padding-left-100" href="https://s3.us-east-2.amazonaws.com/lagoroku/media/{{listing.docfile_set.first.doc}}">
+					<i class="sl sl-icon-cloud-download"></i> Title Deeds</a>
 				</div>
 
 				<!-- Description -->

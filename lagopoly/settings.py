@@ -145,7 +145,7 @@ AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY', cast=str)
 AWS_S3_CALLING_FORMAT = config('AWS_S3_CALLING_FORMAT')
 AWS_QUERYSTRING_AUTH = False
 
-if config('AWS_STORAGE_BUCKET_NAME'):
+if 'DYNO' in os.environ:
     STATICFILES_STORAGE = 'lagopoly.customstorages.StaticStorage'
     STATICFILES_LOCATION = 'static'
     AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME

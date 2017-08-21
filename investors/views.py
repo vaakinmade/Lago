@@ -15,7 +15,6 @@ import shortuuid
 class DashboardView(PageTitleMixin, mixins.LoginRequiredMixin, TemplateView):
 	template_name = "investors/home.html"
 	page_title = "investors area"
-	paginate_by = 6
 
 	def get_context_data(self, **kwargs):
 		context = super(DashboardView, self).get_context_data(**kwargs)

@@ -13,7 +13,6 @@ import accounts   # NOQA
 import os
 from decouple import config, Csv
 import dj_database_url
-import warnings
 from django.core.exceptions import ImproperlyConfigured
 
 
@@ -76,11 +75,12 @@ INSTALLED_APPS = [
 JENKINS_TASKS = (
     'django_jenkins.tasks.run_pep8',
     'django_jenkins.tasks.run_pyflakes',
+    'django_jenkins.tasks.run_flake8',
 )
 
 PROJECT_APPS = (
     'accounts',
-    'dashboard',
+    'blogs',
     'listings',
 )
 
@@ -208,3 +208,4 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
 # setting media path for imageUpload
 MEDIA_URL = os.environ.get('MEDIA_URL', MEDIA_URL)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

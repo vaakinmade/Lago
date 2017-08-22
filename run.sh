@@ -1,9 +1,9 @@
 #!/bin/bash
 PATH=$WORKSPACE/venv/bin:/usr/local/bin:$PATH
-if [ ! -d "venvs" ]; then
-	virtualenv venvs --python=/usr/bin/python3
+if [ ! -d "venv" ]; then
+	virtualenv venv --python=/usr/bin/python3
 fi
-. venvs/bin/activate
+. venv/bin/activate
 
 # Install project Python packages
 pip install -r requirements.txt

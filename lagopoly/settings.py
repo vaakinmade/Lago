@@ -23,6 +23,7 @@ def get_env_variable(var_name):
         error_msg = "Set the {} env variable.".format(var_name)
         if DEBUG:
             warnings.warn(error_msg)
+            print(error_msg)
         else:
             raise ImproperlyConfigured(error_msg)
 

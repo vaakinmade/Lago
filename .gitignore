@@ -38,3 +38,6 @@ htmlcov/
 
 # Ignore local cred file
 cred.txt
+
+# Ignore build file used for jenkins injection
+build.prop

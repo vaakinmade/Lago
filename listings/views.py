@@ -64,6 +64,7 @@ class ListingDetailView(DetailView):
 class PdfView(TemplateView):
     pass
 
+
 class ListingCreateView(PageTitleMixin, LoginRequiredMixin, CreateView):
     success_url = '/create'
     template_name = 'listings/listing_form.html'

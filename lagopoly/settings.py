@@ -148,12 +148,12 @@ AWS_QUERYSTRING_AUTH = False
 if 'DYNO' in os.environ:
     STATICFILES_STORAGE = 'lagopoly.customstorages.StaticStorage'
     STATICFILES_LOCATION = 'static'
-    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-    STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+    AWS_S3_CUSTOM_DOMAIN = '{}.s3.amazonaws.com'.format(AWS_STORAGE_BUCKET_NAME)
+    STATIC_URL = "https://{}/{}/".format(AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
 
     MEDIAFILES_LOCATION = 'media'
     DEFAULT_FILE_STORAGE = 'lagopoly.customstorages.MediaStorage'
-    MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+    MEDIA_URL = "https://{}/{}/".format(AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 else:
     STATIC_URL = '/static/'
     MEDIA_URL = '/media/'
@@ -201,6 +201,7 @@ USE_TZ = True
 STATIC_URL = os.environ.get('STATIC_URL', STATIC_URL)
 STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'assets')]
+
 LOGIN_REDIRECT_URL = "home"
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"

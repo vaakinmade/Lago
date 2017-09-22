@@ -41,3 +41,6 @@ cred.txt
 
 # Ignore build file used for jenkins injection
 build.prop
+
+#Ignore sent mails
+/sent_emails

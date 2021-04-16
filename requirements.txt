@@ -8,7 +8,7 @@ coverage==4.3.4
 dj-database-url==0.4.1
 Django==1.9
 django-bootstrap3==8.2.1
-django-debug-toolbar==1.7
+django-debug-toolbar==1.11.1
 django-jenkins==0.110.0
 django-mathfilters==0.4.0
 django-storages==1.6.3
